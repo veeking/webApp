@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function Dictionary() {
+        this.add = add;
+        this.dataStore = new Array();  //  使用数组方式存储，是为了实现排序  arr.sort();
+        this.find = find;
+        this.remove = remove;
+        this.showAll = showAll;
+        this.count = count;
+        this.clear = clear;
+    }
+    function add(key,value){
+        this.dataStore[key] = value;
+    }
+    function find(key){
+//     console.log(this.dataStore[key])
+       return this.dataStore[key];
+    }
+    function remove(key){
+       delete this.dataStore[key];
+    }
+    function showAll(){
+      for(var key in this.dataStore){
+          console.log(key + ":=> " + this.dataStore[key])
+      }
+    }
+    function count(){
+        var key;
+        var n =0;
+        for(key in this.dataStore){
+           ++n;
+        }
+        console.log(n)
+        return n;
+    }
+    function clear(){
+        var key;
+        for(key in this.dataStore){
+            delete this.dataStore[key];
+        }
+    }
+    // 使用 ..
+    var exmpleWord = "the brown blue fox jumped over the blue fox the over";
+    var wordPart = exmpleWord.split(" ");
+    var wordBox = new Dictionary();
+    for(var i=0;i < wordPart.length;i++){
+        if(typeof (wordBox.find(wordPart[i])) !== "undefined"){  // 如果已经存在，那么原基础上++
+            wordBox.dataStore[wordPart[i]] +=1;
+        }else{ //否则  没有的话  初始化加入
+            wordBox.add(wordPart[i],1);
+        }
+    };  // end for
+
+    wordBox.showAll();
+    wordBox.count();
+</script>
+</body>
+</html>

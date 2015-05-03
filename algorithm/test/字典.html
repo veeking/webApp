@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<script>  // 字典 以及 字典实例
+   function Dictionary(){
+      this.add = add;
+      this.dataStore = new Array();
+      this.remove = remove;
+      this.find = find;
+      this.count = count;
+      this.show = show;
+   }
+
+   function add(key,value){
+     this.dataStore[key] = value;
+   }
+   function find(key){
+      return this.dataStore[key];
+   }
+   function remove(key){
+     delete this.dataStore[key];
+   }
+   function count(){
+     var n = 0;
+     for(obj in Object.keys(this.dataStore)){
+            ++n;
+     }
+     return n;
+   }
+   function show(){
+     try {
+         for (key in this.dataStore) {
+             console.log(key + " : " + this.dataStore[key]);
+         }
+     }catch(e){
+         alert(e)
+     }
+   }
+//   function parseQueryString(url) {
+//       var od = new Dictionary();
+//       var a = url.split('?');
+//       var b = a[1].split('&');
+//       for(var i=0;i < b.length;i++){
+//          var keyValue = b[i].split('=');
+//          od.add(keyValue[1],keyValue[0]);  // 注意 顺序别弄颠倒了 key = value
+//       }
+//       console.log(od.dataStore);
+//       od.show();
+//   }
+//
+//
+//     parseQueryString('http://witmax.cn/index.php?key0=0&key1=1&key2=2');
+
+      //  字典->记录单词出现次数实例
+
+      function countWord(words){
+          var wordsDic = new Dictionary();
+          var word = words.split(" ");
+          for(var i=0;i < word.length;i++){//注意 别把wordsDic.dataStore[word[i]]
+              if(!wordsDic.find(word[i])){  //写成 wordsDic.dataStore[i]
+                  wordsDic.add(word[i],1);
+              }else{
+                  wordsDic.dataStore[word[i]]++;
+              }
+
+         }  // end for
+          wordsDic.show();
+      }
+      var words = "Module 'myApp' is not available! You either misspelled the module name or forgot to load it. If registering a module ensure that you specify the dependencies as the second";
+      countWord(words);
+ </script>
+</body>
+</html>

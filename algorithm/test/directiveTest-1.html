@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+</head>
+<body ng-controller="someController">
+      <hello test-title="title"><div>fds</div></hello>
+      <script src="directive_test/lib/angular.js"></script>
+      <script src="directive_test/lib/angular-resource.min.js"></script>
+<script>
+      var myApp = angular.module('myApp',[]);
+      myApp.controller('someController',function($scope){
+          $scope.title = "我是标题";
+      });
+      myApp.directive('hello',function(){
+           return {
+               restrict:"AE",
+               replace:true,
+               transclude:true,
+               scope : {title : '=testTitle'},
+               template:"<div>你好,,{{title}}<div ng-transclude></div></div>",
+           };
+      });
+</script>
+</body>
+</html>

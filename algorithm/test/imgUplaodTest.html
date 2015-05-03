@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        img{
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<input type="file" multiple id="fileUp"/>
+<button id="upBtn">上传</button>
+ <div id="fileShow" style="float:left;border: 1px solid #00b3ee;width:300px;height: 300px;s">
+     <img id="imgFile"/>
+
+ </div>
+<div id="uploadedBox" style="float:right;border: 2px solid #ff00c1;width: 400px;height:400px;">
+    <img id="upPic"/>
+</div>
+<script>
+     var upFile = document.getElementById('fileUp');
+     var upBtn = document.getElementById('upBtn');
+     var upShow = document.getElementById('fileShow');
+     var upImg = document.getElementById('imgFile');
+
+     var uploaded = document.getElementById('uploadedBox');
+     var uploadedImg = document.getElementById('upPic');
+
+     var imgFile;
+     upFile.onchange = function(){
+         if(this.files && this.files[0]){
+              imgFile = this.files;
+              upImg.onload = function(){
+                  upShow.style.width = 500 + 'px';
+                  upShow.style.backgroundColor ='red';
+              }
+          var fileReader = new FileReader();
+          fileReader.onload = function(e){
+              upImg.src = e.target.result;
+          }
+          fileReader.readAsDataURL(this.files[0]);  // 转换成可读取的数据才能正常读取
+         } // end if
+     }
+     upBtn.addEventListener('click',function(){
+         if(imgFile === undefined){
+              alert("还木有上床呢");
+              return false;
+         }
+         upLoad.call(this,imgFile);
+     });
+     function upLoad(imgData){
+          var formData = new FormData();
+          formData.append('imgSrc',imgData);
+         console.log(formData.get('imgSrc'));
+          uploadedImg.src = formData;
+     }
+</script>
+</body>
+</html>

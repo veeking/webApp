@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<script>
+
+    // 方法1
+    console.time("方法1")
+    function addZero(num,n){
+        return (Array(n).join(0) + num).slice(-n);
+    }
+    console.log(addZero(322,6));
+    console.timeEnd("方法1")
+
+
+    //方法2
+    console.time("方法2")
+    function addZero2(num,n){
+      var i = (num + "").length;
+      while(i++ < n) num = "0" + num;
+      return num;
+    }
+    console.log(addZero2(322,6));
+    console.time("方法2")
+    console.timeEnd("方法2")
+
+
+    //方法3
+    console.time("方法3")
+    function addZero3(num,n){
+        if((num + "").length >= n) return num;
+        return addZero3("0" + num,n);
+    }
+    console.log(addZero3(322,6));
+    console.timeEnd("方法3")
+
+
+
+    //方法4
+    console.time("方法4")
+    function addZero4(num,n){
+        var len = num.toString().length;
+        while(len < n){
+            num = "0" + num;
+            len++;
+        }
+        return num;
+    }
+    console.log(addZero4(322,6));
+    console.timeEnd("方法4")
+</script>
+</body>
+</html>

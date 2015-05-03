@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+
+<script>
+//    function imgLoad(url,fn){
+//        var img = new Image();
+//        var imgErr;
+//        img.src = url;
+//        img.onerror = function(err){
+//            imgErr = err;
+//        }
+//        img.onload = function(data){
+//            fn.call(img,imgErr,data);  // call将this绑定到img
+//        }
+//    }
+//    imgLoad('dsax.jpg',function(err,data){
+//       if(err) throw new TypeError('图片读取错误!!');
+//       alert(data + "加载完成!!")
+//    });
+//
+//    while(arr.length){
+//        arr.shift();
+//        arr[i](val);
+//    }
+   //浏览器自带API promise
+//   var promise = new Promise(function(resolve,reject){
+//       setTimeout(function(){
+//            resolve('0');
+//       },1500)
+//   })
+//   promise.then(function(state){
+//        alert(state);
+//   })
+ function Promise(fn){
+     if(typeof fn !=== "function") throw new TypeError('必须是函数!!');
+     if((!this instanceof Promise)){
+          return new Promise(fn);
+     }
+
+     this._state = PENDING;
+     this._value;
+     this._reason;
+     this._resolves = [];
+     this._rejects = [];
+
+     function resolve(value){
+         //状态转换为FULFILLED
+         //执行then时保存到_resolves里的回调，
+         //如果回调有返回值，更新当前_value
+     }
+
+    function reject(reason){
+        //状态转换为REJECTED
+        //执行then时保存到_rejects里的回调，
+        //如果回调有返回值，更新当前_rejects
+    }
+ }
+    fn(resolve,reject);
+ }
+    Promise.prototype.then = function(onResolved,onReject){
+        var promise = this;
+            return new Promise(function(resolve,reject){
+                function callback(value){
+                    var ret = (typeof onResolved === "function") && onResolved(value) || value;
+                    if(isThenable(ret)){
+                      ret.then(function(value){
+                          resolve(value);
+                      },function(reason){
+                          reject(reason);
+                      });
+                    }else{
+                        resolve(ret);
+                    }
+                }
+
+                function errBack(reason){
+                    reason = (typeof onReject === "function") && onReject(reason) || reason;
+                    reject(reason);
+                }
+
+                if(promise._state === PENDING){
+                    promise._resolves.push(callback);
+                    promise._rejects.push(errBack);
+                }else if(promise._state === RESOLVED){
+                    callback(promise._value);
+                }else if(promise._state === REJECTED){{
+                    callback(promise._reason);
+                }
+        });
+    }
+
+function isThenable(obj){  // 让其 返回的对象 带有then方法,就假当做是promise对象
+    return obj && typeof obj['then'] = 'function';
+}
+</script>
+</body>
+</html>

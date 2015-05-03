@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<script>
+     function Power(num,r){
+        if(r <= 0) return 1;  // 第一次 4 * 1 第二次  4 * 4 第三次 4*16
+         console.log(num + "*" + Power(num,r-1))
+        return num *= Power(num,r-1);
+       }
+    console.log("终值为 : " + Power(4,3));
+</script>
+</body>
+</html>

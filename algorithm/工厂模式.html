@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<script>
+//    function CarMaker(){}
+//
+//    CarMaker.prototype.driver = function(){
+//       console.log("我有" + this.doors + "个门");
+//       return "我有" + this.doors + "个门";
+//    }
+//
+//    // 静态 构造函数
+//    CarMaker.factory = function(type){
+//        var constr = type;
+//        var newCar;
+//        // 如果 构造 函数 不存在 ，则发生错误
+//       if(typeof CarMaker[constr] != "function") {
+//           throw{
+//               name: "Error",
+//               message: constr + "doesn`t exit!!"
+//           }
+//       }
+//       // 原型继承父类 ，仅继承一次
+//        if(typeof CarMaker[constr].prototype.driver !== "function"){
+//            CarMaker[constr].prototype = new CarMaker();  // 重点  ： 发生了继承
+//        }
+//       // 创建一个新的实例
+//          newCar = new CarMaker[constr]();
+//        return newCar;  // 返回新实例
+//    }
+//
+//    CarMaker.SUV = function(){
+//       this.doors = 4;
+//    }
+//    CarMaker.compact = function(){
+//       this.doors = 10;
+//    }
+//    CarMaker.convertible = function(){
+//       this.doors = 8;
+//    }
+//
+//    // 使用
+//
+//    var SUV = CarMaker.factory('SUV');
+//    var compact = CarMaker.factory('compact');
+//    var convertible = CarMaker.factory('convertible');
+//
+//    SUV.driver();
+//    compact.driver();
+//    convertible.driver();
+//
+//   var egg = (function(){
+//       var index = 0;
+//       var data = [1,2,3,4,5];
+//       var length = data.length;
+//       return {
+//           next : function(){
+//              var element;
+//              if(!this.hasNext){
+//                return null;
+//              }
+//              element = data[index];
+//              index = index + 2;
+//
+//              return element;
+//           },
+//           hasNext : function(){
+//               return index < length;
+//           }
+//       };
+//   }());
+//
+//    // 使用， 遍历迭代遍历数据结构
+//    while(agg.hasNext()){
+//        console.log(agg.next);
+//    }
+ //装饰者模式
+
+     function Sale(price){
+        this.price = price || 100;
+     }
+     Sale.prototype.getPrice = function(){
+        return this.price;
+     }
+
+     Sale.decorators = {};
+     Sale.decorators.fedtax = {  // 将作为newObj实现继承并重载getPrice
+         getPrice : function(){
+            var price = this.uber.getPrice();  //   this.uber 为 : newObj.uber = F.prototype;
+            price += price * 5 /100;
+            return price;
+         }
+     }
+    Sale.decorators.quebec = {
+        getPrice : function(){
+            var price = this.uber.getPrice();
+            price += price * 7.5 /100;
+            return price;
+        }
+    }
+    Sale.decorators.money = {
+        getPrice : function(){
+            return "$" + this.uber.getPrice().toFixed(2);
+        }
+    }
+    Sale.decorators.cdn = {
+        getPrice : function(){
+            return "CND$" + this.uber.getPrice().toFixed(2);
+        }
+    }
+
+   Sale.prototype.decorate = function(decorator){
+      var F = function(){};
+      var overrides = this.constructor.decorators[decorator];
+      var i,newObj;
+
+       F.prototype = this;
+       newObj = new F();
+       newObj.uber = F.prototype;
+       for(i in overrides){
+         if(overrides.hasOwnProperty(i)){  //  将所有非原型属性 继承给 newObj
+            newObj[i] = overrides[i]
+         }
+       }
+       return newObj;
+   }
+  // 用法
+    var sale = new Sale(100);
+    sale = sale.decorate('fedtax');
+    console.log(sale.getPrice());
+</script>
+</body>
+</html>

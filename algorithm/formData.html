@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .container {
+            width: 500px;
+            margin: 0 auto;
+        }
+        .progress_outer {
+            border: 1px solid #000;
+        }
+        .progress {
+            width: 20%;
+            background: #DEDEDE;
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+   <div class="container">
+       <p>
+           <input type="file" id="_file"/>
+           <button id="上" value="upload!">上传</button>
+       </p>
+       <div class='progress_outer'>
+           <div id='_progress' class='progress'></div>
+       </div>
+   </div>
+<script>
+    var _submit = document.getElementById('_submit'),
+        _file = document.getElementById('_file'),
+        _progress = document.getElementById('_progress');
+    function upload(){
+       if(_file.files.length == 0){
+            return;
+       }
+       var data = new FormData();
+       data.append('selectedFile',_file.files[0])
+
+       var xhr = new XMLHttpRequest();
+       xhr.onreadystatechange = function(){
+            if(xhr.readyState == 4){
+                try{
+                  var resp = JSON.parse(xhr.response);
+                }catch(e){
+                   var resp = {
+                       status : 'error',
+                       data :'Unknown error occurred: [' + request.responseText + ']'
+                   };
+                    console.log(resp.status + ':' + resp.data);
+                }
+            }
+           xhr.upload.addEventListener('progress',function(e){
+               _progress.style.width = Math.ceil(e.loaded/ e.total) * 100 + '%';
+
+           },false)
+           xhr.open('POST','/uploadFile');
+           xhr.send(data);
+       }
+    }
+    _submit.addEventListener('click',upload);
+</script>
+</body>
+</html>

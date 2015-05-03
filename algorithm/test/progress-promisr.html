@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="lib/jquery.js"></script>
+</head>
+<body>
+    <!--promise  演示-->
+<input type="text" id="txt"/>
+<br>进度为:<div id="showTxt" style="border: 1px solid #00b3ee;">0</div>
+<br/>字数为:<div id="showNum">0</div>
+  <button id="pBtn">按钮测试</button>
+<script>
+      var promptDeferred = $.Deferred();
+      var p1 = promptDeferred.promise();
+      var p2 = promptDeferred.promise();
+
+      var promise = $.Deferred();
+      var promise2 = $.Deferred();
+      var wordCount = 20;
+      var txt = $("#txt");
+      var showTxt = $("#showTxt");
+      var showNumBox = $("#showNum");
+      promise.progress(function(wordNum){
+           var frac = Math.floor(wordNum/wordCount * 100);
+           showNumBox.html(wordNum);
+           showTxt.html(frac);
+      });
+      promise.done(function(num){
+         alert("已达到字符限制" + num);
+        })
+      txt.on("input", function(){
+         var c = txt.val().length;
+         if(c >= wordCount){
+             promise.resolve.call(this,c);
+         }
+          promise.notify(c);
+      })
+    $("#pBtn").on('click',function(){
+           promise2.resolve();
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html ng-app="serviceApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body ng-controller="mainC">
+<script src="directive_test/lib/angular.js"></script>
+<script>
+     var app = angular.module('serviceApp',[]);
+     app.controller('mainC',function($scope,Person){
+         var oc = new Person('小王那个');
+         console.log(oc.name);
+     })
+     app.service('Person',function(){
+         return function(name){
+          this.name = name;
+        }
+     })
+//     app.factory('Child',function(){
+//        return function(name){
+//          this.name = name;
+//        }
+//     })
+</script>
+</body>
+</html>

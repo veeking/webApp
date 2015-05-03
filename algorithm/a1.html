@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<script>
+      function parent(name,age){
+         this.name = name;
+         this.age = age;
+         var self = this;
+         this.sayName = function(){
+             alert(self.name+"，今年: " + self.age );
+         }
+      }
+
+      function Child(opt){
+         parent.apply(this,[opt.name,opt.age]);  // 继承
+      }
+
+    var oc = new Child({
+        name:"我是子类",
+        age : 18
+    });
+    oc.sayName();
+</script>
+</body>
+</html>

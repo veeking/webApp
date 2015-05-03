@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //  二叉树 练习  ： 中心抽象 ：  根节点 - 左节点  - 右节点
+    function Node(data,left,right){ // 初始化二叉树节点
+         this.data = data;
+         this.left = left;
+         this.right = right;
+         this.show = show;
+    }
+    function show(){
+        console.log(data);
+    }
+    function BST(){  // 定义一组操作二叉树的方法合集
+        this.root = null;
+        this.insert = insert;
+        this.remove = remove;
+        this.find = find;
+        this.getMin = getMin;
+        this.getMax = getMax;
+    }
+    function insert(data){
+        var n = new Node(data,null,null);
+        if(this.root == null){  // 如果根节点为空的话  数据插入根节点
+            this.root = n;
+        }else{
+           var current = this.root;
+           var parent;
+           while(true){ // 遍历 插入 左右 节点
+               parent = current;
+               if(data < current.data){ // 如果 插入的数据  比 当前的数据 小的话 ，那么插入到左节点
+                   current = current.left;
+                   if(current == null){
+                      parent.left = n;  //  current = n;
+                      break;
+                   }
+               }else{
+                    current = current.right;
+                    if(current == null){
+                        parent.right = n;
+                        break;
+                    }
+
+               }
+           }
+        }
+
+    }
+    function find(data){
+        var current = this.root;
+        while(current){
+           if(data == current.data){
+               return current;  //  如果找到的话 直接返回
+           }else if(data < current.data){
+               current = current.left;
+           }else if(data > current.data){
+               current = current.right;
+           }
+            return null;
+        }
+     } // end find
+
+    function getMin(){  //  不断遍历最左 最左为最小
+      var current = this.root;
+      while(current.left != null){
+          current = current.left;
+      }
+        return current;
+    } // end getMin
+   function getMax(){
+       var current = this.root;
+       while(current.right != null){
+           current = current.right;
+       }
+       return current;
+   }
+    function remove(data){
+       this.root = this.removeNode(this.root,data);
+    }
+   function removeNode(node,data){
+       if(node == null) {
+          return null;
+       }
+       if(data == node.data){
+           //
+       }else if(data < node.data){
+           node.left = removeNode(node.left,data);
+           return node.left;
+       }else{
+           node.right = removeNode(node.right,data);
+           return node.right;
+       } // end right if
+   }
+</script>
+</body>
+</html>

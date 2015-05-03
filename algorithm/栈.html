@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+  function Stack(){
+     this.dataStore = [];
+     this.top = 0;
+     this.push = push;
+     this.pop = pop;
+     this.peek = peek;
+     this.length = length;
+     this.clear = clear;
+  }
+     function push(element){
+          this.dataStore[this.top++] = element;
+     }
+     function pop(){
+        return this.dataStore[--this.top];
+     }
+     function peek(){
+        return this.dataStore[this.top-1]
+     }
+    function length(){
+        return this.top;
+    }
+    function clear(){
+         return this.top = 0;
+    }
+
+    var s = new Stack();
+
+    function expressCheck(word){
+        var s = new Stack();
+        var index = 0;
+        var content = "";
+        for(var i =0;i < word.length;i++){
+            s.push(word[i]);
+        }
+        while(s.length() > 0){
+            content += s.pop();
+        }
+        if(content.indexOf(')') === -1){
+            return content;
+        }
+
+    }
+  var exWord ='(nihao';
+  alert(expressCheck(exWord));
+</script>
+</body>
+</html>

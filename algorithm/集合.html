@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+   function Set(){
+      this.dataStore = [];
+      this.add = add;
+      this.remove = remove;
+      this.showSet = showSet;
+      this.contains = contains;
+      this.union = union;
+      this.intersect = intersect;
+   }
+   function add(data){
+      if(this.dataStore.indexOf(data) < 0){ // -1时 没找到
+           this.dataStore.push(data);
+           this.dataStore.sort();
+           return true;
+      }
+      return false;
+   }
+   function remove(data){
+      var pos = this.dataStore.indexOf(data);
+         if(pos > -1){
+           this.dataStore.splice(pos,1);
+           return true;
+         }
+       return false;
+   };
+
+   function showSet(){
+       console.log(this.dataStore);
+       return this.dataStore;
+   }
+
+
+   function contains(data){
+       if(this.dataStore.indexOf(data) > -1){
+           return true;
+       }else{
+           return false;
+       }
+   }
+   function union(set){
+      var tmpSet = new Set();
+      for(var i=0;i<this.dataStore.length;i++){
+         tmpSet.add(this.dataStore[i]);
+      }
+       for(var i=0;i<set.dataStore.length;i++){
+         if(!tmpSet.contains(set.dataStore[i])){  // 不重复的 合并
+             tmpSet.dataStore.push(set.dataStore[i]);
+         }
+       }
+      return tmpSet;
+   }
+
+   function intersect(set){
+      var tmpSet = new Set();
+      for(var i=0;i<this.dataStore.length;i++){
+          if(set.contains(this.dataStore[i])){
+              tmpSet.add(this.dataStore[i]);
+          }
+      }
+       return tmpSet;
+   }; // end intersect
+
+   var cis = new Set(); // 实例化一个 names的集合
+   cis.add('vee');
+   cis.add('king');
+   cis.add('adsa');
+   cis.add('jack');
+   cis.add('mason');
+
+   var dmp = new Set();
+   dmp.add('few');
+   dmp.add('htr');
+   dmp.add('nh');
+   dmp.add('vc');
+   dmp.add('we');
+   dmp.add('jack');
+
+   var inter = cis.intersect(dmp);  //  交
+   inter.showSet();
+
+   var union = cis.union(dmp); // 并
+   union.showSet();
+
+
+     // this.dataStore.indexOf(item) > -1  return true;
+     //  是否重复核心
+</script>
+</body>
+</html>

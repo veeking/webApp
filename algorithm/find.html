@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>..</title>
+</head>
+<body>
+<script>
+  var collections = [12,4,5,8,6];
+  Array.prototype.find = function(predicate){
+      if(typeof predicate !== 'function'){
+          throw new TypeError('必须要是function');
+      }
+      var len = this.length;
+      var i;
+      var value;
+      var list = this;
+      for(i = 0;i < len;i++){
+          if(i in list){  // 如果是当前
+           value = list[i];
+           if(predicate.call(this,value,i,list)){
+                return value;  //如果 predicate断言方法为true,返回当前true的值
+            }
+          }
+      }
+      return undefined; // 如果没找到
+  }
+    function isPrime(arrValue,index,thisArr){
+        var initNum;
+        for(initNum = 2;initNum < arrValue;initNum++){
+            if(arrValue % initNum < 1){  // 被其它数整除的话，是错误的返回false
+                return false;
+            }
+        }
+        return (arrValue > 1);
+
+
+///*高级写法，性能优->*/
+//        while(initNum <= Math.sqrt(arrValue)){  //真不明白为什么要开方？
+//           if(arrValue % initNum++ < 1) return false; // 只能被本身整除，小于自身的数整除都不是素数，返回false;
+//        }
+//        return (arrValue > 1);  // 素数: 大于1的 ，且只能被自身整除的数
+    }
+  var res = collections.find(isPrime);
+    alert(res)
+</script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>   // 散列两大作用 ： 1、加密  2、 重复值检测
+  // 中心思想 :  betterHash 自定义计算散列值
+     function Set(){
+         this.table = new Array(137); //选 质数作为总长度，方便取余运算
+         this.value = new Array();  // 单词字符集合
+         this.numBox = new Array();  // 单词出现次数集合
+         this.betterHash = betterHash;
+         this.repeatHash = repeatHash;
+         this.put = put;
+         this.show = show;
+         this.get = get;
+     }
+     function put(data) {
+         var pos = this.repeatHash(data);  //  算法散列码
+         this.table[pos] = data; // 将数据对应存放到相应的散列码上
+     }
+     function getRandom(min,max){
+         return Math.floor((Math.random() * (max - min) + 1)+ min ) ;
+     }
+     function repeatHash(word){
+        if(this.value.indexOf(word) > -1){
+          this.numBox[this.value.indexOf(word)]++;
+        }else{
+          this.value.push(word);
+          this.numBox.push(1);
+        }
+
+     }
+     function betterHash(string){  // ascii 码  + 最小质数37
+           const num = 37;
+           var i;
+           var newNum = 0;
+           for(i = 0;i < string.length;i++){
+               newNum += newNum *num + string.charCodeAt(i);
+           }
+          newNum = newNum % this.table.length;   // 100 % 10 = 10
+          return parseInt(newNum);
+     }
+    function get(key){
+       return this.table[this.betterHash(key)];
+    }
+    function show(){
+        for(var i = 0;i<this.value.length;i++){
+            console.log(this.value[i] + " : " + this.numBox[i]);
+        }  // 单词出现次数
+//       for(var i = 0;i<this.table.length;i++){
+//            if(this.table[i] != undefined){
+//                console.log(i + " : " + this.table[i]);
+//            }
+//       }
+    }
+     //  测试 使用
+     var hashString = new Set();
+     var arr = ["David","Jennifer","Donnie","Raymond","Cynthia","Mike","Clayton","Danny","Jonathan"];
+      for(var i=0;i<arr.length;i++){
+          hashString.put(arr[i]);
+      }
+// console.log(hashString.get(5779));
+//        hashString.show();
+
+  // 测试实例
+     var words = "Module myApp is not available You either misspelled the module name or forgot to load it If registering a module ensure that you specify the dependencies as the second";
+     function wordNum(words){
+         var hashSet = new Set();
+         var word = words.split(" ");
+         for(var i=0;i < word.length;i++){
+               hashSet.put(word[i]);
+         }
+//         alert(hashSet.get("myApp"));
+         hashSet.show();
+     }
+wordNum(words);
+
+</script>
+</body>
+</html>
