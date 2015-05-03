@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+   function swap(arr,index,index1){
+      tmp = arr[index];
+      arr[index] = arr[index1];
+      arr[index1] = tmp;
+   }
+    // 自组织算法
+   function seqSearch(arr,data){
+
+      for(var i=0;i<arr.length;i++){
+          if(arr[i] == data && i > (arr.length * 0.2)){  // 如果找到了查找的元素的话，让元素不断地靠前，直到i=0
+              while(i>0) {          //  i > len * 2 ，20%的范围外才执行
+                swap(arr, i, i - 1);  //  一直替换到最前
+                --i;
+              }
+              return true;   //  替换完毕后  返回 true;
+          }else if(arr[i] == data){
+              return true;
+          }
+
+      }
+       return false;
+   }
+
+ // 二分法 : 中心思想  中点和上下边界 ， 范围不断缩小
+   function insertSort(arr){
+     for(var i=0;i < arr.length;i++){
+        var tmp = arr[i];
+        var j = i;
+        while(j > 0 && arr[j-1] >= tmp){
+            arr[j] = arr[j - 1];  //  大的右移
+            --j;
+        };
+        arr[j] = tmp;  //  转到下一个数据
+     }
+       return arr;
+   };
+
+   function binSearch(arr,data){
+        var upBound = arr.length - 1; // 上边界
+        var downBound = 0;  // 下边界
+        while(downBound <= upBound){
+           var mid = Math.floor((downBound + upBound) / 2);
+           if(arr[mid] < data){ //  如果中间的数据小于当前查询数据，则让下边界变为中间值 +1
+              downBound = mid + 1;
+           }else if(arr[mid] > data){
+              upBound = mid - 1;
+           }else{  // 找到 则直接返回
+               return mid;
+           }
+        }
+       return -1;
+   }
+
+
+
+    //  生成 1-1000000的随机数组
+    var startDate = new Date().getTime();
+    var testArr = [];
+    for(var i=0;i < 100000;i++){
+        testArr.push(Math.floor(Math.random() * 200000));
+    }
+   document.write('排序前' + testArr + '<br>');
+   var endDate = new Date().getTime();
+   document.write('数据生成耗时 : ' + (endDate - startDate) + '毫秒<br>');
+
+   document.write('哈哈哈哈哈哈分割线-----------------------');
+   //  排序耗时对比
+   var sDate_1 = new Date().getTime();
+   seqSearch(testArr,testArr[3000]);
+   var eDate_1 = new Date().getTime();
+   document.write('查找结果' + testArr);
+   document.write('自组织查找法耗时:' +(eDate_1 - sDate_1) + '毫秒');
+
+    //二分法
+   insertSort(testArr);
+   document.write('排序结果' + testArr);
+   var sDate_2 = new Date().getTime();
+   binSearch(testArr,testArr[3000]);
+   var eDate_2 = new Date().getTime();
+   document.write('二分法查找法耗时:' +(eDate_2 - sDate_2) + '毫秒');
+
+ // 结论 ： 1、对于未排序的随机数组 使用自组织查找  否则二分法(二分法的使用还是比较广些  个人觉得)
+</script>
+</body>
+</html>
