@@ -55,9 +55,8 @@ app.get("/api/login",function(req,res){
     res.sendfile('./views/login.html');
 });
 app.get("/api/logout",function(req,res){
-     req.session.user = null;
-     res.redirect('/');
-
+    req.session.user = null;
+    res.redirect('/');
 });
 //mongo.connect('mongodb://localhost:27017', function(err, conn){
 //     console.log(conn);
@@ -119,20 +118,20 @@ app.post("/api/regit",function(req,res){
     }
     var newUser = new User(user);
     User.get(newUser.name,function(err,user){
-         if(user){
-             console.log('用户名已经存在')
-             res.send('<div>' + user.name + '已经存在</div>' + '<a href="/">返回首页</a>');
+        if(user){
+            console.log('用户名已经存在')
+            res.send('<div>' + user.name + '已经存在</div>' + '<a href="/">返回首页</a>');
 
-         }else{ // 如果user为null
-             newUser.save(function(err,status){  // status{"ok":1,"n":1}
-                 if(err){
-                     console.log(err)
-                     return err;
-                 }
-                 req.session.user = status;
-                 res.redirect('/api/login');
-             });
-         }  // end if -else
+        }else{ // 如果user为null
+            newUser.save(function(err,status){  // status{"ok":1,"n":1}
+                if(err){
+                    console.log(err)
+                    return err;
+                }
+                req.session.user = status;
+                res.redirect('/api/login');
+            });
+        }  // end if -else
 
 
     });
@@ -147,16 +146,16 @@ app.post("/api/login",function(req,res){
         password : req.body.pwd
     }
     User.get(user.name,function(err,user_doc){
-         if(!user_doc){
-             res.send('账户不存在');
-             return err;
-         }
+        if(!user_doc){
+            res.send('账户不存在');
+            return err;
+        }
         if(user.password !== user_doc.password){
-             res.send('账户名或者密码错误');
+            res.send('账户名或者密码错误');
         }else{
-             req.session.user = user_doc;
-             console.log( req.session.user)
-             res.redirect('/api/user/' + user_doc.name);
+            req.session.user = user_doc;
+            console.log( req.session.user)
+            res.redirect('/api/user/' + user_doc.name);
         }
     })
 //    res.send('登录成功');
@@ -164,21 +163,21 @@ app.post("/api/login",function(req,res){
 
 
 // 检查是否登录的中间件
-  function CheckNotLogin(req,res,next){
-        if(req.session.user){
-           console.log('已经登录');
-           res.redirect('/');   //  如果已经登录的话 显示首页
-        }
-      next();
-  }
-  function sendSession(req,res,next){
-       if(!req.session.user){
-           console.log('user noLogin!');
-           res.send({noLogin:1}); // 前后端分离： 这时候如果不告知前端返回了一个名称为noLogin的属性的话，前端将陷入可怕的DEBUG中....-_--
-       }else {
-           res.send(req.session.user);
-       }
-  }
+function CheckNotLogin(req,res,next){
+    if(req.session.user){
+        console.log('已经登录');
+        res.redirect('/');   //  如果已经登录的话 显示首页
+    }
+    next();
+}
+function sendSession(req,res,next){
+    if(!req.session.user){
+        console.log('user noLogin!');
+        res.send({noLogin:1}); // 前后端分离： 这时候如果不告知前端返回了一个名称为noLogin的属性的话，前端将陷入可怕的DEBUG中....-_--
+    }else {
+        res.send(req.session.user);
+    }
+}
 
 
 
