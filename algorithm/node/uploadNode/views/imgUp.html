@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body ng-controller="myCtrl">
+   <div>
+       <file-uploader></file-uploader>
+   </div>
+   <div>上传状态为：{{resShow}}</div>
+   上传的图片是:
+   <img ng-src="{{uploadSrc}}" style="width: 300px;height:300px;border:3px solid #000000;display: block;overflow: hidden;"/>
+   <script src="verdor/angular.js"></script>
+   <script>
+        var myApp = angular.module('myApp',[])
+
+        function myCtrl($scope){   // 全局控制器
+            $scope.name = '超级英雄';
+        }
+        myApp.directive('fileUploader',function(){
+            return{
+                restrict : 'E',
+                transclude:true,
+                template : '<input type="file" multiple/><button ng-click="upload()">上传</button>' + '<ul><li ng-repeat="file in files"> - </li></ul>',
+                controller : function($scope,$fileUpload){
+                    $scope.notReady = true;
+                    $scope.resShow = '未上传';
+                    $scope.upload = function(){
+                        console.log($scope.files)
+                        $fileUpload.upload($scope.files,function(){
+                             $scope.resShow = '上传成功';
+
+                        });
+                    }
+                },
+                link : function($scope,$element){  //$scope没有单独定义，所以是继承全局的scope
+                   var fileInput = $element.children().eq(0); // 子集操作
+                   fileInput.bind('change',function(e){
+                        $scope.notReady = e.target.files.length === 0;
+                        $scope.files = [];   // 与 控制器共享 变量
+                       for(var i in e.target.files){
+                           if(typeof e.target.files[i] ==='object'){
+                              $scope.files.push(e.target.files[i]);
+                           }
+                       }
+                       var fileReader = new FileReader();
+                       fileReader.onload = function(e){
+                           $scope.$apply(function(){
+                               $scope.uploadSrc = e.target.result;
+                               $scope.resShow = '等待上传';
+                           });
+
+                       }
+                       fileReader.readAsDataURL($scope.files[0]);
+
+                   });
+                }
+            }
+        });
+
+       myApp.service('$fileUpload',function($http){
+           this.upload = function(files,fn){
+                var formData = new FormData();
+                for(var i in files){
+                    formData.append('file_' + i,files[i]);
+                }
+
+                $http({method:'POST',url:'/api/files',data:formData,headers:{'Content-Type':undefined},transformRequest:angular.identify}).success(function(data,status,headers,config){
+                     console.log('后台返回的数据'+data); //上传成功后
+                     this.resData = data;
+                     fn();
+                }); // end $http
+           }
+       });
+   </script>
+</body>
+</html>

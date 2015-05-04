@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>panel测试</title>
+
+    <style>
+        *{
+            margin:0;
+            padding: 0;
+        }
+        .panel-set .title{
+             width:500px;
+             margin:0 auto;
+             padding: 25px;
+             background: #000000;
+             color: #fff;
+             text-align: center;
+        }
+        .panel-set .list{
+            border: 1px solid #000000;
+            color: #000000;
+            padding: 15px;
+        }
+
+    </style>
+</head>
+<body>
+     <panel>
+        <panel-set class="panel-set" panel-title="title">
+            {{text}}
+        </panel-set>
+    </panel>
+<script src="lib/angular.js"></script>
+<script src="lib/angular-resource.min.js"></script>
+<script>
+       var myApp = angular.module('myApp',[]);
+       myApp.controller('someController',function($scope){
+           $scope.title = "点我";
+           $scope.text  = "内容";
+       });
+       myApp.directive("panel",function(){
+            return{
+                 restrict:"EA",
+                 transclude:true,
+                 replace:true,
+                 template:"<div ng-transclude></div>",
+                 controller:function($scope){
+                       this.getOpen = function(){  // 这里的this指向全局scope
+//                          $getContent.getPanelTxt($PanelContent.get(),function(data){  // 从resouce服务中获取url
+//                               $scope.panelSets = data;
+//                               $scope.showMe = !$scope.showMe;
+//                          });
+
+                       }
+                 }  // end controller
+            }
+      });
+   myApp.directive('panelSet',function(){
+       return {
+            restrict:'EA',
+            require:'^?panel',
+            scope : {title : '=panelTitle'},
+            template:"<div class='title' ng-click='clickOpen()'>{{title}}</div>"+
+            "<div class='content' ng-show='showMe'></div>",
+            link:function(iAttr,iScope,iEle,panelController){
+                iScope.clickOpen = function(){
+                    console.log(iScope);
+                }
+            }
+       }
+   }); // end directive
+    myApp.factory('PanelContent',function($resouce){
+          return $resouce('/panel/:panelId/data',{panelId:1});
+    });
+    myApp.factory('getContent',function($http,PanelContent){
+          this.getPanelTxt = function(url,handler){   // 从node服务器获取数据，成功后将数据传给回调
+              $http.get(url).success(function(data,header,status,config){
+                    handler(data);
+              });
+          };
+    })
+ </script>
+</body>
+</html>

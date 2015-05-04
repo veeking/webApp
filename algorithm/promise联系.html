@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <div id="strBox">
+
+    </div>
+<script>
+//  function doSomething(){  // 将doSomething变为了一个promise
+//      return new Promise(function(resolve,reject){
+//          setTimeout(function(){
+//              resolve('状态转换 ：成功');
+//          },1500)
+//      })
+//
+//  }
+//
+//  function doSomething2(){
+//      return new Promise(function(resolve,reject){
+//          setTimeout(function(){
+//              resolve('状态转换 ：成功2');
+//          },2000)
+//      })
+//
+//  }
+//   // 成功执行两次
+//  doSomething().then(function(value){
+//      alert(value);
+//      return doSomething2();
+//  }).then(function(value2){
+//      alert(value2);
+//  });
+    var words = "终于入门了啦！！！妈蛋"
+    var ms = 0;
+    var len = words.length;
+    var os = document.getElementById('strBox');
+    function count(len,ms,fn){
+       var promise = Promise.resolve();  // 发出一个状态通知
+       for(var i=0;i < len;i++){
+           promise.then(function(){  //执行onResolved回调 并返回另外一个回调
+               return fn();
+           });
+       }
+
+    }
+   count(len,1000,function(){
+       var w = words.substr(0,++len)
+       os.innerHTML = w;
+   });
+
+
+    console.log(Promise.prototype);
+</script>
+</body>
+</html>

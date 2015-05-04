@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<script>
+     function Node(left,right,data){
+         this.left = left;
+         this.right = right;
+         this.data = data;
+         this.show = show;
+     }
+
+      function show(){
+          return this.data;
+      }
+     function BST(){ // 插入查找
+        this.root = null;
+        this.insert = insert;
+        this.inOrder = inOrder;
+        this.preOrder = preOrder;
+        this.lastOrder = lastOrder;
+         this.BST_getMin = BST_getMin;
+         this.BST_getMax = BST_getMax;
+         this.find = find;
+     }
+    function insert(data){
+       var n= new Node(null,null,data);
+       if(this.root == null){  // 根节点如果为空， 则新节点为根
+           this.root = n;
+       }else{
+         var current = this.root;
+         var parent;  // parent为固定 根节点
+         while(1){
+            parent = current;
+            if(data < current.data){ // 插入数据小于当前节点数据的话，
+                 current = current.left; //设新的当前节点为原节点的左节点
+                 if(current == null){  //当前节点的左节点为null的话,则将新节点插入此位置,退出while循环
+                    parent.left = n;
+                    break;
+                 }
+            }else{
+                current = current.right;
+                if(current ==null){
+                    parent.right = n;
+                    break;
+                }
+            }
+         } // end while
+
+       }
+    }
+
+    function inOrder(node){ // 中序遍历，键值，先左->根节点->右 ，递归实现
+      if(!(node==null)){
+          inOrder(node.left);
+          console.log(this.show() + " ");
+          inOrder(node.right);
+      }
+    }  // end inOrder
+
+    function preOrder(node){
+       if(!(node==null)){
+         console.log(this.show() + " ");
+         preOrder(node.left);
+         preOrder(node.right);
+       }
+    }
+    function lastOrder(order){
+        if(!(node==null)){
+            lastOrder(node.left);
+            lastOrder(node.right);
+            console.log(this.show() + " ");
+        }
+    }
+
+  // 查找 最小/最大值
+  function BST_getMin(){
+      var current = this.root;
+      while(!(current.left==null)){
+          current = current.left;
+      }
+      return current.data;
+  }
+
+  function BST_getMax(){
+      var current = this.root;
+      while(!(current.right==null)){
+          current = current.right;
+      }
+      return current.data;
+  }
+  //查找指定值
+  function find(data){
+    var current = this.root;
+    while(!(current==null)){
+       if(current.data == data){
+           return current;
+       }else if(current.data > data){  // 传入的数据小于当前的话 向左遍历(左边是最小值)
+           current = current.left;
+       }else{
+           current = current.right;
+       }
+    }
+      return null;
+  }
+
+ // 测试     min max find
+  var nums = new BST();
+     nums.insert(12);
+     nums.insert(43);
+     nums.insert(11);
+     nums.insert(54);
+     nums.insert(76);
+     nums.insert(9);
+     console.log("根值是:" + nums.root.data);
+     console.log("最小值是:" + nums.BST_getMin());
+     console.log("最大值是:" + nums.BST_getMax());
+     var found = nums.find(9);
+    if(found != null){
+        console.log('已经找到');
+    }else{
+        console.log('未找到');
+    }
+</script>
+
+</body>
+</html>

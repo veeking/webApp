@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var arr = [3,2,4,5,2];
+    function reduce(arr,fn){
+        var value = 0;
+        for(i=0;i<arr.length;i++){
+             value = fn(arr[i],value);
+        }
+    return value
+    }
+    var ret = reduce(arr,function(a,b){
+        return a + b;
+    });
+    alert(ret)
+</script>
+</body>
+</html>

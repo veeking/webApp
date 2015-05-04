@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function insertSort(arr){
+        var temp;
+        for(var i=0;i < arr.length;i++){
+           var key = arr[i];  // 抽出一个元素
+           for(var j=i-1; j >= 0 && arr[j] > key;j-- ){  // 该元素与它之前的元素对比大小
+                  arr[j+1] = arr[j]  // 同时满足 j>=0 和 j>i才
+           };
+           arr[j+1] = key;  // 与原有位置替换
+        }
+        return arr;
+    }
+    console.log(insertSort([3,2,10,4,6]));
+</script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<script>
+    var a1 =[32,534,55,76,123,58,0,2,12,24,897];
+    function maxNum(arr){   // 根据 两位置大小比较 位置互换来找出最大数
+        var max_num = 0;  //  最小数的话  0 变为  99999即可
+        var ret = 0;  // 结果输出值
+        var len = arr.length;
+        for(var i=0;i < len;i++){
+            if(arr[i] > max_num){  // 比较大小
+                max_num = arr[i];  //  大的给max_num 互换位置
+                ret = max_num;
+            }
+        }
+        return ret;
+    }
+
+    function binarySearch(arr,x){
+        var low = 0;
+        var hight = arr.length - 1;
+        while(low <= hight){
+            var mid = Math.floor((low + hight)/2) ;
+            if(x == arr[mid]){
+                return mid;
+            }
+            if(x < arr[mid]){
+                hight = mid - 1;
+            } else {
+                low = mid + 1;
+            }
+
+        }
+        return -1;
+    }
+    console.log(maxNum(a1));
+    console.log(binarySearch(a1.sort(),897))
+</script>
+</body>
+</html>

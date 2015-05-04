@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+      // 插入排序 , 核心  不断右移
+     function insertSort(arr){
+         var tmp;
+         for(var i = 0;i < arr.length;i++){
+            tmp = arr[i];
+            var j = i;  // i 与 i前面的元素比较
+            while(j > 0 && arr[j-1] > tmp){
+                arr[j] = arr[j-1];   //  右移 替换
+                --j;
+            }
+           console.log(arr[j] + " ->arr[j] : tmp -> " + tmp);
+           arr[j] = tmp;  // 更新最右元素
+         }
+         return arr;
+     }
+    var arr1 = [23,43,12,7,43,56,9];
+    console.log(insertSort(arr1));
+
+    // 最小/大数
+
+    function findMin(arr){
+      var min = arr[0];
+      for(var i=0;i<arr.length;i++){
+          if(arr[i] < min){
+             min = arr[i];
+          }
+      }
+        return min;
+    }
+    console.log(findMin(arr1));
+
+      a=b;
+      b=c;
+      console.log(b);
+</script>
+</body>
+</html>

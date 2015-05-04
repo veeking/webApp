@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    // promise
+    //封装ajax
+   var ajax = function(url){
+      return new Promise(function(resolve,reject){
+           var oa = new XMLHttpRequest();
+           oa.open("POST",url,true);
+           oa.send();
+           oa.onreadychange = handler;
+
+          function handler(){
+              if(oa.readyState == 4){
+                  if(oa.status == 200){
+                      resolve(value);
+                  }
+              }
+          }
+      })
+   }
+    ajax('/test/data').then(function(data){
+           //  data  doing some thing.....
+    },function(err){
+        if(err) return err;
+    });
+</script>
+</body>
+</html>

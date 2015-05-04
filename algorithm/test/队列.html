@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<script>
+      //  队列抽象类 : 先入先出，  三步走 : 分配队列，进入队列，出队列
+     function Queue(){
+        this.dataStore = [];
+        this.enqueue = enqueue;
+        this.dequeue = dequeue;
+        this.count = count;
+        this.front = front;
+        this.end = end;
+        this.empty = empty;
+        this.toString = toString;
+     }
+    function enqueue(ele){
+       this.dataStore.push(ele);
+    }
+    function dequeue(){
+       this.dataStore.shift(); // shift 为从队头删元素
+    }
+    function count(){
+        return this.dataStore.length;
+    }
+    function toString(){
+        var resString = "";
+        for(var i=0;i<this.count();i++){
+            resString += this.dataStore[i] + "\n";
+        }
+        return resString;
+    }
+    function front(){
+       return this.dataStore[0];
+    }
+    function end(){
+        return this.dataStore[this.count() - 1];
+    }
+    function empty(){
+       if(this.dataStore.length == 0){
+            return true;
+       }else{
+           return false;
+       }
+    }
+ // 实例
+     var q = new Queue();
+      q.enqueue(1);
+      q.enqueue(2);
+      q.enqueue(3);
+      q.enqueue(4);
+      q.enqueue(5);
+      console.log(q.toString());
+      q.dequeue();
+      console.log(q.toString());
+</script>
+</body>
+</html>

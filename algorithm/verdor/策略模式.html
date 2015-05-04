@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<script>
+    // 策略模式
+  // 现在有一组数据 要做检查
+    var validator = {
+        types : {}, // 所有可用的  检查函数  validator.types[xxx]
+        config : {},  // 检查格式
+        messages : [],  //  错误消息
+        validate : function(data){ // 接口方法， data为数据源对象
+            var type;
+            var msg;
+            var checker;
+            var result_ok;
+            // 重置所有消息
+            this.messages = [];
+            for(key in data){
+                if(data.hasOwnProperty(key)){  // 遍历所有私有属性
+                    type = this.config[key]; // config下的所有检查方法
+                    checker = this.types[type]; //  validator.types.[type]
+                    if(!type){ //config里未定义的话，直接跳过
+                        continue;
+                    }// end type
+                    if(!checker){
+                        throw {
+                            name:"e",
+                            messages : "es" +type
+                        }
+                    } // end !checker
+                    result_ok = checker.validate(data[key]);
+                    if(!result_ok){ // 如果验证失败
+                        msg = key + "数据类型无效，该值必须是" + checker.intructions;
+                        this.messages.push(msg);
+                    }
+                }
+            }
+
+            return this.hasErrors();
+        },
+        hasErrors: function(){
+            return this.messages.length !== 0;
+        }
+    };
+   var studentData = {
+       age : 'sd',  //  错误示范
+       desc : 12
+   };
+  //设置这组数据的 检查格式  对应函数
+    validator.config = {
+       age : 'isNumber',
+       desc : 'isString'
+   };
+
+   // 定义 检查函数
+   validator.types.isNumber = {
+       validate : function(data){
+           return !isNaN(data);
+       },
+       intructions : "数据必须是一个数字类型"
+   };
+   validator.types.isString = {
+       validate : function(data){
+           return (typeof data === "string")
+       },
+       intructions : "数据必须是一个字符类型"
+   };
+
+
+    // 将数据放入 '检查总函数' 中
+    validator.validate(studentData);
+    // 如果发生错误，那么  输出错误
+    if(validator.hasErrors()){
+        console.log(validator.messages.join("\n"));
+    }
+
+   // 错误输出:
+  // age数据类型无效，该值必须是数据必须是一个数字类型
+  // desc数据类型无效，该值必须是数据必须是一个字符类型
+
+
+
+</script>
+</body>
+</html>

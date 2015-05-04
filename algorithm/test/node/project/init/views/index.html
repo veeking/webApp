@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+       div#logined{
+           display:none;
+       }
+    </style>
+</head>
+<body>
+  这里是首页啦哎呀
+  <!--如果未登录 显示以下-->
+ <div id="notLogin">
+     <a href="/api/regit">注 册</a>
+     <a href="/api/login">登 录</a>
+ </div>
+<!--如果已经登录的话呢-->
+  <div id="logined">
+      <b style="color: #FF1632" id="loginUser">admin</b> 欢迎您登录
+      <a href="/api/logout">登出</a>
+      <a href="/api/post">发表文章</a>
+  </div>
+  <script>
+     var notLogin = document.getElementById('notLogin');
+     var login = document.getElementById('logined');
+     var loginUser = document.getElementById('loginUser');
+
+     var Promise = new Promise(function(resolve,reject){
+         var oxReq = new XMLHttpRequest();
+         oxReq.open('post',document.location,false);
+         oxReq.onreadystatechange = function(){
+            if(oxReq.readyState == 4){
+                  resolve(oxReq.responseText);
+            }
+         }
+         oxReq.send();
+     });
+
+    Promise.then(function(data){
+          data = JSON.parse(data);
+          if(!data.noLogin){  // 如果还没登出的话
+              loginUser.innerHTML = data.name;
+              login.style.display = 'block';
+              notLogin.style.display = 'none';
+          }
+    },function(err){
+       if(err) return err;
+    });
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+ <script>
+     var R1 = new Array();
+     R1[1]=35;
+     R1[2]=55;
+     R1[3]=65;
+     R1[4]=20;
+     R1[5]=30;
+     R1[6]=25;
+     R1[7]=0;
+     R1[8]=7;
+     R1[9]=5;
+     R1[10]=3;
+     var R2=new Array(35,55,65,20,30,25,0,7,5,3);
+     var R3=new Array(35,55,65,20,30,25,0,7,5,3);
+
+
+     function bubbleSort(){ // 冒泡排序
+          var n = R1.length - 1;
+         for(var i= 0; i < n; i++){
+
+             for(var j=n-1;j>=i;j--){
+                  var temp;
+                  if(R1[j+1] < R1[j]){  //  后一个与前一个对比
+                     temp = R1[j+1];  //满足条件 则互换位置
+                     R1[j+1] = R1[j];
+                     R1[j] = temp;
+                  }
+             } // end for j
+         }
+         return R1;
+     }  // end bubbleSort
+     alert(bubbleSort())
+ </script>
+</body>
+</html>

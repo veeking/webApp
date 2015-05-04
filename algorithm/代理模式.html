@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<script>
+    // 定义一个proxy代理对象
+    //proxy对象接管 http和videos之间的通信
+    // proxy对象 用一个50ms的延迟来合并该段时间内的所有请求
+
+    //proxy建立一个空队列以收集50ms接收到的视频id,然后排空该队列，同时还调用
+    //-> http并向其提供回调函数。
+
+   var proxy = {
+       ids : [],
+       delay : 50,
+       timeout : null,
+       callback : null,
+       context : null,
+       makeRequest : function(id,callback,context){
+          // 加入到队列中
+          this.ids.push(id);
+          this.callback = callback;
+          this.context = context;
+        //设置超时时间
+         if(!this.timeout){
+            this.timeout = setTimeout(function(){
+                 proxy.flush();
+            },this.delay);
+         }
+       },
+       flush : function(){
+           http.makeRequests(this.ids,"proxy.handler");
+
+           // 清除超时设置和队列
+           this.timeout = null;
+           this.ids = [];
+       },
+       handler:function(data){
+           var i,max;
+           //单个视频
+           if(parseInt(data.query.count,10) === 1){
+                proxy.callback.call(proxy.context,data.query.results.Video);//调用且绑定上下文到proxy.context
+                return;
+           }
+          //多个视频
+           for(var i= 0,max = data.query.results.Video.length;i < max;i++){
+                   proxy.callback.call(proxy.context,data.query.results.Video[i]);
+           }
+       }
+   };
+</script>
+</body>
+</html>

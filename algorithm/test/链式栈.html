@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+         .newC {
+             color: red;
+         }
+    </style>
+</head>
+<body>
+  <div ng-controller="hisController">
+       <div>{{txt}}</div>
+      <textarea id="" cols="30" rows="10" ng-model="inputTxt" replace-txt></textarea>
+      <button ng-click="putTxt()">发表回复</button>
+      <button ng-click="backHis()">返回历史</button>
+      <div>存进的数据</div>
+      <div style="border:2px solid #FF1632;">
+
+          <ul>
+              <li ng-repeat="data in datas">{{data.txt}}</li>
+          </ul>
+      </div>
+  </div>
+<script src="directive_test/lib/angular.js"></script>
+<script>  // 栈的应用： 1、历史记录 2、进制转换  3、行编辑  4、检测符号匹配
+    var myApp = angular.module('myApp',[]);
+    myApp.controller('hisController',function($scope,Stack){
+            $scope.datas = [];
+            $scope.txt="编辑器";
+            var inputTxt = '';
+            var txtSize = 0;   // 目前缺点  三个数据源更新太多了 : 1、stack 2、txtSize 3、$scope.datas
+            $scope.putTxt = function(){ // 有什么方法 能抽象简化成一个吗 ?
+                inputTxt= $scope.inputTxt;
+                if(inputTxt != ""){
+                    Stack.push(inputTxt);
+                    if($scope.datas[txtSize] == undefined){  //  数组初始化时为空',所以为其添加对象
+                        $scope.datas[txtSize] = {};
+                    }
+
+                    $scope.datas[txtSize++].txt = inputTxt;
+                    $scope.inputTxt = '';
+                    console.log(Stack.top.element);
+                }else{
+                    alert('不能为空');
+                }
+
+            }
+            $scope.backHis = function(){
+                if(Stack.length > 0){
+                    $scope.inputTxt = Stack.pop();
+                }
+                $scope.datas.splice(--txtSize,1);
+                console.log(Stack.top.element);
+            }
+    });
+    myApp.directive("replaceTxt",function(){
+        return{
+            restrict:"AE",
+            link : function(scope,element,attrs){
+                element.addClass("newC");
+    }
+        } // end return
+    });
+    myApp.service("Node",function(){
+        return function(element,next){
+            this.element = element;
+            this.next = next;
+        }
+    });
+    myApp.service('Stack',function(Node){
+          this.top = new Node('head',null);
+          this.length = 0;
+          this.push = function(newData){
+              this.top = new Node(newData,this.top);  //  第一个新插入元素的next指向head
+              this.length++;
+          };
+          this.pop = function(){  // 删除的时候 从top开始删除,  后进先出
+               var current = this.top;
+               if(this.top.next != null){
+                  this.top = this.top.next;
+               }
+               --this.length;
+               return current.element;
+          };
+          this.peek = function(){ // 返回栈顶元素
+              return this.top.element;
+          };
+          this.size = function(){
+              return this.length;
+          }
+          this.clear = function(){
+              this.top = null;
+              this.length = 0;
+          }
+    });
+
+//    myApp.factory("dataOpt",function(Stack){
+//          return{
+//              input : function(data){
+//                  Stack.push(data);
+//                  this.datas = Stack.pop();
+//              }
+//          }
+//    });
+</script>
+
+</body>
+</html>

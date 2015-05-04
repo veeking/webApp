@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+      // 栈操作 ：  先入后出，push  pop peek
+    function Stack(){
+       this.top = 0;
+       this.dataStore = [];
+       this.push = push;
+       this.pop = pop;
+       this.peek = peek;
+       this.length = length;
+    }
+
+    function push(element){
+        this.dataStore[this.top++] = element;
+    }
+    function pop(){
+       return this.dataStore[--this.top];
+    }
+    function peek(){   // 返回 顶部元素
+        return this.dataStore[this.top-1];
+    }
+    function length(){
+        return this.top;
+    }
+
+
+    // 实例：  回文 和 递归   ,  字符翻转 倒序
+    function isPalinerome(word){
+         var s = new Stack();
+        for(var i=0;i<word.length;i++){
+            s.push(word[i]);
+        }
+        var rWord = "";
+        while(s.length() > 0){
+            rWord += s.pop();
+        };
+        if(rWord == word){
+            return true;
+        }else{
+            return false;
+        }
+    }
+  var sWord = "ededs";
+  if(isPalinerome(sWord)){
+      alert('yes');
+  }
+
+
+     // 递归
+
+    function factorial(num){
+        var s = new Stack();
+        while(num > 0){
+            s.push(num--);
+        }
+        var res = 1;
+        while(s.length() > 0){
+           res *= s.pop();
+        }
+        return res;
+    }
+    console.log(factorial(5));
+
+</script>
+</body>
+</html>

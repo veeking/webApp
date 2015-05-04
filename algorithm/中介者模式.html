@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+ <div id="scoreBox"></div>
+<script>
+  // 应用程序都是由大大小小的对象构成的，对象之间需要通信
+  // 一旦程序规模扩大，对象增多，对象之间的耦合度就会越高
+  // 对象间的耦合度越高，程序的可维护性会越来越差(修改一个对象将会影响许多个对象)
+
+  // 例子 : 双人点击记分游戏
+  // 传统实现： 两个对象间的交互  ，模式实现：对象之间加入一个中介者(Mediator)来为两个对象提供通信
+
+  //参与的对象 ： 玩家(玩家1+玩家2)、计分板、中介者
+
+  // 玩家 通知 中介者  ， 中介者 处理 将其返回给 玩家
+
+
+    function Player(name){  // 玩家对象
+        this.name = name;
+        this.point = 0;
+    }
+    Player.prototype.play = function(){
+          this.point +=1;
+          mediator.played(); //  通知 中介者
+    }
+
+    var scoreboad = {  // 计分板对象
+        element : document.getElementById('scoreBox'),
+        update : function(score){
+            var i;
+            var msg = '';
+            for(i in score){
+               if(score.hasOwnProperty(i)){
+                    msg = i + " : " + score[i] + "/n";  // 显示分数对象  主场 : 23
+               }
+            }
+        this.element.innerHTML = msg;
+        }
+    };
+
+    // 接下来便是中介者对象
+    var mediator = {
+        players : {},//将所有玩家 放置在这个全局对象中
+        setup : function(){
+           var players = this.players;
+           players.home = new Player('主');
+           players.guest = new Player('客');
+        },
+        played : function(){
+           var players = this.players;
+           var score = {
+               Home : players.home.points,
+               Guest : players.guest.points
+           };
+           scoreboad.update(score);//将分数返回给计分板，计分板负责显示
+        },
+        keypress : function(e){
+           if(e.which === 49){ //玩家1按键1
+               mediator.players.home.play();
+               return;
+           }
+
+            if(e.which === 48){ //玩家2按键0
+                mediator.players.guest.play();
+                return;
+            }
+        }
+    };
+
+    // 运行
+    mediator.setup();
+    window.onkeypress = mediator.keypress;
+
+    // 游戏30秒后结束
+    setTimeout(function(){
+       window.onkeypress = null;
+       alert('游戏结束');
+    },30000);
+    </script>
+</body>
+</html>

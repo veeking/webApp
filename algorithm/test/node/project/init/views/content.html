@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <div>
+         用户：<span id="username" style="color: #FF1632">admin</span>
+    </div>
+    <form action="/api/postSend" method="post">
+        标题: <input type="text" name="post_title"/>
+        时间：<input type="text" name="post_time" id="postTime"/>
+        作者: <input type="text" name="post_author" id="postAuthor" value="admin"/>
+        内容:<textarea name="post_txt"></textarea>
+        <input type="submit" value="提交"/>
+    </form>
+    <script>
+        var userName = document.getElementById('username');
+        var pt = document.getElementById('postTime');
+        var pa = document.getElementById('postAuthor');
+        var pDate = new Date();
+        pt.value = pDate.getFullYear() + '-' + (pDate.getMonth()+1) + '-' + pDate.getDate() + ':'+ pDate.getSeconds();
+
+
+     //1、setTimeout实现延迟方法
+        setTimeout(function(){
+            var req = new XMLHttpRequest();
+            req.open('POST',document.location,false);
+            req.onreadystatechange = function(){
+                if(req.readyState == 4){
+                    data = JSON.parse(req.responseText);
+                    console.log(data + " : " + ' name : '+data.name);
+                    userName.innerHTML = data.name;
+                    pa.value = userName.innerHTML;
+                }
+            }
+            req.send();
+        },0)
+
+  // 2、promise实现延迟方法
+//        var promise = new Promise(function(resolve,reject){
+//            var req = new XMLHttpRequest();
+//            req.open('POST',document.location,false);
+//            req.onreadystatechange = function(){
+//                if(req.readyState == 4){
+//                    resolve(req.responseText);
+//                }
+//            }
+//            req.send();
+//
+//        });
+//        promise.then(function(data){
+//            data = JSON.parse(data);
+//            console.log(data + " : " + ' name : '+data.name);
+//            userName.innerHTML = data.name;
+//            pa.value = userName.innerHTML;
+        //        },function(err){
+//            if(err) return err;
+//        });
+
+
+    </script>
+</body>
+</html>

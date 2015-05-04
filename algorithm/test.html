@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+ <script>
+//     function Queues(){
+//         this.dataStore = [];
+//         this.enqueue = enqueue;
+//     }
+//     function enqueue(ele){
+//         this.dataStore.push(ele);
+//     }
+//     var arr = [12,66,77,1,43];
+//     var queuese = [];
+//     for(var i =0;i<10;i++){
+//         queuese[i] = new Queues();
+//     }
+//     console.log(queuese)
+//     function distribute(nums,queues){
+//        for(var i=0;i<nums.length;i++){  // 2,6,7,1,3
+//            queues[nums[i]%10].enqueue(nums[i])
+//        }
+//
+//     }
+//     distribute(arr,queuese);
+//     console.log(queuese)
+//
+//     function t1(ele){
+//        this.element = ele;
+//     }
+//     function t2(){
+//        this.head = new t1("head1");
+//        this.display = display;
+//     }
+//    function display(){
+//        console.log(this.head.element);
+//    }
+//   var ot2 = new t2();
+//   ot2.display();
+
+//var phoneObj = {
+//    "MX":1799,
+//    "MIUI":1699,
+//    "IOS":3999
+//};
+//    for(var key in phoneObj){
+//       console.log(key + "=> : " + phoneObj[key]);
+//    }
+  //  排序
+  // 对比 ，并 抽出对比索引(定位索引)
+  // 插入索引的位置
+//   var stringArr = ["g","d","o","f"];
+//
+//   var maxStr = stringArr.sort();
+//   var compareStr = "k";
+//   var insertIndex = 0;
+//      for(var i =0;i<stringArr.length;i++){
+//         if(compareStr < stringArr[i]){
+//              insertIndex = i;
+//         };
+//      }// end for
+////    stringArr.splice(insertIndex,0,compareStr);
+////    alert(stringArr);
+//  function Parent(){
+//     this.name = "ds";
+//  }
+//  Parent.prototype.age = function(){
+//      alert(this.constructor);
+//  };
+//Parent.queues = {};
+//Parent.queues.fe= {
+//    name : "对iu"
+//};
+// var op = new Parent();
+// console.log(op.constructor.queues['fe']);
+
+//     var str = "dsadkjas";
+//     function check(s){
+//          return (typeof s === "string")
+//     }
+//     alert(check(true));
+
+    function Parent(){
+        this.name = 'ds';
+        this.test = test;
+    }
+    function test(data){
+        console.log(this);
+    }
+    var op = new Parent();
+    op.test('dw');
+ </script>
+</body>
+</html>

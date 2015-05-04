@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+     function a1(){
+         alert('任务1');
+     }
+     function a2(){
+         alert('任务2');
+     }
+     function a3(){
+         alert('任务3');
+     }
+     var task = [a1,a2,a3];  //  队列任务
+     setInterval(function(){
+         var nextTask;
+         if(nextTask = task.shift()){
+            nextTask();
+         }
+     },1000)
+</script>
+</body>
+</html>

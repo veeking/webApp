@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+       // 递归翻转数组
+   function reverse(A,B){
+      if(A.length > 0){
+        B.push(A.pop());//  头部取出  放入尾部 ，这样顺序就颠倒了
+        reverse(A,B);  //  递归翻转
+      }
+      return B;
+   }
+   var box = [];
+   var num = [3,4,6,9,21,7];
+   var res = reverse(num,box);
+    console.log(res);
+</script>
+</body>
+</html>

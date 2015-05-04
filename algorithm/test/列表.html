@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>  // 列表抽象类
+         // 购物车列表模拟
+  function List(){
+       this.listSize = 0;
+       this.dataStore = [];  // 使用数组来作为底层的数据存储 结构
+       this.pos = 0;
+       this.length = 0;
+       // 方法
+       this.append = append;
+       this.findOne = findOne;
+       this.remove = remove;
+       this.clear = clear;
+       this.length = length;
+       this.toString = toString;
+       this.front = front;
+       this.end = end;
+       this.prev = prev;
+       this.next = next;
+       this.currPos = currPos;
+       this.moveTo = moveTo;
+       this.getPosElement = getPosElement;
+       this.containts = containts; // 查看是否包含
+  }
+   function append(element){
+       this.dataStore[this.listSize++] = element;
+   }
+   function findOne(findThis){
+        for(var i=0;i < this.dataStore.length;i++){
+             if(this.dataStore[i] == findThis){
+                 return i;
+             }
+        }
+        return -1;
+   }
+    function containts(element){
+          for(var i=0;i < this.dataStore.length;i++){
+                 if(this.dataStore[i] == element){
+                     return true;
+                 }
+             }
+             return false;
+         }
+   function remove(ele){
+     var findThis = this.findOne(ele);
+     if(findThis > -1){
+          this.dataStore.splice(findThis,1);
+          --listSize;
+          return true;
+     }
+       return false;
+   }
+   function toString(){
+       for(var i=0;i < this.dataStore.length;i++){
+            console.log(this.dataStore[i]);
+       }
+   }
+   function clear(){
+       delete this.dataStore;
+       this.dataStore = [];
+       this.listSize = this.pos = 0;
+   }
+   function length(){
+       return this.dataStore.length;
+   }
+   function front(){
+      this.pos = 0;
+   }
+   function end(){
+      this.pos = this.listSize - 1;
+   }
+   function prev(){
+     if(this.pos > 0){
+        --this.pos;
+     }
+   }
+   function next(){
+      ++this.pos;
+   }
+   function currPos(){
+       return this.pos;
+   }
+   function moveTo(position){
+       this.pos = position;
+   }
+   function getPosElement(){
+      return this.dataStore[this.pos];
+   }
+
+   //  使用它
+    var ol = new List();
+    ol.append("宏碁");
+    ol.append("联想");
+    ol.append("戴尔");
+    ol.append("神舟");
+
+    ol.moveTo(3);
+  console.log(ol.getPosElement() + "moveTo" );
+ // 使用迭代器 迭代列表
+    for(ol.front();ol.currPos() < ol.length();ol.next()){
+        console.log(ol.getPosElement());
+    }
+</script>
+</body>
+</html>

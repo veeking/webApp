@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<script>
+     function Queue(){
+         this.dataStore = [];
+         this.enqueue = enqueue;
+         this.dequeue = dequeue;
+         this.front = front;
+         this.back = back;
+         this.toString = toString;
+         this.empty = empty;
+         this.count = count;
+     }
+    function enqueue(element){
+       this.dataStore.push(element)
+    }
+    function dequeue(){
+       return this.dataStore.shift();
+    }
+    function front(){
+        return this.dataStore[0];
+    }
+    function back(){
+        return this.dataStore[this.dataStore.length -1]
+    }
+    function toString(){
+        var resStr = "";
+        for(var i = 0;i < this.dataStore.length;i++){
+          resStr += this.dataStore[i] + "\n";
+        }
+        return resStr;
+    }
+    function empty(){
+        if(this.dataStore.length == 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    function count(){
+        return this.dataStore.length;
+    }
+//    var dancers ="F frank king/n M usa jack/nM canna jork/nF england william/nF england him";
+//    // 用法 ：
+//    function Dancer(name,sex){
+//        this.name = name;
+//        this.sex = sex;
+//    }
+//    function getDancer(males,females){
+//      var names = dancers.split('/n');
+//      for(var i= 0,len=names.length;i < len;i++){
+//          names[i] = names[i].trim();
+//      }
+//      for(var i= 0,len=names.length;i < len;i++){
+//           var dancer = names[i].split(" ");
+//           var sex = dancer[0];
+//           var name = dancer[2];
+//           if(sex == "F"){
+//              females.enqueue(new Dancer(name,sex));
+//           }else{
+//                males.enqueue(new Dancer(name,sex));
+//           }
+//       }
+//    }
+//    function disDancer(males,females){
+//        console.log('并排跳舞开始');
+//        while(!males.empty() && !females.empty()){
+//             person = females.dequeue();
+//            console.log('女性舞者是 : '+ person.name);  //person.name为new Dancer
+//             person =  males.dequeue();
+//            console.log('男性舞者是 ：' + person.name);
+//        }
+//
+//    }
+//
+//    //测试程序
+//    var maleDancers = new Queue();
+//    var femaleDancers = new Queue();
+//    getDancer(maleDancers,femaleDancers);
+//    disDancer(maleDancers,femaleDancers);
+//
+//     if(!maleDancers.empty()){
+//         console.log('没有舞伴的男舞者是:'+maleDancers.front().name)
+//     }
+//     if(!femaleDancers.empty()){
+//         console.log('没有舞伴的女舞者是:'+femaleDancers.front().name)
+//     }
+//     if(maleDancers.count() > 0){
+//        console.log('一共有' + maleDancers.count()+'位男舞者没舞伴');
+//     }
+//     if(femaleDancers.count() > 0){
+//         console.log('一共有' + femaleDancers.count()+'位女舞者没舞伴');
+//     }
+
+   //  数字 归并
+
+//   function distribute(nums,queues,n,digit){
+//     var i;
+//     for(i = 0;i < n;i++){
+//         if(digit == 1){
+//             queues[nums[i]%10].enqueue(nums[i])
+//         }else{
+//             queues[Math.floor(nums[i]/10)].enqueue(nums[i]);
+//         }
+//     }
+//   }
+//    function collect(queues,nums){
+//        var i = 0;
+//        for(var digit = 0;digit < 10;digit++){
+//             while(!queues[digit].empty()){
+//                nums[i++] = queues[digit].dequeue();
+//                 console.log('收集的数据' + nums);
+//             }
+//        }
+//    }
+//  function displayArr(arr){
+//     for(var i =0;i<arr.length;i++){
+//         console.log(arr[i]+' ');
+//     }
+//  }
+//  var queues = [];
+//  for(var i=0;i<10;i++){
+//      queues[i] = new Queue();
+//  }
+//    var nums = [];
+//    for(var i = 0;i<10;i++){
+//        nums[i] = Math.floor(Math.floor(Math.random() * 101));
+//    }
+//    console.log('排序之前')
+//    displayArr(nums);
+//    distribute(nums,queues,10,1);
+//    collect(queues,nums);
+//    distribute(nums,queues,10,10);
+//    collect(queues,nums);
+//    displayArr(nums);
+  // 优先队列
+    function Patient(name,code){
+        this.name = name;
+        this.code = code;
+    }
+    function dequeue(){
+      var priority = this.dataStore[0].code;
+      for(var i=1;i<this.dataStore.length;i++){
+         if(this.dataStore[i].code < priority){
+            priority = i;
+         }
+      }
+        return this.dataStore.splice(priority,1);
+    }
+
+    function toString(){
+       var resStr = "";
+       for(var i = 0;i < this.dataStore.length;i++){
+          resStr += "\n"+ this.dataStore[i].name + " code: " + this.dataStore[i].code ;
+       }
+       return resStr;
+    }
+  var p1 = new Patient('患者一号',3);
+  var ed = new Queue();
+     ed.enqueue(p1);
+  var p2 = new Patient('患者二号',1);
+     ed.enqueue(p2);
+  var p3 = new Patient('患者三号',6);
+     ed.enqueue(p3);
+  var p4 = new Patient('患者四号',8);
+     ed.enqueue(p4);
+
+  console.log("目前正在等待的患者：" + ed.toString());
+  var seem = ed.dequeue();
+  console.log("将要治疗的患者是：" + seem[0].name);
+  console.log("下一批正在等待的患者：" + ed.toString());
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<input id="localpic1" type="file">
+<div id="showpic1">
+    <img id="pic"/>
+</div>
+
+
+<script>
+    var upBtn = document.getElementById('localpic1');
+    var loadNum = 0;
+    var totalLoad = 0;
+    var loadTime = null;
+    upBtn.onchange = function(){
+       if(this.files && this.files[0]){
+           var pic = document.getElementById('pic');
+           pic.onload = function(){
+               clearInterval(loadTime)
+               pic.style.width = 300+'px';
+               pic.style.height = 300+'px';
+           }
+           var fileRender = new FileReader();
+               fileRender.onload = function(e){
+                   console.log(e.target.result)
+                   pic.src = e.target.result;
+               }
+
+           fileRender.readAsDataURL(this.files[0]);
+       }
+    }
+    upBtn.onprogress = function(e){
+        document.title = e.position;
+    }
+</script>
+</body>
+</html>

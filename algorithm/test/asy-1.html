@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+  //    异步模式 详解
+<script>
+        var i;
+        for(i=1;i<=3;i++){
+            setTimeout(function(){
+                console.log(i)   //  输出3个四 而不是 1,2,3 ，why?
+            },0);
+        }
+
+    function test(){
+        var num = 0;
+        var sDate = new Date();
+        setInterval(function(){
+            var eDate = new Date();
+            while(eDate - sDate > 1000){
+                 return false;
+            }
+            num++;
+            console.log(num);
+        },0);
+    }
+    test();
+</script>
+</body>
+</html>

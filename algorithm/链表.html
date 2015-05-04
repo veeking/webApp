@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+  <script>
+      function Node(element){
+         this.element = element;
+         this.previous = null;
+         this.next = null;
+         this.currElement = null; // 新增curr变量用于 保存当前节点
+      }
+      function LList(){  //  节点方法操作
+         this.head = new Node("head");
+         this.find = find;
+         this.findPrevious = findPrevious;
+         this.findLast = findLast;
+         this.insert = insert;
+         this.remove = remove;
+         this.display = display;
+         this.advance = advance;
+         this.back = back;
+         this.show = show;
+         this.disReverse = disReverse;
+      }
+
+     function find(item){
+        var currNode = this.head;
+        while(currNode.element != item){
+            currNode = currNode.next;
+        };
+        return currNode;
+     }
+     function findPrevious(item){
+         var currNode = this.head;
+         while(!(currNode.next == null) && (currNode.next.element != item)){  // 下一个 不为空 且 下一个元素不为item时，一直遍历到空且找到item为止
+            currNode = currNode.next;
+         }
+         return currNode;
+     }
+     function insert(newElement,item){   //在item后添加newElement
+         var currNode = this.find(item);
+         var newNode = new Node(newElement);
+         newNode.next = currNode.next;
+         newNode.previous = currNode;
+         currNode.next = newNode;
+         this.currElement = newNode;  // 当前的 更新为新插入的元素
+     }
+     function display(){
+         var currNode = this.head;
+         while(!(currNode.next == null)){
+             console.log(currNode.next.element);
+             currNode = currNode.next;
+         };
+     }
+     function remove(item){
+//       var previous = this.findPrevious(item); // 先找到删除节点的上一个节点
+//       if(previous.next != null){           //使其next不再指向删除节点，而是删除节点的下一个节点，即 previous.next.*next*
+//         previous.next = previous.next.next;
+//       }
+        var currNode = this.find(item);
+        while(!(currNode.next == null)){
+           currNode.previous.next = currNode.next;
+           currNode.next.previous = currNode.previous;
+           currNode.next = null;
+           currNode.previous = null;
+        }
+     };
+     function findLast(){
+        var currNode = this.head;
+        while(!(currNode.next == null)){
+           currNode = currNode.next;
+        }
+        return currNode;
+     };
+     function disReverse(){
+        var currNode = this.head;
+        currNode = this.findLast();
+        while(!(currNode.previous == null)){
+            console.log(currNode.element);
+            currNode = currNode.previous;
+        }
+
+     }
+     function advance(n){
+        var nextIndex = 0;
+        var currNode = this.head;
+        while(nextIndex != n){
+             currNode = currNode.next;
+             nextIndex++;
+        }
+       this.currElement = currNode;
+     }
+     function back(n){
+         var currNode = this.head;
+         while(n){
+             alert(1)
+             currNode = currNode.previous;
+             n--;
+         }
+         this.currElement = currNode;
+     }
+     function show(){  //  用一个 currElement 全局变量来存储 当前节点
+       console.log(this.currElement); // 每发生一次节点变化，currElement也跟着变化
+       return this.currElement;
+     }
+      // 测试程序
+     // 单链表
+//     var Gujian = new LList();
+//     Gujian.insert('谢衣','head');
+//     Gujian.insert('五一','谢衣');
+//     Gujian.insert('咦则','五一');
+//     Gujian.remove('五一');
+//     Gujian.display();
+
+//    双链表  -- > 常用于反向操作数据
+           var Gujian = new LList();
+           Gujian.insert('谢衣','head');
+           Gujian.show();
+           Gujian.insert('五一','谢衣');
+           Gujian.show();
+           Gujian.insert('咦则','五一');
+           Gujian.show();
+           Gujian.display();
+            Gujian.show();
+           console.log('-------------------------');
+           Gujian.remove('五一');
+           Gujian.show();
+           Gujian.display(); // head-->[0] 谢衣-->[1]  咦则-->[2]
+           console.log('-------------------------');
+           Gujian.advance(1);  //谢衣 [1]
+           Gujian.back(0);  // head [0]
+           Gujian.show();   // head
+           Gujian.disReverse();
+  </script>
+</body>
+</html>

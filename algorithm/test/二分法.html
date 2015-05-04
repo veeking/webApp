@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>二分法</title>
+</head>
+<body>
+<script>
+     var arr = [7,5,4,1,6,9];
+     var left = [];
+     var right = [];
+     var middle = arr.length / 2;
+     var l = 0;
+     var r = arr.length-middle;
+      while(middle > 0){
+         left.push(arr[l++]);
+         right.push(arr[r++]);
+         --middle;
+      }
+    console.log(left + " : " + right);
+</script>
+</body>
+</html>

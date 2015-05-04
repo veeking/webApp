@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>   // top  next  next next  head
+     function Node(e,n){
+        this.element = e;
+        this.next = n;
+     }
+     function Stack(){
+         this.top = new Node('head',null);
+         this.length = 0;
+         this.push = function(newData){
+             this.top = new Node(newData,this.top);  //  第一个新插入元素的next指向head
+             this.length++;
+         };
+         this.pop = function(){  // 删除的时候 从top开始删除,  后进先出
+             var current = this.top;
+             if(this.top.next != null){
+                this.top = this.top.next;  // 原有的 转向下一个
+             }
+             --this.length;
+             return current.element;
+         };
+         this.peek = function(){ // 返回栈顶元素
+             return this.top.element;
+         };
+         this.size = function(){
+             return this.length;
+         }
+         this.clear = function(){
+             this.top = null;
+             this.length = 0;
+         }
+     }
+    //
+      var StackBox = new Stack();
+     StackBox.push("我是第一个加进来的");
+     StackBox.push("我是第二个加进来的");
+     StackBox.push("我是第三个加进来的");
+
+     console.log(StackBox.pop());   // Ok!!
+     console.log(StackBox.pop());
+     console.log(StackBox.pop());
+</script>
+</body>
+</html>

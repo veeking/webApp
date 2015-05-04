@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    ({
+      init:function(fuckSay,fn){
+          console.log(fuckSay);
+          fn(fuckSay,function(f1){
+              f1(function(f2){
+                  f2(function(f3){
+                      f3(function(f4){
+                          f4(function(end){
+                              end()
+                          })
+                      })
+                  });
+              });
+          });
+      }
+    }).init('开始操',function(fuckSay,f1){
+             console.log('预备，,,,,，开始操!!');
+                f1(function(f2){
+                    console.log('操 +1 hit');
+                     f2(function(f3){
+                         console.log('操 +2 hit');
+                         f3(function(f4){
+                             console.log('操 +3 hit');
+                            f4(function(end){
+                                console.log('操 +4 hit');
+                                end(function(){
+                                   console.log('事后烟.. <(~ c~)y▂ξ');
+                                })
+                            })
+                         });
+                     })
+                });
+            });
+
+</script>
+</body>
+</html>

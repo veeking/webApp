@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function Single(){
+       if(typeof Single.Instance === 'object'){
+            return Single.Instance
+       }
+        Single.Instance = this;
+
+    }
+    var s1 = new Single();
+    var s2 = new Single();
+    alert(s1 === s2);
+    // 闭包实现
+    function Universe(){
+        var instance = this;
+        Universe = function(){
+            return instance;  //  闭包访问私有
+        }
+    }
+    var u1 = new Universe();
+    var u2 = new Universe();
+    alert(u1 === u2);
+
+    // 完美实现
+</script>
+
+</body>
+</html>
