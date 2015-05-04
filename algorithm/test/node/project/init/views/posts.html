@@ -22,9 +22,7 @@
         text-align: center;
         padding:5px;
        }
-       div#noPostss{
-           display: none;
-       }
+
     </style>
 </head>
 <body>
@@ -44,6 +42,35 @@
         var hasPost = document.getElementById('hasPosts');
         var noPost = document.getElementById('noPosts');
         var userName = document.getElementById('userName');
+        var ajax = new XMLHttpRequest();
+        setTimeout(function(){
+            ajax.open('get','/sendUser',false);
+            ajax.onreadystatechange = function(){
+                if(ajax.readyState == 4 && ajax.status == 200){
+                    var userData = JSON.parse(ajax.responseText)
+                    userName.innerHTML = userData.name;
+                }
+            }
+            ajax.send();
+        },0)
+        setTimeout(function(){
+            ajax.open('get','/sendContent',false);
+            ajax.onreadystatechange = function(){
+                if(ajax.readyState == 4 && ajax.status == 200){
+                    noPost.style.display = 'none';
+                    var content = JSON.parse(ajax.responseText)
+                    var newUl = document.createElement('ul');
+
+                    for(var i=0;i<content.length;i++){
+                        var newLi = document.createElement('li');
+                        newLi.innerHTML = content[i].content;
+                        newUl.appendChild(newLi);
+                    }
+                      hasPost.appendChild(newUl);
+                }
+            }
+            ajax.send();
+        },0)
 
   </script>
 </body>

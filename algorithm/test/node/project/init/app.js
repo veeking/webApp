@@ -99,6 +99,17 @@ app.get('/api/postShow',function(req,res){
 //        res.send(str);
 //    });
 });
+app.get('/sendUser',function(req,res){
+     res.send(req.session.user);
+})
+app.get('/sendContent',function(req,res){
+    console.log('postShow')
+    var str = '';
+    Post.get(req.session.user.name,function(err,posts){
+        if(err) return err;
+        res.send(posts);
+    });
+});
 
 
 
