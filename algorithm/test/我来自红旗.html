@@ -5,6 +5,23 @@
     <title></title>
 </head>
 <body>
-
+<script>
+      // 插入排序 再练习
+  function insertSort(arr){
+        var tmp;
+        for(var i=0;i<arr.length;i++){
+            var tmp = arr[i];
+            var j = i;
+            while(j>0 && arr[j-1] >= tmp){
+                 arr[j] = arr[j-1]// 不断右移
+                  --j;
+                }
+            arr[j] = tmp;   // 更新到下一个
+        }
+      return arr;
+  }
+     var numBox = [23,4,7,9,98,65];
+    console.log(insertSort(numBox));
+</script>
 </body>
 </html>
