@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding: 0;
+        }
+        div#scaleBox{
+            padding: 20px;
+            background: #FF1632;
+            width: 200px;
+            position: absolute;
+            left:100px;
+            top:100px;
+        }
+        img{
+            width: 100%;
+
+        }
+    </style>
+</head>
+<body>
+    <div id="scaleBox">
+         <img src="m1.jpg" />
+    </div>
+     目前的数据:<div id="showNum">0</div>
+<script>
+      var sBox = document.getElementById('scaleBox');
+      var boxNode = sBox.children[0];
+      var disNum = document.getElementById('showNum');
+      var scaleRatio = 0.1361111;  // H:98/W:720
+      var boxAttr = {
+          width : 0,
+          height : 0
+      };
+      var paddingHeight = 40; // 20 + 20
+
+      document.onkeydown = function(e){
+         if(e.ctrlKey && e.keyCode == 81){
+//
+             scaleBox();
+         }
+          return false;
+      }
+
+      function scaleBox(){
+          sBox.style.border = '5px dashed black';
+
+          sBox.onmousemove = function(e){   // 元素高度 按宽度比例计算，元素内容跟随元素高度变化
+               this.style.width = e.clientX + 'px';   // 第一次见pHeight是减去初始,再次减是减去内容高度之外的厚度
+               this.style.height = (this.offsetWidth * scaleRatio) - paddingHeight + 'PX';  // 高度按比例计算
+               boxNode.style.height = this.offsetHeight -paddingHeight + 'px';  // style.height != offsetHeight
+              disNum.innerHTML = '宽度:' + this.offsetWidth + ';高度 :' + this.offsetHeight;
+          }
+          boxAttr = getBoxAttr(sBox);
+
+      }
+      function getBoxAttr(ele){
+         return{
+            width : ele.offsetWidth,
+            height : ele.offsetHeight
+         }
+      }
+</script>
+</body>
+</html>
