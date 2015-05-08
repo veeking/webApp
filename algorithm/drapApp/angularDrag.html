@@ -36,8 +36,8 @@
                      eX = this.offsetLeft;
                      eY = this.offsetTop;    //  元素位置  ，让移动时从元素的位置开始拖动 而不是0,0
                      element.on('mousemove',function(e){
-                         this.style.left = e.clientX - mouseX + eX + 'px';  // 不让元素left值为鼠标处,应该让元素后移到点击处的位置
-                         this.style.top = e.clientY - mouseY + eY + 'px';  // 加ex是为了让元素保持当前的left值
+                         this.style.left = eX + (e.clientX - mouseX) + 'px';  // 不让元素left值为鼠标处,应该让元素后移到点击处的位置
+                         this.style.top = eY + (e.clientY - mouseY) + 'px';  // 加ex是为了让元素保持当前的left值
                      })  // 总结 ： 退回 并 保持
                      $document.on('mouseup',function(){
                          $document.off('mousedown');
