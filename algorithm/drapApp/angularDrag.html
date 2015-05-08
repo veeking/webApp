@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html ng-app="dragApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div.drag{
+             width:300px;
+             height:300px;
+             background: #FF1632;
+             position: absolute;
+            top:100px;
+            left: 100px;
+        }
+    </style>
+</head>
+<body>
+  <div drag></div>
+  <div drag></div>
+<script src="lib/angular.js"></script>
+<script>
+     var dragApp = angular.module('dragApp',[]);
+     dragApp.directive('drag',function($document){
+         return{
+             restrict:'AE',
+             link : function(scope,element,attr){   // element 为元素对象， attr为元素属性
+                 var mouseX = 0;
+                 var mouseY = 0;
+                 var eX = 0;
+                 var eY = 0;
+
+                 element.addClass('drag');
+                 element.on('mousedown',function(e){
+                     mouseX = e.clientX;
+                     mouseY = e.clientY;
+                     eX = this.offsetLeft;
+                     eY = this.offsetTop;    //  元素位置  ，让移动时从元素的位置开始拖动 而不是0,0
+                     element.on('mousemove',function(e){
+                         this.style.left = e.clientX - mouseX + eX + 'px';  // 不让元素left值为鼠标处,应该让元素后移到点击处的位置
+                         this.style.top = e.clientY - mouseY + eY + 'px';  // 加ex是为了让元素保持当前的left值
+                     })  // 总结 ： 退回 并 保持
+                     $document.on('mouseup',function(){
+                         $document.off('mousedown');
+                         element.off('mousemove');
+                     });
+                 })
+
+             }
+
+         }
+     });
+</script>
+</body>
+</html>
