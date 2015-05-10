@@ -5,29 +5,34 @@
     <title></title>
     <style>
           div{
-              transitions:all 0.2S liner;
+
               background: red;
               height: 300px;
               width : 300px;
           }
         .ani{
-            height: 1300px;
-            width : 1300px;
+            background: green;
         }
     </style>
 </head>
 <body>
-  <div animate-test></div>
-<script src="lib/angular.js"></script>
+  <div animate-test class="d"></div>
+<script src="lib/angular-new.js"></script>
 <script src="lib/angular-animate.js"></script>
 <script>
-    var animateApp = angular.module('animteApp',[]);
+    var animateApp = angular.module('animteApp',['ngAnimate']);
+
     animateApp.directive('animateTest',function($animate){
         return{
             restrict:'AE',
             link : function(scope,element,attrs){
-                 console.log($animate)
-                $animate.addClass('.ani');
+                console.log($animate)
+                element.bind('click',function(){
+                    $animate.addClass(element,"ani",function(){
+
+                   });
+                })
+
             }
         }
     });

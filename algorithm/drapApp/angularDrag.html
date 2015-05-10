@@ -15,11 +15,53 @@
     </style>
 </head>
 <body>
-  <div drag></div>
-  <div drag></div>
+  <div drag scale></div>
+  <div drag scale></div>
+  <span>宽：{{scale.width?scale.width:0}}，高:{{scale.height?scale.height:0}}</span>
 <script src="lib/angular.js"></script>
 <script>
      var dragApp = angular.module('dragApp',[]);
+     dragApp.directive('scale',function($document){
+         return{
+             restrict:'AE',
+             link : function(scope,element,attr,scaleCtrl){
+                 var mouseX = 0;
+                 var mouseY = 0;
+                 $document.bind('keydown',function(e){
+                     element.css('border','none');  // 没点击到的，默认的取消选框
+                     if(attr.drag){ // 针对当前已点击的元素进行操作
+                         if(e.ctrlKey && e.keyCode == 81){
+                             element.css('border','5px dashed black');
+                             element.bind('mousemove',function(e){
+                                 mouseX = e.clientX;
+                                 mouseY = e.clientY;
+                                 this.style.width = mouseX + 'px';
+                                 this.style.height = mouseY + 'PX';
+                             });
+                             element.bind('mouseup',function(){
+                                scaleCtrl.countAttrs(mouseX,mouseY);
+                             });
+                             attr.drag = false;
+
+                         }
+                     }  // 让当前的元素 缩放 而不是默认的所有元素
+
+                 })
+             },
+             controller : function($scope){
+                $scope.scale = {};
+                this.countAttrs = function(x,y){
+                    console.log(x);
+                    $scope.$apply(function(){ // 非$scope定义的方法需要启动$apply
+                        $scope.scale.width = x;
+                        $scope.scale.height = y;
+                    })
+
+                };
+
+             }  // end controller
+       }  // end return
+     });
      dragApp.directive('drag',function($document){
          return{
              restrict:'AE',
@@ -31,15 +73,20 @@
 
                  element.addClass('drag');
                  element.on('mousedown',function(e){
+                     attr.drag = true;  // 定位当前点击的元素 ，方便后续操作
+                     document.body.style.cursor = "move";
                      mouseX = e.clientX;
                      mouseY = e.clientY;
                      eX = this.offsetLeft;
                      eY = this.offsetTop;    //  元素位置  ，让移动时从元素的位置开始拖动 而不是0,0
+
                      element.on('mousemove',function(e){
                          this.style.left = eX + (e.clientX - mouseX) + 'px';  // 不让元素left值为鼠标处,应该让元素后移到点击处的位置
                          this.style.top = eY + (e.clientY - mouseY) + 'px';  // 加ex是为了让元素保持当前的left值
                      })  // 总结 ： 退回 并 保持
                      $document.on('mouseup',function(){
+
+                         document.body.style.cursor = "default";
                          $document.off('mousedown');
                          element.off('mousemove');
                      });
