@@ -23,6 +23,10 @@
       <div id="box"></div>
 
 <script>
+    // 目前三大问题：
+    //  1、点击空白地方去除缩放元素，如果是document的话，是点击所有的地方都触发，而不是空白地方
+    //  2、触摸缩放可以直接拖拽移动，但是鼠标就必须先要按下才行? (目前想到的方法：还是加一层按下事件吧 )
+    //  3、多元素继承(currentEle默认为每一次新生成的元素，每一次生成元素后都要遍历绑定事件，点击元素后更换currentEle)
     var sb = document.getElementById('box');
     var touchStartX = 0;
     var touchStartY = 0;
@@ -51,6 +55,7 @@
         touchTop = currentEle.offsetTop;
         currentEle.addEventListener(eventType.move,startMove);
         currentEle.addEventListener(eventType.end,startEnd);
+        e.stopPropagation();
     }
 
     function startMove(e){
@@ -71,39 +76,44 @@
        }
        console.log('touch is end');
     }
+   function startScale(e){
+       var moveX = (isPc?e.clientX:e.touches[0].clientX);
+       var moveY = (isPc?e.clientY:e.touches[0].clientY);
+       var scaleX = moveX - this.offsetWidth - this.offsetLeft;
+       var scaleY = moveY - this.offsetHeight - this.offsetTop;
+       if(!checkSize(currentEle)){
+           this.style.width = this.offsetWidth + 'px';
+           this.style.height = this.offsetHeight  + 'px';
+       }
+       this.style.width = this.offsetWidth + scaleX + 'px';
+       this.style.height = this.offsetHeight + scaleY + 'px';
+
+       currentEle.style.width = currentEle.offsetWidth + (this.offsetWidth - currentEle.offsetWidth) - targetSpacing + 'px'; //要减掉多余的targetSpacing间距
+       currentEle.style.height = currentEle.offsetHeight + (this.offsetHeight - currentEle.offsetHeight) - targetSpacing + 'px';
+
+       return false;
+   } // end startScale
 
 
    //  事件绑定
     currentEle.addEventListener(eventType.down,startDown);
     document.addEventListener(eventType.down,deleteScale);
 
+    // 启动拖拽
      document.addEventListener('keydown',function(e){
          if(e.ctrlKey && e.keyCode == 81){
-            if(startScale(currentEle)){  // 如果拖拽元素成功创建的话，则绑定拖动事件
-                scaleBox.addEventListener(eventType.move,function(e){
-//                 console.log(e.touches[0].clientX + 'widht: ' + this.offsetWidth)
+            if(createScale(currentEle)){  // 如果拖拽元素成功创建的话，则绑定拖动事件
+               scaleBox.addEventListener(eventType.down,function(e){  // 按下启动拖拽
+                   scaleBox.addEventListener(eventType.move,startScale);
+                   scaleBox.addEventListener(eventType.end,function(){
+                       this.removeEventListener(eventType.move,startScale);
+                       console.log('缩放结束，你可以做点什么...');
+                       // 缩放结束时 检测 最大/最小值
+                   });
+                   e.stopPropagation();
+               });// end scaleBox down
 
-                     var scaleX = e.touches[0].clientX - this.offsetWidth - this.offsetLeft;
-                     var scaleY = e.touches[0].clientY - this.offsetHeight - this.offsetTop;
-                     if(!checkSize(currentEle)){
-                         this.style.width = this.offsetWidth + 'px';
-                         this.style.height = this.offsetHeight  + 'px';
-                     }
-                    this.style.width = this.offsetWidth + scaleX + 'px';
-                    this.style.height = this.offsetHeight + scaleY + 'px';
-
-                    sb.style.width = sb.offsetWidth + (this.offsetWidth - sb.offsetWidth) - targetSpacing + 'px'; //要减掉多余的targetSpacing间距
-                    sb.style.height = sb.offsetHeight + (this.offsetHeight - sb.offsetHeight) - targetSpacing + 'px';
-
-                    return false;
-             })
-
-                 scaleBox.addEventListener('touchend',function(){
-
-                        // 缩放结束时 检测 最大/最小值
-                 })
-
-           }  //  startScale(sb);
+           }  //  createScale(sb);
          }  // end if keydown
      })
 
@@ -121,7 +131,7 @@
        return true;
    }
 
-   function startScale(ele){
+   function createScale(ele){
        targetSpacing = 90;
        targetWidth = ele.offsetWidth + targetSpacing;
        targetHeight = ele.offsetHeight + targetSpacing;
