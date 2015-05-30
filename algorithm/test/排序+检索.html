@@ -4,6 +4,16 @@
     <meta charset="UTF-8">
     <title></title>
 </head>
+<button id="od">say</button>
+<button id="od2">remove</button>
+
+  <div id="numBox">
+      <div>我是第一个</div>
+      <div>我是第二个</div>
+      <div>第三个</div>
+  </div>
+   <div id="od9"></div>
+<button id="longTouch">长按测试</button>
 <body>
 <script>
       // 插入排序 , 核心  不断右移
@@ -37,9 +47,63 @@
     }
     console.log(findMin(arr1));
 
-      a=b;
-      b=c;
-      console.log(b);
+
+
+ var od = document.getElementById('od');
+ var od2 = document.getElementById('od2');
+ function say(e){
+     alert(e)
+ }
+ od.addEventListener('mousedown',say);
+ od2.addEventListener('mousedown',function(){
+     od.removeEventListener('mousedown',say)
+ });
+   var divBox = document.getElementById('numBox');
+   var boxChild = divBox.children;
+   var boxArr = [];
+   for(var i=0;i<boxChild.length;i++){
+      boxArr.push(boxChild[i]);
+   }
+      boxArr[0].style.width = 500 + 'px';
+      boxArr[0].style.height = 500 + 'px';
+      boxArr[0].style.backgroundColor = '#000';
+      console.log(boxArr[0]);
+//         alert(boxChild instanc eof);
+      console.log(boxChild.length);
+
+
+    //  长按 模拟
+       var od = document.getElementById('longTouch');
+       var timeNum = 0;
+       var longTime = null;
+      od.addEventListener('mousedown',function(e){
+          timeNum = 0;
+          longTime = setInterval(function(){
+              timeNum++;
+              document.title = timeNum;
+          },60);
+          od.addEventListener('mousemove',function(e){
+               document.title = timeNum;
+          })
+          e.stopPropagation();
+      });
+      od.addEventListener('mouseup',function(){
+          clearInterval(longTime);
+      });
+      var od9 = document.getElementById('od9');
+      var scaleOn = true;
+      od9.style.background = 'green';
+      od9.style.width = 300 + 'px';
+      od9.style.height = 300 + 'px';
+
+      od9.addEventListener('mousedown',function(e) {
+          scaleOn = false;
+          e.stopPropagation();
+      })
+      document.addEventListener('mousedown',function(e){
+
+
+      });
 </script>
 </body>
 </html>
