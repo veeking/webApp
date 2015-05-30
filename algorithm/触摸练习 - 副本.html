@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding: 0;
+        }
+        body{
+            background: #4d4d4d;
+        }
+        div#view{
+            width:600px;
+            margin:0 auto;
+            border: 2px solid #00B7FF;
+        }
+        div#viewShow{
+           width：100%;
+           height:600px;
+        }
+        button#viewButton{
+              width:100%;
+              border: none;
+              background: #00B7FF;
+              color: #fff;
+              font-family: '微软雅黑';
+              font-size: 18px;
+              line-height:52px;
+              cursor: pointer;
+              transition:all 0.3s linear;
+          }
+        button#viewButton:hover{
+            background:#285e8e;
+        }
+        button#viewButton:active{
+            transform:translateY(10px);
+        }
+        #box{
+           width: 500px;
+           height: 500px;
+           background: red;
+           z-index:2;
+           position: absolute;
+           transition:transform 0.2s linear;
+        }
+        div#scaleBox{
+            display: inline-block;
+            position:absolute;
+            z-index:1;
+
+        }
+    </style>
+</head>
+<body>
+    <div id="view">
+        <div id="viewShow"></div>
+        <button id="viewButton">Create New</button>
+    </div>
+
+      <div id="box"></div>
+d
+<script>
+    //  1、多元素继承(currentEle默认为每一次新生成的元素，每一次生成元素后都要遍历绑定事件，点击元素后更换currentEle)
+    var sb = document.getElementById('box');
+    var touchStartX = 0;
+    var touchStartY = 0;
+    var touchLeft = 0;
+    var touchTop = 0;
+    var scaleBox;  // 后面生成的拖动元素
+    var hasCreate = false;  // 只允许元素生成一次
+
+    var targetSpacing;   //  新生成的拖动元素的 间距(与内元素的间距)  和  宽高
+    var targetWidth;
+    var targetHeight;
+
+    var currentEle = sb; // 默认为sb
+    var isPc = isPc();  //  移动端和PC端判断
+
+    var eventType = {
+        down : (isPc?"mousedown":"touchstart"),  // 多次重复判断 是否有修改的余地？
+        move : (isPc?"mousemove":"touchmove"),
+        end : (isPc?"mouseup":"touchend")
+    }
+    function startDown(e){
+        currentEle = this;
+        touchStartX = (isPc?e.clientX:e.touches[0].clientX);
+        touchStartY = (isPc?e.clientY:e.touches[0].clientY);
+        touchLeft = currentEle.offsetLeft;
+        touchTop = currentEle.offsetTop;
+        currentEle.addEventListener(eventType.move,startMove);
+        currentEle.addEventListener(eventType.end,startEnd);
+        e.stopPropagation();
+        e.preventDefault();
+    }
+
+    function startMove(e){
+    // 第一次点击触发setInterval后，不关闭其会自动运行
+         deleteScale(); //  移动时清除缩放元素
+         var moveX = (isPc?e.clientX:e.touches[0].clientX);
+         var moveY = (isPc?e.clientY:e.touches[0].clientY);
+         //  我喜欢变形本 ， 这玩意不仅携带方便 而且打字也是超舒服，不知道surface的键盘如何
+        // 思路堵了啦  草，  e.touches[0].clientX 与 e.clientX 如何共存呢，还真是个严肃的问题呀?
+        currentEle.style.left = touchLeft + (moveX-touchStartX) + 'px';
+        currentEle.style.top = touchTop + (moveY-touchStartY) + 'px';  // 不减去touchStartY的话 会在元素顶部拖拽
+    }
+    function startEnd(){
+       scaleOn = true;
+       if(isPc){
+          document.removeEventListener(eventType.down,startDown);  // 解绑
+          currentEle.removeEventListener(eventType.move,startMove);
+          console.log('click is end');
+          return;
+       }
+       console.log('touch is end');
+
+    }
+   function startScale(e){
+       var moveX = (isPc?e.clientX:e.touches[0].clientX);
+       var moveY = (isPc?e.clientY:e.touches[0].clientY);
+       var scaleX = moveX - this.offsetWidth - this.offsetLeft;
+       var scaleY = moveY - this.offsetHeight - this.offsetTop;
+       if(!checkSize(currentEle)){
+           this.style.width = this.offsetWidth + 'px';
+           this.style.height = this.offsetHeight  + 'px';
+       }
+       this.style.width = this.offsetWidth + scaleX + 'px';
+       this.style.height = this.offsetHeight + scaleY + 'px';
+
+       currentEle.style.width = currentEle.offsetWidth + (this.offsetWidth - currentEle.offsetWidth) - targetSpacing + 'px'; //要减掉多余的targetSpacing间距
+       currentEle.style.height = currentEle.offsetHeight + (this.offsetHeight - currentEle.offsetHeight) - targetSpacing + 'px';
+
+       return false;
+   } // end startScale
+
+
+   //  事件绑定
+    currentEle.addEventListener(eventType.down,startDown);
+    document.addEventListener(eventType.down,deleteScale);
+
+
+    var longTime = null;
+    var longTimeNum = 0;
+    var scaleOn = true;
+    // 启动拖拽   问题 ： 拖动时会触发down事件
+     currentEle.addEventListener(eventType.down,function(){
+         if(scaleOn){
+         longTimeNum = 0; //  点击时 恢复  默认
+         longTime = setInterval(function(){  //  应该是没有移动的情况下点击
+                  console.log('setInterval运行了');
+                  longTimeNum++;
+                  if(longTimeNum >= 10){
+                      if(createScale(currentEle)){  // 如果拖拽元素成功创建的话，则绑定拖动事件
+                          scaleBox.addEventListener(eventType.down,function(e){  // 按下启动拖拽
+                              this.addEventListener(eventType.move,startScale);
+                              this.addEventListener(eventType.end,function(){
+                                  this.removeEventListener(eventType.move,startScale);
+                                  console.log('缩放结束，你可以做点什么...');
+                                  // 缩放结束时 要做的事 -> [检测 最大/最小值]
+                              });
+                              e.stopPropagation(); // 取消冒泡  防止与document的点击事件冲突ss
+                          });// end scaleBox down
+
+                      }  //  createScale(sb);
+                      // 问题： 移动时不需要触发  长按 后做点什么 .
+                  }
+
+            },60);
+           }
+     });
+     currentEle.addEventListener(eventType.end,function(){
+           clearInterval(longTime);
+     });
+//     document.addEventListener('keydown',function(e){
+//         if(e.ctrlKey && e.keyCode == 81){
+//            if(createScale(currentEle)){  // 如果拖拽元素成功创建的话，则绑定拖动事件
+//               scaleBox.addEventListener(eventType.down,function(e){  // 按下启动拖拽
+//                   this.addEventListener(eventType.move,startScale);
+//                   this.addEventListener(eventType.end,function(){
+//                       this.removeEventListener(eventType.move,startScale);
+//                       console.log('缩放结束，你可以做点什么...');
+//                       // 缩放结束时 要做的事 -> [检测 最大/最小值]
+//                   });
+//                   e.stopPropagation(); // 取消冒泡  防止与document的点击事件冲突ss
+//               });// end scaleBox down
+//
+//           }  //  createScale(sb);
+//         }  // end if keydown
+//     });  // end 长按拖拽
+
+   function checkSize(ele){
+       var min = 50;
+       var max = document.body.clientWidth;
+          //  怎么计算触碰到 屏幕边缘呢 ？
+       document.title = ele.offsetWidth;
+       if(ele.offsetWidth <= min || ele.offsetWidth >= max){
+           return false;
+       }
+       if(ele.offsetHeight <= min || ele.offsetHeight>= max){
+           return false;
+       }
+       return true;
+   }
+
+   function createScale(ele){
+       targetSpacing = 90;
+       targetWidth = ele.offsetWidth + targetSpacing;
+       targetHeight = ele.offsetHeight + targetSpacing;
+
+       try {
+           if (!hasCreate) {
+               var newScale = document.createElement('div');
+               newScale.style.position = 'absolute';
+               newScale.style.width = targetWidth + 'px';
+               newScale.style.height = targetHeight + 'px';
+               newScale.style.left = ele.offsetLeft - ((targetWidth - ele.offsetWidth) / 2) + 'px';
+               newScale.style.top = ele.offsetTop - ((targetHeight - ele.offsetHeight) / 2) + 'px';
+               newScale.style.border = '5px dashed #000';
+//               newScale.style.backgroundColor = '#000';
+               newScale.setAttribute('id', 'scaleBox');
+               document.body.appendChild(newScale);
+               hasCreate = true;
+           }
+           scaleBox = document.getElementById('scaleBox');
+       }catch(e){
+           console.log(e);
+           return false;
+       }
+       return true;
+   }
+    function deleteScale(){
+        scaleOn = false;  // 关闭拖动
+        clearInterval(longTime);
+        if(hasCreate){
+            document.body.removeChild(scaleBox);
+            hasCreate = false;
+        }
+    };
+    function isPc(){
+        if('ontouchstart' in document){
+            return false;
+        }
+        return true;
+    }
+</script>
+</body>
+</html>

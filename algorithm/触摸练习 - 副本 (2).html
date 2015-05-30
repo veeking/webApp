@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding: 0;
+        }
+        body{
+            background: #4d4d4d;
+        }
+        div#view{
+            width:600px;
+            margin:0 auto;
+            border: 2px solid #00B7FF;
+        }
+        div#viewShow{
+           width：100%;
+           height:600px;
+           position:relative;
+        }
+        div#viewShow div.newEle{
+            position: absolute;
+        }
+        button#viewButton{
+              width:100%;
+              border: none;
+              background: #00B7FF;
+              color: #fff;
+              font-family: '微软雅黑';
+              font-size: 18px;
+              line-height:52px;
+              cursor: pointer;
+              transition:all 0.3s linear;
+          }
+        button#viewButton:hover{
+            background:#285e8e;
+        }
+        button#viewButton:active{
+            transform:translateY(10px);
+        }
+        div#scaleBox{
+            display: inline-block;
+            position:absolute;
+            z-index:1;
+        }
+    </style>
+</head>
+<body>
+    <div id="view">
+        <div id="viewShow"></div>
+        <button id="viewButton">Create New</button>
+    </div>
+<script>
+  //  面向对象化重构
+  function dragApp(opt){
+     if(typeof opt != object && opt == null){
+        return false;
+     }
+     this.showView = opt.showBox;
+     this.createBtn = opt.showBtn;
+      // 静态属性
+      // 静态方法
+
+
+  };  // end dragApp
+//  目前问题： 拖动和缩放问题
+    var showView = document.getElementById('viewShow');
+    var createBtn = document.getElementById('viewButton');
+
+    var touchStartX = 0;
+    var touchStartY = 0;
+    var touchLeft = 0;
+    var touchTop = 0;
+    var scaleBox;  // 后面生成的拖动元素
+    var hasCreate = false;  // 只允许元素生成一次
+
+    var targetSpacing = 30;   //  新生成的拖动元素的 间距(与内元素的间距)  和  宽高
+    var targetWidth;
+    var targetHeight;
+
+    var currentEle = null; // 默认为空
+    var eleBox = []; // 存放所有生成的元素
+    var eleLayoutIndex = 1;
+
+
+    var longTime = null;
+    var longTimeNum = 0;
+    var scaleOn = true;
+
+
+    var isPc = isPc();  //  移动端和PC端判断
+    var eventType = {
+        down : (isPc?"mousedown":"touchstart"),  // 多次重复判断 是否有修改的余地？
+        move : (isPc?"mousemove":"touchmove"),
+        end : (isPc?"mouseup":"touchend")
+    };
+
+    createBtn.addEventListener(eventType.down,createEle);
+
+
+    function createEle(e){  // 位置 大小  颜色
+        var size = showView.offsetWidth / 4; // 宽高为 1/4
+        var coord = getCoord(size)// 随机位置 coord.x and coord.y
+        var color = ['red','green','blue']  //三种随机颜色 color[Math.random()*color.length]
+        var className = 'newEle';
+        var i;
+        // 创建
+        try {
+            var newEle = document.createElement('div');
+            newEle.style.width = size + 'px';
+            newEle.style.height = size + 'px';
+            newEle.style.left = coord.x + 'px';
+            newEle.style.top = coord.y + 'px';
+            newEle.style.background = color[Math.floor(Math.random() * color.length)];
+            newEle.setAttribute('class', className);
+            eleBox.push(newEle);  // 把新元素推进数组，方便后续操作
+            showView.appendChild(newEle);
+        }catch(e){
+            alert('生成元素时出现了个错误' + e);
+        }; // end try
+//  top  - 1    [--top]
+     currentEle = eleBox[eleBox.length - 1];  // 每次currentEle默认为新生成的元素
+
+     for(i = 0;i < eleBox.length;i++){
+         eleBox[i].addEventListener(eventType.down,startDown);
+     }  // end for
+         document.addEventListener(eventType.down,deleteScale);
+
+         currentEle.addEventListener(eventType.down,function(){
+            if(scaleOn){
+                deleteScale();  // 每次点击切换时，先删除旧的，再在新的当前元素生成新的
+                longTimeNum = 0; //  点击时 恢复  默认
+                longTime = setInterval(function(){  //  应该是没有移动的情况下点击
+                    console.log('setInterval运行了');
+                    longTimeNum++;
+                    if(longTimeNum >= 10){
+                        createScale(currentEle);
+                        clearInterval(longTime);
+                        if(hasCreate){  // 元素生成后才可以拖拽、删除
+                            scaleBox.addEventListener(eventType.down,function(e){  // 按下启动拖拽
+                                document.addEventListener(eventType.move,startScale);
+                                document.addEventListener(eventType.end,function(){
+                                    document.removeEventListener(eventType.move,startScale);
+                                    console.log('缩放结束，你可以做点什么...');
+                                    // 缩放结束时 要做的事 -> [检测 最大/最小值]
+                                });
+                                e.stopPropagation(); // 取消冒泡  防止与document的点击事件冲突ss
+                            });// end scaleBox down
+
+                        }  //  createScale(sb);
+                    }
+                },60);
+
+            }
+             currentEle.addEventListener(eventType.end,function(){
+                 clearInterval(longTime);
+             })
+        });  // end currentEle down
+        e.stopPropagation();
+    }; // end function createEle()
+
+    function startDown(e){
+        scaleOn = true;
+        currentEle = this;
+        currentEle.style.zIndex = ++eleLayoutIndex;
+        touchStartX = (isPc?e.clientX:e.touches[0].clientX);
+        touchStartY = (isPc?e.clientY:e.touches[0].clientY);
+        touchLeft = currentEle.offsetLeft;
+        touchTop = currentEle.offsetTop;
+        document.addEventListener(eventType.move,startMove);
+        document.addEventListener(eventType.end,startEnd);
+        e.stopPropagation();
+        e.preventDefault();
+    }
+
+    function startMove(e){
+   // 第一次点击触发setInterval后，不关闭其会自动运行
+        if(hasCreate){
+            deleteScale(); //  移动时清除缩放元素
+         }
+         clearInterval(longTime);
+         var moveX = (isPc?e.clientX:e.touches[0].clientX);
+         var moveY = (isPc?e.clientY:e.touches[0].clientY);
+         currentEle.style.left = touchLeft + (moveX-touchStartX) + 'px';
+         currentEle.style.top = touchTop + (moveY-touchStartY) + 'px';  // 不减去touchStartY的话 会在元素顶部拖拽
+    }
+    function startEnd(){
+       scaleOn = true;
+       document.removeEventListener(eventType.down,startDown);  // 解绑
+       document.removeEventListener(eventType.move,startMove);
+       console.log('event is end');
+    }
+   function startScale(e){  // offsetLeft是showView里计算的，正常情况下是从document下计算的
+       var moveX = (isPc?e.clientX:e.touches[0].clientX);
+       var moveY = (isPc?e.clientY:e.touches[0].clientY);
+       var scaleX = moveX - scaleBox.offsetWidth - (scaleBox.offsetLeft + showView.offsetLeft);
+       var scaleY = moveY - scaleBox.offsetHeight - (scaleBox.offsetTop + showView.offsetTop);
+       if(!checkSize(currentEle)){
+           scaleBox.style.width = scaleBox.offsetWidth + 'px';
+           scaleBox.style.height = scaleBox.offsetHeight  + 'px';
+       }
+       scaleBox.style.width = scaleBox.offsetWidth + scaleX + 'px';
+       scaleBox.style.height = scaleBox.offsetHeight + scaleY + 'px';
+
+       currentEle.style.width = currentEle.offsetWidth + (scaleBox.offsetWidth - currentEle.offsetWidth) - targetSpacing - 10 + 'px'; //要减掉多余的targetSpacing间距
+       currentEle.style.height = currentEle.offsetHeight + (scaleBox.offsetHeight - currentEle.offsetHeight) - targetSpacing - 10 + 'px'; // 10PX为拖拽元素的边框 要减掉
+
+       return false;
+   } // end startScale
+
+
+   //  事件绑定
+
+
+   function checkSize(ele){
+       var min = 50;
+       var max = showView.offsetWidth;
+          //  怎么计算触碰到 屏幕边缘呢 ？
+       if(ele.offsetWidth <= min || ele.offsetWidth >= max){
+           return false;
+       }
+       if(ele.offsetHeight <= min || ele.offsetHeight>= max){
+           return false;
+       }
+       return true;
+   }
+
+   function createScale(ele){
+       targetSpacing = 30;
+       targetWidth = ele.offsetWidth + targetSpacing;
+       targetHeight = ele.offsetHeight + targetSpacing;
+
+       try {
+           if (!hasCreate) {
+               var newScale = document.createElement('div');
+               newScale.style.width = targetWidth + 'px';
+               newScale.style.height = targetHeight + 'px';
+               newScale.style.left = ele.offsetLeft - ((targetWidth - ele.offsetWidth) / 2) - 5 + 'px';
+               newScale.style.top = ele.offsetTop - ((targetHeight - ele.offsetHeight) / 2) - 5 + 'px';
+               newScale.style.zIndex = eleLayoutIndex - 1; // 低于元素层
+               newScale.style.border = '5px dashed #000';
+//             newScale.style.backgroundColor = '#000';
+               newScale.setAttribute('id', 'scaleBox');
+               showView.appendChild(newScale);
+               hasCreate = true;
+           }
+           scaleBox = document.getElementById('scaleBox');
+       }catch(e){
+           console.log(e);
+           return false;
+       }
+       return true;
+   }
+    function deleteScale(){
+        scaleOn = false;  // 关闭拖动
+        if(hasCreate){
+            showView.removeChild(scaleBox);
+            hasCreate = false;
+        }
+    };
+    function isPc(){
+        if('ontouchstart' in document){
+            return false;
+        }
+        return true;
+    }
+    function getCoord(eleSize){
+        var coordObj = {};
+        var maxX = showView.offsetWidth - eleSize - (targetSpacing*2); // 最大值=显示总宽度 - 元素宽度 - 拖拽元素的间距
+        var maxY = showView.offsetHeight - eleSize - (targetSpacing*2);
+        coordObj.x = Math.floor(Math.random() * maxX + targetSpacing); // 最小值=从间距开始而不是0
+        coordObj.y = Math.floor(Math.random() * maxY + targetSpacing);
+        return coordObj;
+    }
+</script>
+</body>
+</html>
