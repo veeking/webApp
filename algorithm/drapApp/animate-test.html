@@ -10,30 +10,30 @@
               height: 300px;
               width : 300px;
           }
-        .ani{
+        #ani{
+            -webkit-transition: 0.5s linear all;
+            -moz-transition: 0.5s linear all;
+            transition: 0.5s linear all;
             background: green;
         }
+      #ani.ng-hide{
+          background: green;
+          opacity: 0;
+      }
     </style>
 </head>
-<body>
-  <div animate-test class="d"></div>
+<body ng-controller="c1">
+  <div id="ani" ng-show="showAni" ng-click="changeBck()"></div>
 <script src="lib/angular-new.js"></script>
 <script src="lib/angular-animate.js"></script>
 <script>
     var animateApp = angular.module('animteApp',['ngAnimate']);
 
-    animateApp.directive('animateTest',function($animate){
-        return{
-            restrict:'AE',
-            link : function(scope,element,attrs){
-                console.log($animate)
-                element.bind('click',function(){
-                    $animate.addClass(element,"ani",function(){
-
-                   });
-                })
-
-            }
+    animateApp.controller('c1',function($scope){
+        $scope.showAni = true;
+        console.log($scope.showAni)
+        $scope.changeBck= function(){
+            $scope.showAni = !$scope.showAni;
         }
     });
 
