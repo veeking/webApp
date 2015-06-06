@@ -34,15 +34,10 @@ var io = require('socket.io').listen(server);
 io.sockets.on('connection',function(socket){
    clientBox.push(socket);
    console.log('一个客户端连接了' + clientBox[clientBox.length - 1]);
-
-   socket.on('newClient',function(){
-        socket.broadcast.emit('newNode',socket.id);
-   });
-
    socket.on('clientData',function(e){
         // e.mx  e.my
-       console.log(e.mx + ':' + e.my)
-       socket.broadcast.emit('nodeData',{x:e.mx,y:e.my});
+       socket.broadcast.emit('nodeData',{x:e.mx,y: e.my});
+
    });
 });
 

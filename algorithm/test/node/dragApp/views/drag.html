@@ -18,7 +18,7 @@
         }
         div#view{
             width:98%;
-            height:82%;
+            height:83%;
             margin:0 auto;
             outline: 2px solid #00B7FF;
         }
@@ -74,11 +74,8 @@
 
 <script src="/socket.io/socket.io.js"></script>
 <script>
-   var socket = io.connect('http://127.0.0.1:3000/');
-   socket.emit('newClient');
-   socket.on('newNode',function(e){
-       alert(e);
-   });
+
+
    //  面向对象化重构 : 封装起来
   // socketIo 和 动画
   //  目前问题：手机端 缩放严重卡顿，拖拽好好的 为什么缩放就卡顿?
@@ -86,6 +83,12 @@
      if(typeof opt != Object && opt == null){
         return false;
      }
+      var socket = io.connect('http://127.0.0.1:3000/');
+      socket.on('nodeData',function(e){  // 其它客户端需要移动才会触发 why?
+         currentEle.style.left = e.x + 'px';
+         currentEle.style.top = e.y + 'px';
+      });
+      // socket监听区域
       // 公共属性 外部可获取
       var showView  = opt.showBox;
       var createBtn = opt.showBtn;
@@ -117,7 +120,6 @@
       createBtn.addEventListener(eventType.down,createEle);
       currentEle.addEventListener(eventType.down,startDown);
       function createEle(e){  // 位置 大小  颜色
-
           var size = showView.offsetWidth / 4; // 宽高为 1/4
           var coord = getCoord(size)// 随机位置 coord.x and coord.y
           var color = ['red','green','blue'];  //三种随机颜色 color[Math.random()*color.length]
@@ -138,7 +140,7 @@
           }catch(e){
               alert('创建元素时出现了个错误' + e);
           }; // end try
-            console.log(eleBox)
+          console.log(eleBox)
           deleteScale();  // 创建新元素时， 删除拖拽 并让current为最新生成的元素
           currentEle = eleBox[eleBox.length - 1];
 
@@ -216,13 +218,9 @@
               my = showView.offsetHeight - currentEle.offsetHeight;
           }
       // 不减去touchStartY的话 会在
-          socket.emit('clientData',{mx:mx,my:my}); //  服务端交互 :很卡顿
-          socket.on('nodeData',function(e){
-              mx = e.x;
-              my = e.y;
-          });
-          currentEle.style.left = mx + 'px';
+          currentEle.style.left = mx + 'px';   // 先计算还是...
           currentEle.style.top = my + 'px';
+          socket.emit('clientData',{mx:mx,my:my}); //  服务端交互 :很卡顿
           //元素顶部拖拽
       }
 
