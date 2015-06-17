@@ -80,7 +80,7 @@
 //          currentEle.style.left = e.x + 'px';
 //          currentEle.style.top = e.y + 'px';
 //      });
-      socket.on('zIndex',function(e){
+      socket.on('indexChange',function(e){
           nowIndex = e.index;
           eleLayoutIndex = e.zIndex;  // 改变全局 zIndex
           eleBox[nowIndex].style.zIndex = e.zIndex;
