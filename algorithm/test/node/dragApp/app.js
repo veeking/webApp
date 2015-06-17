@@ -30,14 +30,47 @@ var server = http.createServer(app).listen(app.get('port'), function(){
     console.log('Express server listening on port ' + app.get('port'));
 });
 var clientBox = []; // 存放所有连接的客户端
+var movePos = {
+    x:0,
+    y:0
+};
+var currIndex = 0; // 记录当前操作的元素索引，方便定位
+
 var io = require('socket.io').listen(server);
 io.sockets.on('connection',function(socket){
+//   socket.emit('init',{x:movePos.x,y:movePos.y});
    clientBox.push(socket);
-   console.log('一个客户端连接了' + clientBox[clientBox.length - 1]);
-   socket.on('clientData',function(e){
-        // e.mx  e.my
-       socket.broadcast.emit('nodeData',{x:e.mx,y: e.my});
-
+   console.log('一个客户端连接了,目前共有' + clientBox.length +'个客户端');
+   socket.on('createDrag',function(data){
+       io.sockets.emit('dragCreate',data);
    });
+
+   socket.on('createScale',function(){
+       console.log(currIndex)
+       io.sockets.emit('scaleCreate',{index:currIndex});
+   });
+   socket.on('changeIndex',function(e){
+       currIndex = e.index;
+       console.log(currIndex)
+       socket.broadcast.emit('zIndex',{index:currIndex,zIndex: e.zIndex});
+   });
+   socket.on('clientDragMove',function(e){
+        // e.mx  e.my
+        movePos.x = e.mx;
+        movePos.y = e.my;
+        socket.broadcast.emit('dragMove',{x:e.mx,y: e.my});
+   });     // currIndex能不能只发送一次？
+   socket.on('clientScaleMove',function(e){
+       socket.broadcast.emit('scaleMove',{scaleX:e.sx,scaleY: e.sy});
+   })
+    socket.on('event',function(e){
+        console.log(e.event);
+    });
+   socket.on('disconnect',function(){
+        clientBox.pop();
+    });
+    socket.on('deleteScale',function(){
+        io.sockets.emit('scaleDelete');
+    });
 });
 
