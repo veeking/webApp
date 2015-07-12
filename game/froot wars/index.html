@@ -5,8 +5,48 @@
     <title>froot wars</title>
     <script src="lib/jquery.js"></script>
     <script src="common/game.js"></script>
+    <link rel="stylesheet" href="css/style.css"/>
 </head>
 <body>
+  <div id="gamecontainer">
+       <canvas id="gamecanvas" width="640" height="480" class="gamelayer"></canvas>
 
+
+      <div id="scorescreen" class="gamelayer">  <!--计分板-->
+          <img id="togglemusic" src="img/icons/sound.png" />
+          <img src="img/icons/prev.png" />
+          <span id="score">Score : 0</span>
+      </div>
+
+    <div id="gamestartscreen" class="gamelayer">   <!--开始菜单-->
+        <img src="img/icons/play.png" alt="开始游戏" id="playGame"/>
+        <img src="img/icons/settings.png" alt="游戏设置"/>
+    </div>
+
+    <div id="levelselectscreen" class="gamelayer"><!--关卡选择-->
+
+    </div>
+
+     <div id="loadingscreen" class="gamelayer"><!--读取界面-->
+          <div id="loadingmessage"></div>
+     </div>
+
+      <div id="endingscreen" class="gamelayer">
+          <div>
+              <p id="endingmessage">通关信息</p>
+              <p id="playcurrentlevel">
+                  <img src="img/icons/prev.png" alt=""/>重新开始当前关卡
+              </p>
+
+              <p id="playnextlevel">
+                  <img src="img/icons/next.png" alt=""/>开始下一个关卡
+              </p>
+
+               <p id="showLevelScreen">
+                  <img src="img/icons/return.png" alt=""/>返回选择界面
+              </p>
+          </div>
+      </div>
+  </div>  <!--end gamecontainer-->
 </body>
 </html>

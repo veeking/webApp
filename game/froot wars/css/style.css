@@ -1,0 +1,59 @@
+*{
+    margin:0;
+    padding:0;
+}
+#gamecontainer{
+    width: 640px;
+    height: 480px;
+    background: url("../img/splashscreen.png");
+    border: 1px solid black;
+}
+.gamelayer{
+    width: 640px;
+    height: 480px;
+    position: absolute;
+    display: none;
+}
+
+/*开始菜单画面*/
+#gamestartscreen{
+    padding-top: 250px;
+    text-align: center;
+}
+#gamestartscreen img{
+    margin: 0 auto 20px;
+    display: block;
+    cursor: pointer;
+}
+/*关卡选择*/
+
+#levelselectscreen{
+    padding-top:150px;
+    padding-left:50px;
+}
+#levelselectscreen input{
+    width: 64px;
+    height: 64px;
+    margin: 10px;
+    border: 0;
+    cursor: pointer;
+    color: yellow;
+    font-size: 20px;
+    background: url("../img/icons/level.png") no-repeat;
+}
+
+/*加载画面*/
+#loadingscreen{
+    background: rgba(100,100,100,0.3);
+}
+#loadingmessage{
+    margin-top:400px;
+    text-align: center;
+    height: 48px;
+    color: white;
+    background: url("../img/loader.gif") no-repeat center;
+    font:12px Arial;
+}
+
+
+
