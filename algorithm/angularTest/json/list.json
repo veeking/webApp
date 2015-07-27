@@ -1,0 +1,23 @@
+var newsList = [
+    {
+      id : 1,
+      title : "标题1",
+      author : "作者1",
+      date : "2014-04-21",
+      content : "这里是内容啊内容1111"
+    },
+    {
+        id : 2,
+        title : "标题2",
+        author : "作者2",
+        date : "2014-05-21",
+    content : "这里是内容啊内容2222"
+    },
+    {
+        id : 3,
+        title : "标题3",
+        author : "作者3",
+        date : "2014-08-21",
+        content : "这里是内容啊内容3333"
+    },
+]
