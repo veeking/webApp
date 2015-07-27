@@ -1,7 +1,7 @@
 <hr />
 <h3>新闻列表</h3>
 <ul>
-    <li ng-repeat="id in [1,2,3]">
-        <a href="#/list/{{id}}">ID {{id}}</a>
+    <li ng-repeat="newObj in newObjs">
+        <a href="#/list/{{newObj.id}}">标题: {{newObj.id}}</a>
     </li>
 </ul>
