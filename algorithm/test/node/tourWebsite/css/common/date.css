@@ -1,0 +1,249 @@
+@charset "utf-8";
+/* CSS Document */
+/*特价酒店*/
+.top-left-hotel{
+	margin-top:18px;
+	}
+.hotel-cont{
+	margin-top:10px;
+	background-color:#EDF5FA;
+    border-radius: 1px;
+    box-shadow: 0 0 4px #DDDDDD;
+    padding: 20px 10px 26px;
+	padding-bottom:41px;
+	padding-top:30px;
+	color:#595959;	
+		
+	}	
+.search-box .s-place{
+	position:relative;
+	}
+.search-box label{
+	float: left;
+    line-height: 22px;
+    margin-right: 5px;
+	display:inline;	
+	font-size:13.99px;
+	
+
+	}
+.search-box input.s-input{
+	float: right;
+    padding-right: 20px;
+    width: 221px;	
+	background:#fff url(../../res/images/booking_input_bg.png) no-repeat right top;
+	}	
+.search-box input.date-list{
+	background-position:right bottom;	
+	}	
+	  
+input.s-input{	
+    border: 1px solid #CCCCCC;
+    height: 22px;
+    line-height: 22px;
+	padding-left:5px;
+}
+.place-list{
+ 	display:none;
+	-moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-color: -moz-use-text-color #CCCCCC #CCCCCC;
+    border-image: none;
+    border-right: 1px solid #CCCCCC;
+    border-style: none solid solid;
+    border-width: 0 1px 1px;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
+	position:absolute;
+    right: 0;
+    top: 24px;
+    width: 246px;
+    z-index: 9;	
+	max-height:250px;
+	overflow-y:auto;
+	border:1px solid #CCCCCC;
+	
+
+	}
+.place-list h4{
+	border-bottom: 1px solid #EDEDED;
+    color: #636363;
+    font-weight: 700;
+    line-height: 32px;
+    text-indent: 10px;	
+	}	
+.place-list ul{
+	overflow: hidden;
+    padding: 5px;	
+	}	
+.place-list ul li{
+	float: left;
+    line-height: 28px;
+    text-indent: 5px;
+    width: 50%;	
+	margin-bottom:10px;
+	}	
+.place-list ul li a{	
+    color: #077345;
+    display: block;
+}
+.place-list ul li a:hover{	
+    text-decoration:none;
+	background-color:#E6F4D9;
+}
+/*入住日期*/
+
+/*住房退房 */
+.homein,.homeout{
+	position:relative;	
+	}
+	
+	
+	
+/*日期box*/
+.date-box{
+	display:none;
+	opacity:0;
+	position:absolute;
+	background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #CCCCCC;
+    box-shadow: 2px 2px 3px #CCCCCC;
+    padding: 10px;
+    width: 226px;
+    z-index: 1299 !important;
+    right: 0px;
+    top: 22px;
+	}
+.date-box .date-box-title{
+	background-color: #046D45;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    color: #FFFFFF;
+    height: 34px;
+    line-height: 34px;
+    position: relative;	
+	}	
+		  .date-box-title a.date-btn-ui{
+			    cursor: pointer;
+				height: 34px;
+				overflow: hidden;
+				position: absolute;
+				top: 0;
+				width: 24px;	 
+			  }	
+		  .date-box-title a.date-btn-ui:hover{
+			 	background-color:#038250; 
+			  }	  
+		  .date-box-title a.date-prev{
+			    border-right: 1px solid #04623E;
+    			left: 0; 
+			  }	 
+		  .date-box-title a.date-next{
+			    border-left: 1px solid #04623E;
+    			right: 0; 
+			  }	
+			  
+		  	   
+			  			 a.date-btn-ui span.date-btn-icon{
+							background:url(../../res/images/date-top.png) no-repeat;
+							display: block;
+							height: 34px;
+							line-height: 200px;
+							overflow: hidden;
+							width: 23px;
+							text-indent:-999em;
+							 }
+					     a.date-btn-ui span.date-prev-icon{
+							background-position:8px 11px; 
+							 }
+						 a.date-btn-ui span.date-next-icon{
+							background-position:-35px 11px; 
+							 }	
+							 
+			 .date-title-ui{
+				font-size: 14px;
+				font-weight: bold;
+				margin: 0 24px;
+				text-align: center;	
+				font-family:"宋体";
+				letter-spacing:1px; 
+				}	
+				 
+table.date-calendar-ui{
+    border: 1px solid #E6E6E6;
+	border-top:none;
+    width: 100%;	
+	}	
+table.date-calendar-ui thead tr th{
+	border: 0 none;
+    color: #9E9E9E;
+    padding: 4px 0;
+    text-align: center;		
+	}	
+
+table.date-calendar-ui tbody tr td{
+	 border: 1px solid #E6E6E6;
+	 color:#CACAD3;
+	 text-align: center;	
+	}	
+table.date-calendar-ui tbody tr td{
+	background-color: #FFFFFF;
+    font-weight: bold;
+    padding: 6px;
+    text-decoration: none;	
+	}	
+table.date-calendar-ui tbody tr td span{
+	color: #959595;	
+	}
+table.date-calendar-ui tbody tr td a:hover{
+	background-color:#d6e8e1;	
+	}	
+table.date-calendar-ui tbody tr td.date-today{
+    background: none repeat scroll 0 0 #E6E6E6;
+    color: #636363;
+	cursor:pointer;
+	 }	
+table.date-calendar-ui tbody tr td.date-current{
+    color: #323232;
+	cursor:pointer;
+	 }
+table.date-calendar-ui tbody tr td.date-selected{
+	background: none repeat scroll 0 0 #02734A; 	
+	color:#fff;		
+	}	 
+table.date-calendar-ui tbody tr td.date-current:hover{
+	background: none repeat scroll 0 0 #02734A; 	
+	color:#fff;			 			  		 
+	}
+	
+/*日期box 结束*/
+
+
+/*住房退房 结束*/
+.date-picker{
+	display:none;	
+	}	
+.s-but{
+	 line-height: 28px;	
+	}
+.s-but button.s-button{
+	border: medium none;
+    border-radius: 3px;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 13.99px;
+    height: 28px;
+    line-height: 28px;
+    overflow: visible;
+    padding: 0 15px;
+	font-family:"宋体";
+	background-color: #2a6b3a;
+    text-align: center;	
+	}
+.s-but span.cGreen{
+	   color: #077345;
+	   margin-right:11px;	
+	}		

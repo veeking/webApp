@@ -1,0 +1,628 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>攻略详情页</title>
+<link rel="stylesheet" href="../../../css/common/global.css" />
+<link rel="stylesheet" href="../../../css/common/public.css" />
+<link rel="stylesheet" href="g_d_css/guide_desc.css" />
+<script>
+ window.onload=function(){
+	 
+ var travelSlide=(function(){
+		 var slideBox=document.getElementById('v_slideInner')
+		    ,slideBoxItem=slideBox.getElementsByTagName('li')
+			,itemWidth=slideBoxItem[0].offsetWidth
+			,itemMarginR=parseInt(getStyle(slideBoxItem[0],"marginRight"))-1
+		    ,slidePrevBtn=document.getElementById('v_prevBtn')
+			,slideNextBtn=document.getElementById('v_nextBtn')
+			,aniNum=0
+			,s_now=0
+			,len=slideBoxItem.length;
+		   
+		   slideBox.style.width=Math.round(len*(itemMarginR+itemWidth))+'px';
+		   aniNum=(itemWidth+itemMarginR);	 
+		     
+		   slideNextBtn.onclick=function(){
+			   if(s_now==len-2){
+				   s_now==len
+				   }else{
+				   s_now++;   
+				   startMove(slideBox,{left:-aniNum*s_now});
+					   }
+			   }  // end next 
+			   
+		   slidePrevBtn.onclick=function(){
+			  if(s_now==0){
+				  startMove(slideBox,{left:0}); 
+				  s_now=0; 
+				   }else{
+			   s_now--;	 
+			   startMove(slideBox,{left:-aniNum*s_now});
+				   }
+				  
+			   }  // end prev	   
+			   
+			   
+			   
+/*查看大图*/
+	 var Mask = document.getElementById('iMask')
+        ,imgBox = document.getElementById('iBox')
+        ,imgList = slideBox.getElementsByTagName('img')
+  		,i = 0
+        ,imgLen = imgList.length
+		,scrollTop
+		,screenHeight
+		,screenWidth
+		,newImg
+		,appendLen
+		,maskImg
+		,mImgWidth
+		,fracX;
+  
+	for (i = 0; i < imgLen; i++) {
+		imgList[i].index = i;
+		imgList[i].onclick = function() { // 缩略图事件绑定
+			scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+			scrollHeight=document.documentElement.scrollHeight || document.body.scrollHeight;
+			
+  			screenWidth = document.documentElement.clientWidth;
+			sHeight=document.documentElement.clientHeight;
+  		
+			Mask.style.height = sHeight+scrollTop + 'px';
+
+			window.onscroll=function(){     // 滚动向下时  遮罩高度 覆盖下方
+
+			   if(Mask.offsetHeight<=(scrollHeight+sHeight)){   
+				Mask.style.height = Mask.offsetHeight+(scrollHeight+sHeight-Mask.offsetHeight-650)+'px';
+				window.onscroll=null;
+					};
+				}
+  		
+			newImg = document.createElement('img');
+			appendLen = imgBox.childNodes.length;
+			newImg.src = this.src;
+			imgBox.appendChild(newImg);
+			maskImg = imgBox.getElementsByTagName('img')[0];
+  
+			Mask.style.display = 'block';
+  
+			mImgWidth = 0;
+			imgBox.style.display = "block";
+			if (maskImg.offsetWidth < 350) { // 给定图片初始大小 防止 图片原始宽度过小
+				mImgWidth = 350;
+			} else {
+				mImgWidth = maskImg.offsetWidth;
+			}
+			
+			fracX = Math.floor((screenWidth - mImgWidth) / 2);                 
+			imgBox.style.left = fracX + 'px';									// 居中显示
+			imgBox.style.top = (scrollTop + (document.documentElement.clientHeight / 10)) + 'px';
+			
+			startMove(Mask,{opacity: 100});    // 显示 遮罩 图片box和图片 
+			startMove(imgBox, {width: mImgWidth},5,function(){
+				startMove(newImg,{opacity: 100});
+			});
+  
+		};
+	}; // end for
+	Mask.onclick = function() { // 关闭 图片浏览
+		var aImg = imgBox.getElementsByTagName('img')[0];
+		
+		if (imgBox.children.length >= 1) {    // 大图容器里的节点数超过一的话 关闭的时候 移除全部节点
+			imgBox.removeChild(aImg);
+		}; // end if <!>	
+		
+		startMove(Mask,{opacity:0},5,function(){  
+		  	Mask.style.display="none";
+			imgBox.style.display ="none";
+			imgBox.style.width = 0;
+		});
+		
+		
+	};		   
+ })();  
+ 
+ 
+ 	
+	
+/*评论字数区域*/	 
+	 var talks=(function(){
+     var talks_txt=document.getElementById('talksTxt'),
+	 	 talks_num=document.getElementById('talksSum'),
+		 talks_total=talks_num.getAttribute("data-maxSum"); 
+
+	 talks_txt.oninput=function(){                        // 除以2 可使文字长度变为1 默认是2
+		 var num=Math.ceil(getStrLen(this.value)/2);   
+		 talks_num.innerHTML=num;  //当前输入的字数
+		 if(num > talks_total){
+			 talks_num.style.color="#EB0609";	 
+			  }else{
+			 talks_num.style.color="#999999";	  
+			  }
+		 }  
+		 
+   	 
+	 })(); // end talks	 
+	 }  //  end onload 
+</script>
+</head>
+
+<body>
+ <div class="wrap">
+ 	<div class="header">
+            <div class="header-top">
+              <h1><a href="###" title="惠众国旅">惠众国际旅行社</a></h1>
+              <div class="h-top-right fr">
+                <div class="login-box" style="display:none;">  <!--未登录 时 显示的 登陆框-->
+              	  <div class="other-login fr">
+                     <a href="####" class="dou" title="豆瓣账号登陆">豆瓣</a>
+                     <a href="###" class="qq" title="qq账号登陆">QQ</a>
+                     <a href="###" class="sina " title="新浪微博账号登陆">新浪微博</a>
+                      <span class="fr">用社交网站账户登录</span>
+   					  <span class="blank6"></span>
+                  </div> <!--end other-login-->
+                 
+                 <div class="login fr">
+                   <a href="###">登陆</a>
+                   <span>|</span>
+                   <a href="###">注册</a>
+                   <span>或</span>
+                 </div>  <!--end login fr-->
+                 
+               </div> <!--end login-box-->
+              
+           <div class="user-box fr"> <!--end ueser-box-->
+           	   <div class="user-box-name">
+                 <div class="ava_handle">
+                 <a href="###" class="ava_img"><img src="###" /></a>
+                 <a href="###" class="ava_name">卖女孩的小伙才<span class="arrow"></span></a>
+                 </div> <!--end ava_handle-->
+                 
+                 <div class="ava_panel">
+                 <p class="arrow"></p>
+                 	<ul>
+                     <li class="top-index"><A href="###">我的主页<b class="index"></b></A></li>
+                     <li><A href="###">我的帖子<b class="bcont"></b></A></li>
+                     <li><A href="###">收藏的帖子<b class="love"></b></A></li>
+                     <li><A href="###">我的足迹<b class="follow"></b></A></li>
+                     <li><A href="###">我的问答<b class="aq"></b></A></li>
+                     <li><A href="###">我的行程<b class="date"></b></A></li>
+                     <li class="btm"><A href="###">退出<b class="exit"></b></A></li>
+                    </ul>
+               </div> <!--end ava_panel-->
+              </div> <!--end user-box-name -->  
+               <div class="user-box-msg">
+               	   <a href="###" class="user-msg">消息<em><span class="arrow"></span>1</em></a>
+               </div> <!--end user-box-msg-->	
+             
+           </div> <!--end user-box-->      
+                 
+                  <div class="form-search cl">
+                  	 <form class="fr">
+                     	<input type="text" class="g-txt" placeholder="搜索目的地/用户/攻略/锦囊"/>
+                        <button type="submit" class="g-btn"><span>搜索</span></button>
+                        <ul class="search_slide" id="dtlist" turl="http://www.hnlyou.com/travels/0/0-0-0.html?key=key00" url="http://www.hnlyou.com/destination/cid00/" v="a">
+<li class="" para="austria" english="austria" name="奥地利" style="display: list-item;">
+<span>欧洲</span>
+奥地利
+</li>
+
+
+<li class="" para="austria" english="austria" name="奥地利" style="display: list-item;">
+<span>欧洲</span>
+奥地利
+</li>
+
+<li class="" para="austria" english="austria" name="奥地利" style="display: list-item;">
+<span>欧洲</span>
+奥地利
+</li>
+
+
+<li class="" para="austria" english="austria" name="奥地利" style="display: list-item;">
+<span>欧洲</span>
+奥地利
+</li>
+
+<li class="" para="austria" english="austria" name="奥地利" style="display: list-item;">
+<span>欧洲</span>
+奥地利
+</li>
+<li class="" para="austria" english="austria" name="奥地利" style="display: list-item;">
+<span>欧洲</span>
+奥地利
+</li>
+
+<li class="" para="austria" english="austria" name="奥地利" style="display: list-item;">
+<span>欧洲</span>
+奥地利
+</li>
+
+<li class="" para="austria" english="austria" name="奥地利" style="display: list-item;">
+<span>欧洲</span>
+奥地利
+</li>
+<li class="" para="austria" english="austria" name="奥地利" style="display: list-item;">
+<span>欧洲</span>
+奥地利
+</li>
+</ul>
+                    </form>
+                   <div class="fr">
+                   <a href="###">目的地</a>
+                  	<a href="###">论坛</a>
+                    <a href="###">惠众折扣</a>
+                    <a href="###">行程助手</a>
+                     <a href="###">预订<span class="menu-icon"></span></a>
+                    </div>
+                     <span class="blank9"></span>
+                  </div> <!--end form-search-->
+              </div> <!--end h-top-right -->
+            </div>  <!--header-top-->
+            
+            <div class="header-nav cl">
+                <div class="nav-content">
+                  <ul class="fr">
+                   <li><a href="###">首页</a></li>
+                   <li><a href="###">跟团游</a></li>
+                   <li><a href="###">自助游</a></li>
+                   <li><a href="###">游轮</a></li>
+                   <li><a href="###">景点门票</a></li>
+                   <li><a href="###">一日游</a></li>
+                   <li><a href="###">签证</a></li>
+                   <li><a href="###">酒店</a></li>
+                   <li><a href="###">机票</a></li>
+                  </ul>
+                </div> <!--end nav-content-->
+            </div>  <!--header-nav-->
+    </div> <!--end header--> <!--end header-->
+   
+  <div class="top-nav">
+    <div class="top-nav-main">
+ 	<a href="###">首页</a>
+    <span>>></span> 
+    <a href="###">旅游攻略</a>
+    <span>>></span>
+    <a href="###" class="nav-now">亚洲-日本</a>
+    </div>  
+ </div> <!--end top-nav -->
+ 
+ 
+ <div class="main">
+ 	<div class="main-left fl">
+    	<div class="left-down">
+          <h2>日本旅游攻略</h2>
+          <p>
+           <b>所属分类：</b><span>亚洲 / 日本</span>
+          </p>
+          
+           <p>
+             <b>版本：</b><span>1.11</span>
+           </p>
+           
+           <p>
+           	<b>更新时间：</b><span>2014-01-30</span>
+           </p>
+           
+           <p>
+            <b>文件大小：</b>
+            <span>5.36MB/ 16页</span>
+           </p>
+          
+          <p>
+          	<b>下载次数：</b><span class="down-num">110659</span>
+          </p> 
+          
+          <div class="down">
+            <button type="button">免费下载</button>
+            <a href="###">下载遇到问题?</a>
+          </div>  <!--end down-->
+        </div> <!--left-down-->
+        
+      	<div class="left-article">
+          <div class="g-header-top">
+            <h3>科隆游记攻略</h3>
+            <a href="###" class="more">更多</a>  
+          </div> <!--end g-header-top -->
+          <div class="g-header-cont">
+           	<ul>
+             <li><a href="###">冬日德国，没有阳光也可以很美</a></li>
+             <li><a href="###">9月，圆圈儿lily去往鲜花点点的欧洲（德国柏林）大s倒萨</a></li> 
+              <li><a href="###">冬日德国，没有阳光也可以很美</a></li>
+             <li><a href="###">9月，圆圈儿lily去往鲜花点点的欧洲（德国柏林）</a></li> 
+              <li><a href="###">冬日德国，没有阳光也可以很美</a></li>
+             <li><a href="###">9月，圆圈儿lily去往鲜花点点的欧洲（德国柏林）</a></li> 
+              <li><a href="###">再来科隆</a></li>
+            </ul>
+          </div>  <!--end g-header-cont -->
+        </div> <!--end left-article -->
+        
+        <div class="left-issue">
+           <div class="g-header-top">
+           	 <h3>科隆旅游问答</h3>
+             <a href="###" class="more">更多</a> 	
+           </div> <!--end g-header-top -->
+           <div class="g-header-cont">
+              <ul>
+                <li><a href="###">已购亚航北京-吉隆坡，两个半小时后吉隆坡降落</a></li><br />
+				
+              </ul>
+           </div>  <!--end g-header-cont --> 
+        </div> <!--left-issue -->
+        
+       <div class="left-recomd">
+          <div class="g-header-top">
+           	 <h3>科隆相关攻略推荐</h3> 	
+           </div> <!--end g-header-top -->
+           
+          <div class="place-list">
+            <a href="###">敦煌攻略</a>
+            <a href="###">南京攻略</a> 
+            <a href="###">无锡攻略</a>
+            <a href="###">苏州攻略</a> 
+            <a href="###">扬州攻略</a>
+            <a href="###">杭州攻略</a> 
+          </div>   <!--end place-list -->
+       </div> <!--end left-recomd -->
+    </div>	 <!--end main-left -->
+    
+    
+    <div class="main-right fr">
+    
+        <div class="cont-focus">
+           <a href="###" class="focus-img">
+            <img src="g_d_img/g_s/s_01.jpg" />
+           </a>	
+           <div class="share">
+          	  <Span>分享到</Span>
+              <a href="###" class="sina" title="微博">微博</a> 
+              <a href="###" class="dou" title="豆瓣">豆瓣</a>
+              <a href="###" class="qq" title="QQ">QQ</a>
+           </div> <!--end share-->
+           
+           <p class="cont-desc">
+           	日本，这个一衣带水的邻国，矛盾至极，而矛盾正是它的最迷人处。一本《菊与刀》，说尽了日本的柔和与冷酷。粉色樱花雨，绚烂如火的红叶，遍布岛国的绿色森林，还有漫长的美丽海岸线，都有着精致的柔美；火山地震众多，则令这些柔美脆弱更加珍贵...
+           </p>
+        </div>  <!--end cont-focus -->
+        <div class="cont-view">
+        
+          <div class="g-header-top">
+           	 <h3>攻略预览</h3>	
+           </div> <!--end g-header-top -->
+           
+          <div class="view-slide">
+           <a class="view-btn view-prev" id="v_prevBtn">上一张</a>
+           <div class="view-slide-box">
+           	   <ul class="view-slide-inner" id="v_slideInner">
+                 <li><a href="###"><img src="g_d_img/g_s/g_d_0_13.jpg" /></a></li>
+                 <li><a href="###"><img src="g_d_img/g_s/g_d_0_14.jpg" /></a></li>
+                 <li><a href="###"><img src="g_d_img/g_s/g_d_0_15.jpg" /></a></li>
+                 <li><a href="###"><img src="g_d_img/g_s/g_d_0_16.jpg" /></a></li>
+                 
+                  <li><a href="###"><img src="g_d_img/g_s/g_d_0_13.jpg" /></a></li>
+                 <li><a href="###"><img src="g_d_img/g_s/g_d_0_14.jpg" /></a></li>
+                 <li><a href="###"><img src="g_d_img/g_s/g_d_0_15.jpg" /></a></li>
+                 <li><a href="###"><img src="g_d_img/g_s/g_d_0_16.jpg" /></a></li>
+               </ul>
+           </div>  <!--view-->
+           <a class="view-btn view-next" id="v_nextBtn">下一张</a>
+           </div> <!--end view-slide -->
+           
+             <div class="imgMask" id="iMask">
+            	 <div class="imgBox" id="iBox">
+                 </div> <!--end imgBox-->	  	
+              </div> <!--end imgMask-->
+              
+              
+        </div>  <!--end cont-view --> 
+        
+        
+        <div class="cont-coment">
+          <div class="coment-top">
+            <a href="###">评论</a>
+            <span>|</span>
+            <a href="###" class="change_error">纠错</a>  
+          </div> <!--coment-top -->
+          
+          <div class="coment-form">
+            <form>
+              <textarea placeholder="撰写评论请先登录" id="talksTxt"></textarea>
+              <div class="form-bottom">
+                 <span class="strNum" id="talksSum" data-maxSum="3000">0</span>
+                 <span>/ 3000字</span>
+                 <button type="submit" class="fr">提交</button> 
+              </div>  <!--end form-bottom -->
+            </form>
+          </div> <!--end coment-form -->
+          
+          <div class="coment-list cl">
+          	  <div class="coment-list-box">
+                <div class="list-item">
+                   <a href="###" class="ava_img"><img src="g_d_img/g_ava/g_a1.jpg" /></a>
+                   <div class="ava_cont fr">
+                      <p class="ava_cont-top">
+                       <a href="###" class="user_name">zHoNG-wEn</a>
+                       <span class="arrow">|</span>
+                       <span class="time">2014-02-05 17:28</span>
+                      </p>
+                      
+                      <p class="ava_cont-desc">
+                      	看看评论！也不检查下咋回事~！！但没澳洲的漂亮。
+                      </p>
+                   </div><!--end ava_cont -->
+                   <Span class="blank12"></Span>
+                </div> <!--end list-item-->
+                
+                
+                     <div class="list-item">
+                   <a href="###" class="ava_img"><img src="g_d_img/g_ava/g_a3.jpg" /></a>
+                   <div class="ava_cont fr">
+                      <p class="ava_cont-top">
+                       <a href="###" class="user_name">哈哈依旧</a>
+                       <span class="arrow">|</span>
+                       <span class="time">2014-02-05 17:28</span>
+                      </p>
+                      
+                      <p class="ava_cont-desc">
+                      	怎么这么多人看不到啊，反正去大阪不能错过shin sai bashi的螃蟹!yakitori! fugu! 一个都不能少！海游馆的鲸鲨很可爱，好大的！但没澳洲的漂亮。
+                      </p>
+                   </div><!--end ava_cont -->
+                   <Span class="blank12"></Span>
+                </div> <!--end list-item-->
+    
+                
+                
+                     <div class="list-item">
+                   <a href="###" class="ava_img"><img src="g_d_img/g_ava/g_a2.jpg" /></a>
+                   <div class="ava_cont fr">
+                      <p class="ava_cont-top">
+                       <a href="###" class="user_name">小屋檐</a>
+                       <span class="arrow">|</span>
+                       <span class="time">2014-02-05 17:28</span>
+                      </p>
+                      
+                      <p class="ava_cont-desc">
+                      	怎么这么多人看不到啊，反正去！但没澳洲的漂亮。
+                      </p>
+                   </div><!--end ava_cont -->
+                   <Span class="blank12"></Span>
+                </div> <!--end list-item-->
+                
+                
+                     <div class="list-item">
+                   <a href="###" class="ava_img"><img src="g_d_img/g_ava/g_a2.jpg" /></a>
+                   <div class="ava_cont fr">
+                      <p class="ava_cont-top">
+                       <a href="###" class="user_name">小屋檐</a>
+                       <span class="arrow">|</span>
+                       <span class="time">2014-02-05 17:28</span>
+                      </p>
+                      
+                      <p class="ava_cont-desc">
+                      	怎么这么多人看不到啊，反正去！但没澳洲的漂亮。
+                      </p>
+                   </div><!--end ava_cont -->
+                   <Span class="blank12"></Span>
+                </div> <!--end list-item-->
+                
+                
+                     <div class="list-item">
+                   <a href="###" class="ava_img"><img src="g_d_img/g_ava/g_a2.jpg" /></a>
+                   <div class="ava_cont fr">
+                      <p class="ava_cont-top">
+                       <a href="###" class="user_name">小屋檐</a>
+                       <span class="arrow">|</span>
+                       <span class="time">2014-02-05 17:28</span>
+                      </p>
+                      
+                      <p class="ava_cont-desc">
+                      	怎么这么多人看不到啊，反正去！但没澳洲的漂亮。
+                      </p>
+                   </div><!--end ava_cont -->
+                   <Span class="blank12"></Span>
+                </div> <!--end list-item-->
+                
+                
+                     <div class="list-item">
+                   <a href="###" class="ava_img"><img src="g_d_img/g_ava/g_a2.jpg" /></a>
+                   <div class="ava_cont fr">
+                      <p class="ava_cont-top">
+                       <a href="###" class="user_name">小屋檐</a>
+                       <span class="arrow">|</span>
+                       <span class="time">2014-02-05 17:28</span>
+                      </p>
+                      
+                      <p class="ava_cont-desc">
+                      	怎么这么多人看不到啊，反正去！但没澳洲的漂亮。
+                      </p>
+                   </div><!--end ava_cont -->
+                   <Span class="blank12"></Span>
+                </div> <!--end list-item-->
+                
+                  <div class="list-item">
+                   <a href="###" class="ava_img"><img src="g_d_img/g_ava/g_a1.jpg" /></a>
+                   <div class="ava_cont fr">
+                      <p class="ava_cont-top">
+                       <a href="###" class="user_name">zHoNG-wEn</a>
+                       <span class="arrow">|</span>
+                       <span class="time">2014-02-05 17:28</span>
+                      </p>
+                      
+                      <p class="ava_cont-desc">
+                      	看看评论！也不检查下咋回事~！！但没澳洲的漂亮。
+                      </p>
+                   </div><!--end ava_cont -->
+                   <Span class="blank12"></Span>
+                </div> <!--end list-item-->
+                
+                
+                     <div class="list-item">
+                   <a href="###" class="ava_img"><img src="g_d_img/g_ava/g_a3.jpg" /></a>
+                   <div class="ava_cont fr">
+                      <p class="ava_cont-top">
+                       <a href="###" class="user_name">哈哈依旧</a>
+                       <span class="arrow">|</span>
+                       <span class="time">2014-02-05 17:28</span>
+                      </p>
+                      
+                      <p class="ava_cont-desc">
+                      	怎么这么多人看不到啊，反正去大阪不能错过shin sai bashi的螃蟹!yakitori! fugu! 一个都不能少！海游馆的鲸鲨很可爱，好大的！但没澳洲的漂亮。
+                      </p>
+                   </div><!--end ava_cont -->
+                   <Span class="blank12"></Span>
+                </div> <!--end list-item-->
+    
+                
+                
+                     <div class="list-item">
+                   <a href="###" class="ava_img"><img src="g_d_img/g_ava/g_a2.jpg" /></a>
+                   <div class="ava_cont fr">
+                      <p class="ava_cont-top">
+                       <a href="###" class="user_name">小屋檐</a>
+                       <span class="arrow">|</span>
+                       <span class="time">2014-02-05 17:28</span>
+                      </p>
+                      
+                      <p class="ava_cont-desc">
+                      	怎么这么多人看不到啊，反正去！但没澳洲的漂亮。
+                      </p>
+                   </div><!--end ava_cont -->
+                   <Span class="blank12"></Span>
+                </div> <!--end list-item-->
+
+                
+              </div> <!--end coment-list-box -->
+              
+              
+              
+            <a class="dis-more">显示更多</a> <!--end dis-more-->
+          </div><!--end coment-list -->
+           
+        </div>  <!--end cont-coment -->
+    </div> <!--main-right -->
+    
+    
+   <span class="blank3"></span>
+ </div><!--end main --> 
+     
+ <div class="footer">
+      <div class="footer-inner">
+      	   <div class="foot-logo"><a href="###">惠众国旅™</a></div> <!--end f-logo -->
+           <div class="footer-info">
+              <p>
+                2004-2014© 惠众国旅™ bbs.hnlyou.com All rights reserved. 琼ICP备 120110220号 琼公安备112010001000
+              </p>
+              <p>
+              惠众国旅为旅行者提供原创实用的出境游旅行指南和旅游攻略、旅行社区和问答交流平台，并提供签证、保险、机票、酒店预订、租车等服务。
+              </p>
+           </div>
+           <div class="back-top"><a href="#TOP">▲</a></div>
+      </div> <!--end footer-inner -->
+    </div>  <!--end foot-->	   
+ </div> <!--end wrap -->
+    <script src="../../../script/perMove.js"></script>
+    <script src="../../../script/common.js"></script>
+
+</body>
+</html>

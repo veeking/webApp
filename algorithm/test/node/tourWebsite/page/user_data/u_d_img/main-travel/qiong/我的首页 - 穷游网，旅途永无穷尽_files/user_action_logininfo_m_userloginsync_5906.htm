@@ -1,0 +1,82 @@
+var QYER={uid:3595580};
+document.write('<div class="qyer_head_login" id="asynclogininfo">');
+	document.write('</div>');
+//openid 登录 注册
+
+jQuery("._jsweibologin").live('click', function(){
+	//alert('weibo');
+	var refer = jQuery(this).attr("url");
+	if(!refer){
+		var refer = window.location.href;
+	}
+	/*
+		var refer = window.location.href;
+		*/
+	var url = "http://login.qyer.com/login.php?action=weibo&popup=1&refer="+refer;
+	window.open (url,'newwindow','height=450px,width=600px,top=100,left=300,toolbar=no,menubar=no,scrollbars=no, resizable=no,location=no, status=no');
+});
+
+(function ($) {
+	$( document ).on( 'click', '._jstao_li', function(e){
+		e.preventDefault();
+		var refer = window.location.href,
+			url = "http://login.qyer.com/topen.php?refer="+refer;
+		window.open (url,'newwindow','height=450px,width=600px,top=100,left=300,toolbar=no,menubar=no,scrollbars=no, resizable=no,location=no, status=no');
+	});
+}(jQuery));
+
+jQuery("._jsqqlogin").live('click', function(){
+	
+	var refer = jQuery(this).attr("url");
+	if(!refer){
+		var refer = window.location.href;
+	}
+	/**/
+	/*
+		var refer = window.location.href;
+		*/
+	//var refer = window.location.href;
+	var url = "http://login.qyer.com/login.php?action=qq&popup=1&refer="+refer;
+	window.open (url,'newwindow','height=450px,width=600px,top=100,left=300,toolbar=no,menubar=no,scrollbars=no, resizable=no,location=no, status=no');
+});
+jQuery(function(){
+jQuery.getJSON("http://user.qyer.com/user_action_logininfo?callback=?");});
+
+function _ASYNCLOGINCALLBACK_(json){
+	jQuery("#asynclogininfo").html(json.html);
+	jQuery(".qyer_head_login_dropbox_close").bind("click",function(){
+		jQuery("#qyer_head_login_inform").hide();
+		jQuery.getJSON("http://place.qyer.com/api_action_closetips?callback=?");
+	});
+	var login_hotspot = jQuery("#qyer_head_login_hotspot");
+	var login_drop = jQuery("#qyer_head_login_drop");
+	login_hotspot.hover(function(){
+		login_drop.show();
+		login_hotspot.addClass("qyer_head_login_user_current");
+	},function(){
+		login_drop.hide();
+		login_hotspot.removeClass("qyer_head_login_user_current");
+	});
+	login_drop.hover(function(){
+		login_drop.show();
+		login_hotspot.addClass("qyer_head_login_user_current");
+	},function(){
+		login_drop.hide();
+		login_hotspot.removeClass("qyer_head_login_user_current");
+	});
+	//IE7 hack
+	jQuery("#qyer_head_login_hotspot").live('click',function(){
+		var hreflink = jQuery(this).attr("href");
+		location.href = hreflink;
+		return false;
+	});
+	
+	var new_icon = jQuery("#qyer_head_new");
+	var new_drop = jQuery("#qyer_head_new_drop");
+	new_icon.hover(function(){
+		new_drop.show();
+	},function(){
+		new_drop.hide();
+	});	
+	
+};

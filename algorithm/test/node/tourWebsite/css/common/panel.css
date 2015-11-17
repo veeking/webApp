@@ -1,0 +1,210 @@
+@charset "utf-8";
+/* CSS Document */
+.top-area{
+	width:100%;
+	position:relative;
+	overflow:hidden;
+	min-width:1000px;		
+	}
+.top-area a.area-pic img{
+	display:block;
+	margin:0 auto;
+	max-width:1920px;
+	min-width:1920px;
+	height:465px;
+	cursor:default;
+	} 	
+.top-area div.panel{
+	position:absolute;
+	z-index:5;
+	background:#333\9;
+	background:rgba(0,0,0,0.5);	
+	padding:23px 41px;
+	top:84px;
+	left:50%;
+	color:#fff;
+	font-family:"微软雅黑";
+   }
+			.top-area  div.p-group{
+				margin-left:-273.5px;
+				width:465px;
+				}
+			.top-area  div.p-self{
+				margin-left:-384px;
+				width:690px;	
+				}	
+			.top-area  div.p-hotel{
+				margin-left:-206.5px;
+				width:331px;	
+				}
+			.top-area  div.p-air{
+				margin-left:-373px;
+				width:664px;	
+				}
+			.top-area  div.p-boat{
+				width:800px;
+				height:260px;
+				margin-left:-400px;
+				padding:0;	
+				}
+			.top-area  div.p-boat a img{
+				width:100%;
+				height:100%;	
+				}		
+				
+		div.panel h2{
+			
+			font-size:40px;
+			line-height:1;	
+			display:inline;
+			}	
+	   div.panel span.desc{
+		  	font-size:13px;
+		   }	
+   div.panel form.date-form{
+	  	margin-top:16px; 
+	   }		   
+	   		 form.date-form div.panel-input .input-item{
+					 		position:relative;
+							border:1px solid #767676;
+				 			}
+											.input-item .i-inpt{
+												background:#fff;
+												border:none;
+												color:#767676;
+												font-size:12px;
+												height:34px;
+												line-height:34px;
+												padding-left:6px;
+												float:left;
+												vertical-align:middle;
+												}
+											/*城市和日期列表下拉框*/
+												div.place-list{
+													width:150%;	
+													left:0;
+													}
+												div.place-list,div.date-box{
+													top:34px;
+													box-shadow: 3px 4px 3px rgba(0, 0, 0, 0.5);
+													}
+													div.date-box{
+													  right:0;	
+													  width:230%;	
+														}
+												/*城市列表下拉框*/
+											 .input-item .i-btn{
+												 border:none;
+												 border-right:1px solid #767676;
+												 border-left:1px solid #767676;
+												 background:#fff;
+												 width:36px;
+												 height:34px;
+												 line-height:34px;
+												 margin-right:-2px;
+												 float:left;
+												 cursor:pointer;
+												 vertical-align:middle;
+												 }
+											  .input-item .i-btn:active span{
+												  transform:rotate(-90deg);
+												  -webkit-transform:rotate(-90deg);
+												  }	 
+												 .i-btn span{
+													 display:inline-block;
+													 color:#767676; 
+													 font-size:10px;
+													 transition:all 0.2s ease 0s;
+													 }
+														.gWidth{
+															width:193px;	
+															}
+														.hWidth{
+															width:155px;	
+															}	
+														div.input-item  .h_dateWidth{
+															width:114px;	
+															}	
+														.input-item .inpt-date{
+															background:#fff url(../../res/images/panel-date.png) no-repeat center right;
+															padding-right:11px;	
+															width:201px;
+															}	
+		   		button.i-sub{
+					padding:8px 35px;
+					color:#fff;
+					display:block;
+					margin:0 auto;
+					font-size:23.36px;
+					font-family:"微软雅黑";
+					border:none;
+					background-color:#2a6b3a;
+					cursor:pointer;
+					letter-spacing:1px;
+					transition:all 0.3s ease 0s;
+					margin-bottom:3px;	
+					}
+				button.i-sub-self{
+					padding:8px 44px;	
+					}
+				button.i-sub:active{
+					background:#3A9650;	
+					}	
+					
+					
+/*正*/
+.cont{
+	width:1000px;
+	margin:0 auto;	
+	padding:13px 15px;
+	margin-top:-51px;
+	background-color:#fff;
+	position:relative;
+	
+	}
+.cont .top-item{
+	position:relative;
+	height:300px;	
+	}	
+.cont .top-item ul li{
+	background-color:#7f7f7f;
+	position:absolute;
+	overflow:hidden;
+	height:145px;
+	cursor:pointer;
+	}	
+.cont .w190{
+	width:190px;	
+	}
+.cont .w400{
+	width:400px;	
+	}
+.cont .l_0{
+	left:0;	
+	}	
+.cont .l_200{
+	left:200px;	
+	}		
+.cont .l_400{
+	left:400px;	
+	}								
+.cont .l_610{
+	left:610px;	
+	}
+.cont .top-item ul li.l_811{
+	left:811px;	
+	height:300px;
+	}	
+.cont .t_155{
+	top:155px;	
+	}	
+	
+
+.main-adver{
+	position:relative;
+	height:88px;	
+	}	
+	
+
+	
+	

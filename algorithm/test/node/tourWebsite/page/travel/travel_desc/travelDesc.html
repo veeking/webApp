@@ -1,0 +1,790 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../../../css/common/global.css" />
+<link rel="stylesheet" href="../../../css/common/public.css" />
+<link rel="stylesheet" href="../../../css/common/date.css" />
+<link rel="stylesheet" href="t_d_css/travelDesc.css" />
+<script src="../../../script/perMove.js"></script>
+<script src="../../../script/common.js"></script>
+<script type="text/javascript">
+ window.onload=function(){
+	 
+   var side_fiexd=(function(){
+   var fSide=document.getElementById('sideFixed')
+	   ,fSideTop=getTop(fSide)
+	   ,scrollTop;
+   window.onscroll=function(){
+	   scrollTop=document.documentElement.scrollTop || document.body.scrollTop;
+	   scrollFixed(fSide,scrollTop,fSideTop); 
+	   }; // end on scroll
+   })();  // 侧边栏固定
+   
+   
+   
+ } //  end onload 
+</script>
+<title>游记详情</title>
+</head>
+
+<body>
+ <div class="wrap">
+ 	<div class="header">
+            <div class="header-top">
+              <h1><a href="###" title="惠众国旅">惠众国际旅行社</a></h1>
+              <div class="h-top-right fr">
+                <div class="login-box" style="display:none;">  <!--未登录 时 显示的 登陆框-->
+              	  <div class="other-login fr">
+                     <a href="####" class="dou" title="豆瓣账号登陆">豆瓣</a>
+                     <a href="###" class="qq" title="qq账号登陆">QQ</a>
+                     <a href="###" class="sina " title="新浪微博账号登陆">新浪微博</a>
+                      <span class="fr">用社交网站账户登录</span>
+   					  <span class="blank6"></span>
+                  </div> <!--end other-login-->
+                 
+                 <div class="login fr">
+                   <a href="###">登陆</a>
+                   <span>|</span>
+                   <a href="###">注册</a>
+                   <span>或</span>
+                 </div>  <!--end login fr-->
+                 
+               </div> <!--end login-box-->
+              
+           <div class="user-box fr"> <!--end ueser-box-->
+           	   <div class="user-box-name">
+                 <div class="ava_handle">
+                 <a href="###" class="ava_img"><img src="###" /></a>
+                 <a href="###" class="ava_name">卖女孩的小伙才<span class="arrow"></span></a>
+                 </div> <!--end ava_handle-->
+                 
+                 <div class="ava_panel">
+                 <p class="arrow"></p>
+                 	<ul>
+                     <li class="top-index"><A href="###">我的主页<b class="index"></b></A></li>
+                     <li><A href="###">我的帖子<b class="bcont"></b></A></li>
+                     <li><A href="###">收藏的帖子<b class="love"></b></A></li>
+                     <li><A href="###">我的足迹<b class="follow"></b></A></li>
+                     <li><A href="###">我的问答<b class="aq"></b></A></li>
+                     <li><A href="###">我的行程<b class="date"></b></A></li>
+                     <li class="btm"><A href="###">退出<b class="exit"></b></A></li>
+                    </ul>
+               </div> <!--end ava_panel-->
+              </div> <!--end user-box-name -->  
+               <div class="user-box-msg">
+               	   <a href="###" class="user-msg">消息<em><span class="arrow"></span>1</em></a>
+               </div> <!--end user-box-msg-->	
+             
+           </div> <!--end user-box-->      
+                 
+                  <div class="form-search cl">
+                  	 <form class="fr">
+                     	<input type="text" class="g-txt" placeholder="搜索目的地/用户/攻略/锦囊"/>
+                        <button type="submit" class="g-btn"><span>搜索</span></button>
+                        <ul class="search_slide" id="dtlist" turl="http://www.hnlyou.com/travels/0/0-0-0.html?key=key00" url="http://www.hnlyou.com/destination/cid00/" v="a">
+<li class="" para="austria" english="austria" name="奥地利" style="display: list-item;">
+<span>欧洲</span>
+奥地利
+</li>
+
+
+<li class="" para="austria" english="austria" name="奥地利" style="display: list-item;">
+<span>欧洲</span>
+奥地利
+</li>
+
+<li class="" para="austria" english="austria" name="奥地利" style="display: list-item;">
+<span>欧洲</span>
+奥地利
+</li>
+
+
+<li class="" para="austria" english="austria" name="奥地利" style="display: list-item;">
+<span>欧洲</span>
+奥地利
+</li>
+
+<li class="" para="austria" english="austria" name="奥地利" style="display: list-item;">
+<span>欧洲</span>
+奥地利
+</li>
+<li class="" para="austria" english="austria" name="奥地利" style="display: list-item;">
+<span>欧洲</span>
+奥地利
+</li>
+
+<li class="" para="austria" english="austria" name="奥地利" style="display: list-item;">
+<span>欧洲</span>
+奥地利
+</li>
+
+<li class="" para="austria" english="austria" name="奥地利" style="display: list-item;">
+<span>欧洲</span>
+奥地利
+</li>
+<li class="" para="austria" english="austria" name="奥地利" style="display: list-item;">
+<span>欧洲</span>
+奥地利
+</li>
+</ul>
+                    </form>
+                   <div class="fr">
+                   <a href="###">目的地</a>
+                  	<a href="###">论坛</a>
+                    <a href="###">惠众折扣</a>
+                    <a href="###">行程助手</a>
+                     <a href="###">预订<span class="menu-icon"></span></a>
+                    </div>
+                     <span class="blank9"></span>
+                  </div> <!--end form-search-->
+              </div> <!--end h-top-right -->
+            </div>  <!--header-top-->
+            
+            <div class="header-nav cl">
+                <div class="nav-content">
+                  <ul class="fr">
+                   <li><a href="###">首页</a></li>
+                   <li><a href="###">跟团游</a></li>
+                   <li><a href="###">自助游</a></li>
+                   <li><a href="###">游轮</a></li>
+                   <li><a href="###">景点门票</a></li>
+                   <li><a href="###">一日游</a></li>
+                   <li><a href="###">签证</a></li>
+                   <li><a href="###">酒店</a></li>
+                   <li><a href="###">机票</a></li>
+                  </ul>
+                </div> <!--end nav-content-->
+            </div>  <!--header-nav-->
+    </div> <!--end header--> <!--end header-->
+   <div class="top-nav">
+    <div class="top-nav-main">
+ 	<a href="###">首页</a>
+    <span>>></span> 
+    <a href="###">游记</a>
+     <span>>></span> 
+    <a href="###">中国/云南</a>
+     <span>>></span> 
+    <a href="###" class="nav-now">七彩云南：妙曼普洱 艳遇丽江</a>
+    </div>  
+ </div> <!--end top-nav -->
+ 
+ <div class="top-title">
+ 	<div class="title-inner">
+    	<h2>七彩云南：妙曼普洱 艳遇丽江</h2>
+        <div class="title-info">
+           <div class="info-base fl">
+        	<b class="type-tag">游记攻略</b>
+            <a href="###" class="author">呆力个呆</a>
+            <i>|</i>
+            <span class="time">发表于2013-12-25 11:46:16</span>  
+            <i>|</i>
+            <span class="ico view" title="浏览人数">28647</span> 
+            <span class="ico coment" title="评论人数">366</span>
+            <span class="ico like" title="关注数">54</span>
+            <i>|</i>
+            <span class="ico star" title="精华帖">一级精华</span>
+           </div>
+            
+            <div class="explain fr"><span>本主题由<a href="###"> coolp2</a>于昨天13:36加入精华</span></div>
+            
+            <span class="blank1"></span>
+        </div> <!--end title-info-->
+    </div> 
+ </div> <!--end top-title -->
+ 
+ <div class="main">
+   <div class="main-cont fl">
+   	<div class="cont-plan">
+      <div class="plan-top">
+      	  <div class="plan-top-left fl">
+            <span class="left-title">行程概览</span>
+            <span class="left-time">2014-02-01 出发</span>
+             <i>|</i>
+            <span class="left-day">共5天</span>
+          </div>  <!--plan-left -->    
+          <div class="plan-top-right fr">
+          	<a href="###">行程地图</a>
+            <i>|</i>
+            <a href="###">复制行程</a>
+          </div> <!--plan-right -->      
+          <span class="blank3"></span> 
+      </div> <!--end plan-top -->
+       
+        
+     
+      <div class="plan-step">
+      	 <ul>
+         
+         
+          <li class="step-list-li">
+            <div class="step-list-div">
+            
+            	<Span class="step-list-date fl">Day1</Span>
+                <div class="step-list-all fl">
+                	<strong>厦门</strong>
+                    <div class="step-list-con">
+                    	中山路步行街<span>></span>步行街<span>></span>中山路步行街 中山·行街<span>></span>中山行街<span>></span>中山路步街<span>></span>中山路步行街<span>></span>中山路步行街<span>></span> 
+                    </div> <!--end step-list-con -->	
+                </div> <!--end step-list-all -->
+                
+                
+                <span class="blank3"></span>
+            </div>
+          </li>
+          
+          <li class="step-list-li">
+            <div class="step-list-div">
+            
+            	<Span class="step-list-date fl">Day2</Span>                   
+                <div class="step-list-all fl">
+                	<strong>厦门</strong>
+                    <div class="step-list-con">
+                    	中山路步行街<span>></span>步行街<span>></span>中山路步行街 中山·行街<span>></span>中山行街<span>></span>
+                    </div> <!--end step-list-con -->
+                </div> <!--end step-list-all -->
+                
+                
+                <span class="blank3"></span>
+            </div>
+          </li>
+          
+          <li class="step-list-li">
+            <div class="step-list-div">
+            
+            	<Span class="step-list-date fl">Day3</Span>
+                <div class="step-list-all fl">
+                	<strong>厦门</strong>
+                    <div class="step-list-con">
+                    	中山路步行街<span>></span>步行街<span>></span>中山路步行街 中山·行街
+                    </div> <!--end step-list-con -->
+                </div> <!--end step-list-all -->
+                
+                
+                <span class="blank3"></span>
+            </div>
+          </li>
+          
+           <li class="step-list-li">
+            <div class="step-list-div">
+            
+            	<Span class="step-list-date fl">Day4</Span>
+                <div class="step-list-all fl">
+                	<strong>厦门</strong>
+                    <div class="step-list-con">
+                    	中山路步行街<span>></span>步行街<span>></span>中山路步行街 中山·行街
+                    </div> <!--end step-list-con -->
+                </div> <!--end step-list-all -->
+                
+                
+                <span class="blank3"></span>
+            </div>
+          </li>
+          
+           <li class="step-list-li">
+            <div class="step-list-div">
+            
+            	<Span class="step-list-date fl">Day5</Span>
+                <div class="step-list-all fl">
+                	<strong>厦门</strong>
+                    <div class="step-list-con">
+                    	中山路步行街<span>></span>步行街<span>></span>中山路步行街 中山·行街
+                    </div> <!--end step-list-con -->
+                </div> <!--end step-list-all -->
+                
+                
+                <span class="blank3"></span>
+            </div>
+          </li>
+          
+         
+         </ul>
+      </div> <!--end plan-step -->
+      
+      
+     <div class="plan-content">
+      <div class="plan-summary">
+      	  <h3>七彩云南：妙曼普洱 艳遇丽江</h3>
+          <div class="summary-text clearfix">
+          
+             <p class="texts">
+              <span class="start_icon">"</span>
+               彩云之南,一个让人充满无限遐想的名字。行程第一站来到神奇的西双版纳，原始森林的天堂。这里有傣家的姑娘，这里有普洱的茶香，野象在这里漫步，孔雀在这里飞舞，爱在这里滋润，恋在这里生长。离开版纳，邂逅来到梦一般的地方-大理。最初认识你还是在儿时的《天龙八部》，听说那儿是一个世外桃源，家家有水，户户有花......那时的我就想去那里建造属于我自己的天堂。相别于丽江，大理的美更含蓄，是需要细细体味的。俗话说，吃在版纳，玩在丽江，行程的最后一站我们来到艳遇之都丽江。搭团自由行的理念给了人们一个充分的时间去感受丽江的魅力。丽江对于逃离都市喧嚣的人们简直是一座室外桃园，他能够治疗人们的创伤，给心灵一次释放，这也是很多人来到这里不用离去的原因。经历也是一种收获，行走带给人们无穷的力量。无论你是一个匆匆的过客，抑或是一个倦航的归人，在这里你都会找到肉体与精神的终极家园。 路线：石家庄->昆明->普洱->西双版纳->大理->丽江->昆明 行程：8天 人均消费：2680元 交通：石家庄->昆明（飞行3小时） 昆明—>普洱(大巴车，车程约6小时) 西双版纳->大理（飞行约1小时）大理->丽江（大巴车，车程4小时）丽江->昆明（火车，晚上卧铺，车程约12小时)
+               <span class="end_icon">"</span>
+             </p>
+          
+          </div> 
+      </div> <!--end plan-summary -->
+      
+      <div class="plan-desc">      <!--！！！！ 以下有重点  ！！！！-->
+          <div class="desc-timeline">    <!--cont-item 为各个内容盒子， 里边的 顶部timeline-title  标签 分为三类 ：h1-title(中间有横线的) 、  h2-title正文标题 字体大些 、  h3-title 无标题的正文顶部,用于纯内容输出 ！  !!!   -->
+           
+           <div class="cont-item">
+            <div class="timeline-title h1-title clearfix">     <!--h1-title(中间有横线的)  -->  
+              <span class="timeline-block fl"></span>
+              <strong class="fl">第一天2013年12月04日<span>(昆明爱伲山庄)</span></strong>
+            </div> <!--end timeline-title -->
+            <div class="timeline-cont">
+                <p class="timeline-cont-texts">DAY1: 石家庄乘机赴素有“春城”美誉的高原城市-昆明。 12月4号早晨5点在民航大酒店出发乘坐机场大巴开往正定机场，5点阿40分安全到达。 办理完托运、安检，我们顺利登机了，航班--东方航空公司MU3721 起飞时间7:45分，一切都在安然有序的进行着。行程2000多公里，10:35分到达昆明，旅行社安排入住酒店，下午参观“精彩假期旅行社”，晚餐在爱伲山庄酒店进行。我们一边吃晚餐，一边观少数民俗表演。</p>
+               </div> <!--end timeline-cont --> 
+           </div> <!--end cont-item -->
+         
+            
+        
+          
+       <div class="cont-item">      <!-- h2-title正文标题 无横线 字体大些  -->  
+            <div class="timeline-title h2-title clearfix">
+              <span class="timeline-block fl"></span>
+              <strong class="fl">昆明爱伲山庄</strong>
+            </div> <!--end timeline-title -->
+             
+             <div class="timeline-cont">
+                <a href="###"><img src="t_d_img/d_img/t_0_18.jpg" /></a>
+                 <a href="###"><img src="t_d_img/d_img/t_0_21.jpg" /></a>
+                  <a href="###"><img src="t_d_img/d_img/t_0_24.jpg" /></a>
+                </div> <!-- timeline-cont -->
+          </div> <!--end cont-item -->
+              
+              
+         <div class="cont-item">      <!-- h3-titl 无标题、无横线 的正文顶部,用于纯内容输出！！！@！@ -->  
+             <div class="timeline-title h3-title clearfix">
+              <span class="timeline-block fl"></span>
+             
+           </div> <!--end timeline-title -->
+           <div class="timeline-cont">
+             <p class="timeline-cont-texts">过桥米线 凡是来云南的游客，都不会忘记品尝过桥米线。过桥米线由三部分组成：一是鸡汤一碗，每碗不少于600 克；二是切成片类的食品，其中包括生的薄肉片、腰片、鸡片、鱼片各一盘，加上处理过的豆腐皮、韭菜、绿豆芽、豌豆尖、香菜和葱各盘；三是米线。</p>
+           </div> <!--end timeline-cont --> 
+        </div> <!--end cont-item -->    
+            
+         <div class="cont-item">     
+            <div class="timeline-title h3-title clearfix">
+              <span class="timeline-block fl"></span>
+           </div> <!--end timeline-title -->
+           <div class="timeline-cont">
+             <p class="timeline-cont-texts">豆腐们伏在烧烤架上，貌不惊人。几分钟后，包浆豆腐开始欢歌了，一个个噗噗地冒着热气，争先恐后地炫耀自己逐渐膨胀的身形。这时候它们是饱满的，一戳即破的样子，外皮也变得金黄金黄的，香气开始四溢。</p>
+           </div> <!--end timeline-cont --> 
+          </div> <!--end cont-item -->  
+         
+         
+           <div class="cont-item">
+            <div class="timeline-title h1-title clearfix">     <!--h1-title(中间有横线的)  -->  
+              <span class="timeline-block fl"></span>
+              <strong class="fl">温馨提示</strong>
+            </div> <!--end timeline-title -->
+            <div class="timeline-cont">
+                <p class="timeline-cont-texts">购物:东巴谷的主街是匠人街，这里是原始商贸的集货买卖地。街两边是一些少数民族的院落，都是充满民族特色的店铺，各种首饰、皮毛、药材琳琅满目。</p>
+               </div> <!--end timeline-cont --> 
+           </div> <!--end cont-item -->
+           
+           
+            
+          
+         <div class="cont-item">     
+            <div class="timeline-title end-title clearfix">
+              <span class="timeline-block fl"></span>
+              <strong class="fl">The End.....</strong>
+            </div> <!--end timeline-title -->
+         </div> <!--end cont-item -->      
+             
+             
+             
+       </div> <!--end desc-timeline   主内容timeLine 结束  !!!标题 + 正文+ 图片!!! -->
+       
+       
+   </div> <!--plan-desc -->
+      
+    </div> <!--end cont- plan-->
+    
+   </div> <!--plan-content-->
+   
+    
+    <div class="travel-coment">
+       <div class="coment-input">
+          <div class="input-title clearfix">
+            <span class="title fl">我有话说......</span>
+            <p class="total fr">
+              已有<a href="###">1</a>条评论，共<a href="###">1</a>人参与
+            </p>
+          </div> <!--end input-title -->
+          
+          <div class="input-form">
+            <form>
+            	<textarea placeholder="请输入评论内容"></textarea>
+                <div class="input-form-panel">
+                   <div class="emoticon fl">
+                   
+                    
+                      <a href="###" class="emoticon-first">
+                       <span>▼</span>
+                      </a>
+                    
+                      
+                      <a href="###" class="e1"></a>
+                      <a href="###" class="e2"></a>
+                      <a href="###" class="e3"></a>
+                      <a href="###" class="e4"></a>
+                      <a href="###" class="e5"></a>
+                      <a href="###" class="e6"></a>
+                      <a href="###" class="e7"></a>
+                      <span class="blank1"></span>
+                   </div> <!--end emotion-->
+                 
+                 <div class="emoticon-panel fr">
+                    <div class="user-box fl">
+                       <a href="###" class="user_name"><span class="login-type-icon"></span>静止的水</a>
+                       <i>|</i>
+                       <a href="###" class="exit">退出</a> 
+                    </div> <!--end user-box-->
+                    <div class="share-weibo fl">
+                      <input type="checkbox" />
+                      分享到微博
+                    </div>  <!--end share-weibo-->
+                 
+                     <button type="submit fr">发 布</button>
+                     <span class="blank1"></span>
+                 </div><!--end emoticon-panel -->
+                 
+                <span class="blank1"></span>
+                </div> <!--end input-form-panel -->
+            </form>
+          </div> <!--end input-form-->
+       </div>  <!--end input -->
+       
+       
+       <div class="coment-output">
+       	  <div class="coment-output-list">
+          
+          	<div class="output-list-title">
+            	<b>最新评论</b>
+                <button type="button"><span class="refresh-ico"></span>刷新</button>
+            </div>
+           
+           <div class="output-list-cont">
+           		<ul>
+                 <li>
+                 	<a href="###" class="user-pic fl"><img src="t_d_img/a_img/a1.jpg"/></a>
+                    <div  class="user-desc fl">
+                       <p>
+                        <a href="###">AHTV_smile</a>
+                        <a href="###" class="ava_place">[安徽巢湖]</a>
+                       </p>
+                       
+                       <p class="coment-cont">挺好的，自由行吧</p>
+                       <div class="user-desc-bottom clearfix">
+                       		<span class="time fl">1月28日 15:31</span>
+                            <div class="bottom-panel fr">
+                              <span class="suppot">支持<a href="###">(0)</a></span>
+                              <span class="reply">回复</span>
+                              <span class="share">分享 ></span>
+                            </div> <!--end bottom-panel -->
+                       </div> <!--end user-desc-bottom-->
+                    </div> <!--end user-cont -->
+                    <span class="blank1"></span>
+                 </li>
+                </ul>
+           </div> <!--end output-list-cont--> 
+           
+          </div> <!--end coment-output-list-->
+          
+          
+          <div class="more-page">
+           <a href="###" title="点击加载更多">点击加载更多评论</a>
+          </div> 
+       </div> <!--end out-put -->	
+    
+    </div> <!--end travel-coment-->
+     
+   </div>  <!--end main-cont -->
+   
+   
+   
+   <div class="main-side fr">
+     <div class="bbs-list">
+        <a href="###" class="side-img"><img src="###" /></a>
+        <div class="list-travel">
+          <b class="list-travel-title">相关游记帖</b>
+          <div class="list-travel-cont">
+          	<ul>
+              <li>
+                <p class="title">
+                 <a href="###">泰美的侣行！！（曼谷普吉岛皇帝岛皮皮岛清迈拜县随份子。）12日自由行完美收功！</a>
+                </p>
+                <p class="other">
+                  <span class="fr">
+                  	回复 160 | 查看 8887
+                  </span>
+                  
+                  <a href="###">Carrie_D</a>
+                </p> 
+              </li>
+              
+              
+                  <li>
+                <p class="title">
+                 <a href="###">十一期间14天浪漫法国自驾！（含波尔多酒庄游，购物打折问题）的无法可恶咖啡屋</a>
+                </p>
+                <p class="other">
+                  <span class="fr">
+                  	回复 8 | 查看 627
+                  </span>
+                  
+                  <a href="###">Carrie_D</a>
+                </p> 
+              </li>
+              
+                  <li>
+                <p class="title">
+                 <a href="###">十一期间14天浪漫法国自驾！（含波尔多酒庄游，购物打折问题）的无法可恶咖啡屋</a>
+                </p>
+                <p class="other">
+                  <span class="fr">
+                  	回复 8 | 查看 627
+                  </span>
+                  
+                  <a href="###">桃红柳</a>
+                </p> 
+              </li>
+              
+              
+                  <li>
+                <p class="title">
+                 <a href="###">十一期间14天浪漫法国自驾！（含波尔多酒庄游，购物打折问题）的无法可恶咖啡屋</a>
+                </p>
+                <p class="other">
+                  <span class="fr">
+                  	回复 8 | 查看 627
+                  </span>
+                  
+                  <a href="###">Carrie_D</a>
+                </p> 
+              </li>
+              
+              
+                  <li>
+                <p class="title">
+                 <a href="###">十一期间14天浪漫法国自驾！（含波尔多酒庄游，购物打折问题）的无法可恶咖啡屋</a>
+                </p>
+                <p class="other">
+                  <span class="fr">
+                  	回复 14 | 查看 
+                  </span>
+                  
+                  <a href="###">大长今3</a>
+                </p> 
+              </li>
+            </ul>	
+          </div>  <!--list-travel-cont -->
+        </div>  
+     </div> <!--end bbs-list-->
+     
+     
+     
+     <div class="top-left-hotel" id="sideFixed">
+              <div class="hotel-title top-header">
+                 <h2>特价酒店预订</h2>
+              </div>  <!--end hotel-title-->
+              
+              <div class="hotel-cont">
+                 <div class="search-box">
+                    <form>
+                    	<fieldset>
+                           <div class="s-place">
+                             <label>目的地：</label>
+                             <input type="text" placeholder="输入城市" class="s-input"/>
+                             <div class="place-list cl">
+                                <h4>热门目的地</h4>
+                                <ul>
+                                  <li class="hot-li"><A href="###">巴黎</A></li>
+                                  <li class="hot-li"><A href="###">巴黎</A></li>
+                                  <li class="hot-li"><A href="###">巴黎</A></li>
+                                  <li class="hot-li"><A href="###">巴黎</A></li>
+                                  <li class="hot-li"><A href="###">巴黎</A></li>
+                                  <li class="hot-li"><A href="###">巴黎</A></li>
+                                  <li class="hot-li"><A href="###">巴黎</A></li>
+                                  <li class="hot-li"><A href="###">巴黎</A></li>
+                                  <li class="hot-li"><A href="###">巴黎</A></li>
+                                  <li class="hot-li"><A href="###">巴黎</A></li>
+                                  <li class="hot-li"><A href="###">巴黎</A></li>
+                                  <li class="hot-li"><A href="###">巴黎</A></li>
+                                  <li class="hot-li"><A href="###">巴黎</A></li>
+                                  <li class="hot-li"><A href="###">巴黎</A></li>
+                                  <li class="hot-li"><A href="###">巴黎</A></li>
+                                  <li class="hot-li"><A href="###">巴黎</A></li>
+                                  <li class="hot-li"><A href="###">巴黎</A></li>
+                                  <li class="hot-li"><A href="###">巴黎</A></li>
+                                </ul>
+                             </div> <!--end place-list -->
+                             <span class="blank15"></span>
+                           </div> <!--end s-place -->
+                           <div class="s-inout">
+                             <div class="homein">
+                               <label>入住日:</label>
+                               <input type="text" placeholder="入住日期" class="s-input date-list"/>
+                               
+                                 <div class="date-box">
+                                 <div class="date-box-title">
+                                 	<a href="###" class="date-btn-ui date-prev">
+                                      <span class="date-btn-icon date-prev-icon">&lt;上月</span>
+                                    </a> 
+                                    
+                                    <a href="###" class="date-btn-ui date-next">
+                                      <span class="date-btn-icon date-next-icon">下月&gt;</span>
+                                    </a> 
+                                    
+                                    <div class="date-title-ui">
+                                       <span class="title-ui-year">2014</span>年
+                                       <span class="title-ui-month">二</span>月
+                                    </div>  
+                                 </div> <!--end date-box-title -->
+                               	 <table class="date-calendar-ui">
+                                   <thead>
+                                    <tr>
+                                     <th class="calendar-week">日</th>
+                                     <th>一</th>
+                                     <th>二</th>
+                                     <th>三</th>
+                                     <th>四</th>
+                                     <th>五</th>
+                                     <th class="calendar-week">六</th>
+                                    </tr>
+                                   </thead>
+                                   <tbody>
+                                   	  <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><span>1</span></td>
+                                        <td><span>2</span></td>
+                                      </tr>
+                                      
+                                       <tr>
+                                        <td><span>3</span></td>
+                                        <td><span>4</span></td>
+                                        <td><span>5</span></td>
+                                        <td><span>6</span></td>
+                                        <td class="date-today"><a href="###">7</a></td>
+                                        <td><a href="###">8</a></td>
+                                        <td class="date-current"><a href="###">9</a></td>
+                                      </tr>
+                                   </tbody>
+                                 </table> 
+                               </div> <!--end date-box 日期框-->
+                               <span class="blank15"></span>
+                             </div>
+                             <div class="homeout">
+                              <label>退房日:</label>
+                               <input type="text" placeholder="退房日期" class="s-input date-list"/>
+                               
+                                 <div class="date-box">
+                                 <div class="date-box-title">
+                                 	<a href="###" class="date-btn-ui date-prev">
+                                      <span class="date-btn-icon date-prev-icon">&lt;上月</span>
+                                    </a> 
+                                    
+                                    <a href="###" class="date-btn-ui date-next">
+                                      <span class="date-btn-icon date-next-icon">下月&gt;</span>
+                                    </a> 
+                                    
+                                    <div class="date-title-ui">
+                                       <span class="title-ui-year">2014</span>年
+                                       <span class="title-ui-month">二</span>月
+                                    </div>  
+                                 </div> <!--end date-box-title -->
+                               	 <table class="date-calendar-ui">
+                                   <thead>
+                                    <tr>
+                                     <th class="calendar-week">日</th>
+                                     <th>一</th>
+                                     <th>二</th>
+                                     <th>三</th>
+                                     <th>四</th>
+                                     <th>五</th>
+                                     <th class="calendar-week">六</th>
+                                    </tr>
+                                   </thead>
+                                   <tbody>
+                                   	  <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><span>1</span></td>
+                                        <td><span>2</span></td>
+                                      </tr>
+                                      
+                                       <tr>
+                                        <td><span>3</span></td>
+                                        <td><span>4</span></td>
+                                        <td><span>5</span></td>
+                                        <td><span>6</span></td>
+                                        <td class="date-today"><a href="###">7</a></td>
+                                        <td><a href="###">8</a></td>
+                                        <td class="date-current"><a href="###">9</a></td>
+                                      </tr>
+                                   </tbody>
+                                 </table> 
+                               </div> <!--end date-box 日期框-->
+                                <span class="blank15"></span>
+                             </div>
+                             
+                             <div class="date-picker">
+                             	 <div class="date-picker-header">
+                                    <a class="picker-prev"><上月</a>
+                                    <a class="picker-next">下月></a>
+                                    <Div class="date-picker-title">
+                                    	<select class="picker">
+                                        <option selected="selected" value="2014">2014</option>
+                                          <option value="2015">2015</option>
+                                          <option value="2016">2016</option>
+                                          <option value="2017">2017</option>
+                                          <option value="2018">2018</option>
+                                          <option value="2019">2019</option>
+                                          <option value="2020">2020</option>
+                                          <option value="2021">2021</option>
+                                          <option value="2022">2022</option>
+                                          <option value="2023">2023</option>
+                                          <option value="2024">2024</option>
+                                        </select>
+                                        <span><二月</span>
+                                    </Div> 
+                                 </div> <!--end date-picker-header-->
+                             </div> <!--日期框-->
+                           </div> <!--end s-inout-->
+                           
+                           <div class="s-but">
+                             <button class="s-button fr" type="button">搜索</button>
+                             <span class="cGreen">前台现付&nbsp;&nbsp;&nbsp;&nbsp;免预订费&nbsp;&nbsp;&nbsp;&nbsp;免费取消预订</span>
+                           </div> <!--end s-but --> 
+                        </fieldset>
+                    </form>
+                 </div> <!--end search-box-->
+              </div> <!--end hotel-cont-->
+           </div>             <!--特价酒店--> 
+   
+   </div> <!--end main-side -->
+   
+   
+   
+   <span class="blank3"></span>
+ </div> <!--end main-->
+ 
+ <div class="footer">
+      <div class="footer-inner">
+      	   <div class="foot-logo"><a href="###">惠众国旅™</a></div> <!--end f-logo -->
+           <div class="footer-info">
+              <p>
+                2004-2014© 惠众国旅™ bbs.hnlyou.com All rights reserved. 琼ICP备 120110220号 琼公安备112010001000
+              </p>
+              <p>
+              惠众国旅为旅行者提供原创实用的出境游旅行指南和旅游攻略、旅行社区和问答交流平台，并提供签证、保险、机票、酒店预订、租车等服务。
+              </p>
+           </div>
+           <div class="back-top"><a href="#TOP">▲</a></div>
+      </div> <!--end footer-inner -->
+    </div>  <!--end foot-->	
+ </div>  <!--end wrap -->  
+</body>
+</html>

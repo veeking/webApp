@@ -1,0 +1,264 @@
+@charset "utf-8";
+/* CSS Document */
+.group-main{
+	margin-top:10px;
+	}
+.group-main .main-left{
+	width:242px;
+	border:1px solid #92b49b;
+	padding:11px 6px;
+	padding-bottom:17px;
+	position:relative;
+	top:0;	
+	}	
+						   .main-title{
+							 border-bottom:1px solid #92b49b;
+							 padding-bottom:6px;	
+							  }
+						    .main-title span{
+								color:#92b49b;
+								margin-right:1px;
+								}
+							 .main-title h3{
+								display:inline;
+								font-weight:bold;
+								font-size:12.32px;
+								color:#2a6b3a;
+								vertical-align:middle;
+								 }
+								 
+							.main-cont{
+								padding-top:9px;
+								padding-left:6px;
+								padding-right:6px;	
+								margin-bottom:10px;	
+								}
+							.main-cont .place-item span.place-item-pro{
+								display:block;
+								height:33px;
+								font-weight:bold;
+								width:25px;
+								}	
+							.main-cont .place-item div.item-list{
+								width:195px;	
+								}		
+								div.item-list a{
+								 	margin-right:2px;
+									text-align:center;
+									line-height:21px;	
+									}
+							.main-cont .item-list a{
+								font-size:12px;
+								color:#000;
+								font-family:"宋体";	
+								}
+							.main-cont .item-list a.hot{
+								color:#2a6b3a;	
+								}		 
+								
+								
+.main-right{
+	width:733px;
+	font-family:"宋体";
+	margin-bottom:42px;	
+	}
+ .right-top-nav span,.right-top-nav a{
+	color:#767676;	
+	}
+			    .right-top-nav{
+					line-height:1;	
+					}		
+				.right-top-nav a.nav-nowPos{
+					color:#2a6b3a;
+					}	
+						
+				span.product{
+					float:right;	
+					}	  			
+						
+				.right-top-nav a.pro_num{
+					color:#2a6b3a;	
+					}	
+					
+			   .top-list{
+				    border:1px solid #92b49b;
+					padding:11px 15px; 
+					margin-top:11px;
+				    }	
+			   .top-list .top-list-title{
+				  	color:#000; 
+				   }			 	
+				   		 .list-item{
+							margin-bottom:2px;
+							margin-top:2px; 	 
+							 }	
+						 .list-item-link a{
+							color:#767676; 
+							line-height:20px;
+							 }	 	
+						 .list-item-link .link-right{
+							width:571px;
+							margin-left:9px; 
+							 }
+							 	
+								
+								
+ /*实惠旅游团*/
+ .main-right-dis{
+	margin-top:13px; 
+	 }
+				.main-right .header-top h2{
+					color:#2a6b3a;
+					font-size:15px;
+					font-weight:bold;
+					display:inline;	
+					} 		
+				.main-right .header-top a.more{
+					float:right;
+					}		
+						
+			
+			    .right-list{
+					margin-top:6px;	
+					}
+				.right-list span{
+					color:#2a6b3a;		 
+					 }	
+				.right-list a{
+					color:#767676;
+					text-decoration:none;	
+					}	 
+				.right-list ul{
+					margin-left:-11px;	
+					}			
+				.right-list ul li{
+					float:left;
+					margin-left:10px;
+					margin-bottom:10px;
+					width:176px;
+					}			
+				.right-list ul li a.list-img{
+					display:block;
+					position:relative;
+					width:100%;
+					height:119px;
+					background-color:#7f7f7f;		
+					}
+				.right-list ul li a.list-img img{
+					width:100%;
+					height:100%;	
+					}	
+				.right-list ul li a.list-img i{
+					display:block;
+					width:38px;
+					height:29px;
+					background-color:#e70808;
+					position:absolute;
+					top:-2px;
+					left:10px;	
+					z-index:2;
+					}	
+				.right-list ul li p{
+					margin-top:8px;
+					line-height:1;
+					width:176px;
+					overflow:hidden;
+					
+					}	
+				.right-list ul li p a:hover{
+					color:#E70808;
+					}
+									.price{
+										margin-top:1px;	
+										}
+									.price del{
+										color:#767676;
+										font-family:"微软雅黑";
+										line-height:23px;
+										}
+									.price-num span{
+										float:left;	
+										vertical-align:middle;
+										font-size:15px;
+									   font-family:"微软雅黑";
+										}	
+									.price-num .price-btn{
+										display:block;
+										float:right;
+										background-color:#e70808;
+										color:#fff;
+										padding:2px 10px;	
+										vertical-align:middle;
+										margin-left:3px;
+										transition:all 0.4s ease 0s;
+										}
+									.price-num .price-btn:hover{
+										background-color:#FF0A0A;
+										
+										}
+												.total{
+													margin-top:3px;	
+													}
+												.total span.time{
+													margin-left:8px;
+													letter-spacing:0.5px;	
+													}
+													
+		/*热门团游*/
+		.main-right-hot{
+			margin-top:20px;	
+			}
+		.main-right-hot .right-hot-top{
+			border-bottom:1px solid #7f7f7f;
+			padding-bottom:5px;	
+			}				
+		.main-right-hot	.right-list{
+			margin-top:9px;	
+			}
+		.main-right-hot .right-list .price{
+			margin-top:10px;	
+			}	
+		.main-right-hot .right-list .price a.price-dis {
+			line-height:23px;	
+			}
+		.main-right-hot .right-list .price a.price-btn{
+			margin-top:-2px;	
+			padding-top:1px;
+			}								
+			
+			
+			
+/*日历*/
+
+div.place-list {
+	width:100%;	
+	}
+div.date-box{
+	width:198%;	
+	} 													
+	
+/*分页栏*/
+	.right-page{
+		margin:0 auto;
+		margin-top:20px;
+		overflow:hidden;	
+		}	
+    .right-page a{
+		display:block;
+		float:left;
+		padding:3px 8px;
+		border:1px solid #E2E2E2;
+		text-align:center;
+		background:#fff;
+		color:#666;
+		margin-right:10px;	
+		text-decoration:none;
+		}	
+	.right-page a:hover{
+		background:#E70808;
+		color:#fff;	
+		}	
+	.right-page a.page_now{
+		background:#E70808;
+		color:#fff;	
+		}			

@@ -1,0 +1,114 @@
+@charset "utf-8";
+/* CSS Document */
+/*主体*/
+.main-left{
+	width:666px;	
+	}
+
+
+/*侧边栏*/
+.main-right{
+	width:316px;	
+	}
+.side-slide{
+	position:relative;
+	width:316px;
+	height:289px;
+	overflow:hidden; 
+	 }	 
+  .side-slide ul.slide-inner{
+	 position:absolute;
+	 left:0;
+	 top:0;
+	 width:1580px; 
+	  }	 
+  .side-slide ul.slide-inner li{
+	  position:relative;
+	  float:left; 
+	  }	
+  .side-slide ul.slide-inner li a{
+	 display:block;
+	 text-align:center;
+	 width:316px;
+	 height:289px;
+	 background-color:#7f7f7f; 
+	  }	
+  .side-slide ul.slide-inner li a img{
+	 width:100%;
+	 height:100%; 
+	  }	    
+
+.slide-index{
+	position:absolute;
+	right:13px;
+	bottom:5px;
+	z-index:5;	
+	}	
+.slide-index a{
+	display:block;
+	float:left;
+	margin-left:3px;
+	color:#fff;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:22px;
+	font-weight:bold;
+	text-decoration:none;
+	line-height:1;
+	cursor:pointer;
+	}
+.slide-index a.s_curr{
+	color:#e70808;	
+	}	
+	
+	
+/*侧边广告*/		
+.side-adver{
+	margin-top:10px;	
+	}    
+.side-adver a{
+	width:316px;
+	height:289px;
+	display:block;
+	background-color:#cccccc;
+	}	
+.side-adver a img{
+	width:100%;
+	height:100%;
+	border:none;	
+	}
+	
+/*预订须知*/
+.side-notice{
+	margin-top:5px;	
+	letter-spacing:1.5px;
+	}	
+.side-notice b{
+	font-family:"微软雅黑";
+	font-size:18px;
+	color:#979797;
+	font-weight:500;
+	}	
+ul.notice-list{
+	margin-top:12px;
+	border-bottom:2px solid #e5e5e5;
+	padding-bottom:25px;
+	}	
+ul.notice-list li{
+	overflow:hidden;
+	margin-top:2px;
+	}
+ul.notice-list li a{
+	color:#767676;	
+	white-space:normal;
+	text-decoration:none;
+	}	
+ul.notice-list li a i{
+	color:#e70808;
+	font-size:16px;
+	font-family:"宋体";
+	font-style:normal;
+	margin-right:6px;	
+	}	
+ul.notice-list li a:hover{
+	color:#e70808;	
+	}	

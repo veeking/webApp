@@ -1,0 +1,293 @@
+@charset "utf-8";
+/* CSS Document */
+
+.main-left{
+	width:242px;
+	border:1px solid #92b49b;
+	padding:11px 6px;
+	padding-bottom:17px;	
+	position:relative;
+	top:0;
+	}	
+						   .main-title{
+							 border-bottom:1px solid #92b49b;
+							 padding-bottom:6px;	
+							  }
+						    .main-title span{
+								color:#92b49b;
+								margin-right:1px;
+								}
+							 .main-title h3{
+								display:inline;
+								font-weight:bold;
+								font-size:12.32px;
+								color:#2a6b3a;
+								vertical-align:middle;
+								 }
+								 
+							.main-cont{
+								padding-top:9px;
+								padding-left:6px;
+								padding-right:6px;	
+								margin-bottom:10px;	
+								}
+							.main-cont .place-item span.place-item-pro{
+								display:block;
+								height:33px;
+								font-weight:bold;
+								width:25px;
+								}	
+							.main-cont .place-item div.item-list{
+								width:195px;	
+								}		
+								div.item-list a{
+								 	margin-right:2px;
+									text-align:center;
+									line-height:21px;	
+									}
+							.main-cont .item-list a{
+								font-size:12px;
+								color:#000;
+								font-family:"宋体";	
+								}
+							.main-cont .item-list a.hot{
+								color:#2a6b3a;	
+								}		 
+						
+
+/*右边 主体*/	
+.main-right{
+	width:732px;
+	overflow:hidden;
+	margin-bottom:85px;	
+	}					
+.right-top-nav span,.right-top-nav a{
+	color:#767676;	
+	}
+			    .right-top-nav{
+					line-height:1;	
+					}		
+				.right-top-nav a.nav-nowPos{
+					color:#2a6b3a;
+					}	
+						
+				span.product{
+					float:right;	
+					}	  			
+						
+				.right-top-nav a.pro_num{
+					color:#2a6b3a;	
+					}	
+					
+			   .top-list{
+				    border:1px solid #92b49b;
+					padding:11px 15px; 
+					margin-top:11px;
+				    }	
+			   .top-list .top-list-title{
+				  	color:#000; 
+				   }			 	
+				   		 .list-item{
+							margin-bottom:2px;
+							margin-top:2px; 	 
+							 }	
+						 .list-item-link a{
+							color:#767676; 
+							line-height:20px;
+							margin-right:5px;
+							 }	 	
+						 .list-item-link .link-right{
+							width:571px;
+							margin-left:9px; 
+							 }
+							 
+							 	
+/*排序*/				
+
+					  .sort-item{
+						 margin-top:10px; 
+						 color:#767676;
+						  }
+					  .sort-item .link-right a.down-ico{
+						 padding:0 8px;	  
+						 text-decoration:none; 
+						 border:1px solid #ccc;	
+						 background-color:#F1EDEC; 
+						 margin-right:10px;
+						  }
+					   .sort-item .link-right a.sort-curr{
+						   background-color:#E7342D;  
+						   color:#fff; 
+						   border-color:#E8090A; 
+						   }
+						   
+						   
+						.sort-item .link-right a.down-ico:hover{
+						   background-color:#E7342D;  
+						   color:#fff; 
+						   border-color:#E8090A; 	
+							} 
+						.sort-item .link-right a.down-ico:hover i{
+						   background:url(../o_t_img/sort.png) no-repeat 0 0;	
+							}   		  	
+							
+							
+					    .sort-item .link-right a.down-ico i{
+						  display:inline-block;
+						  width:7px;
+						  height:9px;
+						  line-height:9px;
+						  margin-right:5px;
+						  vertical-align:middle;
+						  background:url(../o_t_img/sort.png) no-repeat -8px 0; 
+						  }	 	     
+					   .sort-item .link-right a.sort-curr i{
+						  background:url(../o_t_img/sort.png) no-repeat 0 0;
+						   }  
+						   
+						    
+				 	.sort-item input.check{
+							vertical-align:middle;
+							height:20px;
+							line-height:20px;	
+							margin-right:2px;
+							margin-left:9px;
+							}		
+								
+				/*排序 结束*/		
+	
+	
+	
+	
+/*列表*/				
+.one-tour-list{
+    margin-top:14px;
+	}	
+.one-tour-list .tour-list-main ul li{
+	overflow:hidden;
+	padding-bottom:10px;
+	border-bottom:1px solid #e5e5e5;
+	margin-bottom:10px;	
+	}				
+			   .tour-list-main ul li a.tourImg{
+				  	display:block;
+					width:234px;
+					height:147px;
+					background-color:#7f7f7f;
+					text-align:center; 
+				   }	
+			   .tour-list-main ul li a.tourImg img{
+				  	width:100%;
+					height:100%; 
+				   } 	   
+	
+.tourDesc{
+	width:485px;
+	overflow:hidden;	
+	}
+.tourDesc .tourDescTop{
+	padding-top:19px;
+		
+	} 	
+		  .tourDescTop em.descTop-arrow{
+			  display:block;
+			  width:38px;
+			  height:35px;
+			  background-color:#e70808;
+			  text-align:center;
+			  line-height:35px;
+			  color:#fff; 
+			  } 
+		  .tourDescTop div.descTop-title{
+			 margin-left:9px;	
+			 width:438px;
+			 font-family:"宋体"; 
+			  }	  
+			  		   a.descTop-title-txt{
+						color:#2a6b3a;
+						font-size:14px;
+						font-weight:bold;
+						line-height:1;
+						overflow:hidden;
+						
+						text-align:left;
+						letter-spacing:0.5px;  
+						  }	
+					   p.descTop-title-tag{
+						 color:#767676;
+						 line-height:1;
+						 margin-top:7px;
+						 overflow:hidden;  
+						  }	 
+				p.price{
+					margin-top:12px;
+					color:#767676;
+					font-family:"宋体"; 
+					font-size:15.59px;
+					font-weight:bold;	
+					}
+				p.price .price-vip{
+					margin-left:9px;	
+					}
+						.price-vip i{
+							font-weight:bold;
+							color:#e70808;
+							font-family:Arial, Helvetica, sans-serif;
+							font-size:19.49px;
+							letter-spacing:0.5px;	
+							}
+				p.groupDate{
+					color:#767676;
+					line-height:1;	
+					}		
+				p.groupDate span.groupDateList{
+					display:block;
+					max-width:302px;
+					overflow:hidden;	
+					}	
+			  div.bottom-panel{
+				 	margin-top:9px; 
+				  }		
+			  div.bottom-panel a{
+				   background:url(../../../res/images/i_g_icon.png) no-repeat;
+				   padding-left:20px;
+				   color:#767676; 
+				   margin-right:28px;
+				  }	
+			  div.bottom-panel a.view{
+				 background-position:-43px -77px; 
+				  } 
+			   div.bottom-panel a.like{
+				 background-position:-43px -117px; 
+				 padding-left:18px;
+				  } 	  	    			   			   
+
+/*列表 结束*/
+
+
+/*分页栏*/
+	.right-page{
+		margin:0 auto;
+		margin-top:11px;
+		overflow:hidden;	
+		}	
+    .right-page a{
+		display:block;
+		float:left;
+		padding:3px 8px;
+		border:1px solid #E2E2E2;
+		text-align:center;
+		background:#fff;
+		color:#666;
+		margin-right:10px;	
+		text-decoration:none;
+		}	
+	.right-page a:hover{
+		background:#E70808;
+		color:#fff;	
+		}	
+	.right-page a.page_now{
+		background:#E70808;
+		color:#fff;	
+		}					
+				

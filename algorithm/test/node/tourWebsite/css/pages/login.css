@@ -1,0 +1,156 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+.top-area a.area-pic img {
+	height:auto;
+	max-width:100%;
+	min-width:1000px;	
+	}
+	
+.top-area div.p-login{
+	width:340px;
+	top:20%;	
+	margin-left:-212px;
+	}	
+	
+div.top-area form.date-form{
+		margin-top:10px;	
+		}
+	form.date-form div.panel-input .input-item{
+		border:none;
+		margin-bottom:11px;	
+		}	
+	.input-item .i-btn {
+		width:65px;
+		height:35px;
+		line-height:35px;
+		float:none;
+		margin-right:0;
+		}	
+	.input-item .i-btn span{
+		font-size:13px;	
+		}	
+		
+    .input-item .i-inpt{
+		float:none;	
+		width:268px;
+		padding-left:5px;
+		color:#767676;
+		font-family:"宋体";
+		font-size:13px;
+		margin-left:-5px;
+		padding-right:0;
+		height:35px;
+		line-height:35px;
+		border:1px solid #7d7d7d;	
+		background:#fff url(../../page/login/login-img/input_user.png) no-repeat 248px center;
+		}
+		
+		.input-item .inpt-date{
+			background:#fff url(../../page/login/login-img/input_pass.png) no-repeat 248px center;	
+			}
+/*记住我*/
+.input-bottom{
+	line-height:13px;
+		
+	}
+.input-bottom a{
+	color:#fff;		
+	}	
+.input-bottom input.remindMe{
+	vertical-align:top;
+	margin-right:10px;
+	height:13px;
+	display:inline;	
+	}	
+	
+		a.forgetPass{
+			margin-left:25px;
+			}
+	.input-bottom-right{
+		display:inline
+		}		
+		
+/*按钮*/
+button.i-sub{
+	padding:0 63px;
+	height:42px;
+	line-height:42p;
+	margin-top:40px;	
+	}
+	
+/*其他登陆*/
+div.fomr-other-login{
+	margin-top:23px;	
+	}	
+div.fomr-other-login p{
+	text-align:center;	
+	}	
+div.fomr-other-login p.txt{
+	text-align:left;
+	font-family:"微软雅黑";
+	font-size:13px;	
+	}	
+div.other-login-btn{
+	background:#fff;
+	padding:5px 16px;
+	margin-top:12px;	
+	}	
+div.other-login-btn a{
+	display:block;
+	float:left;	
+	line-height:26px;
+	margin-right:26px;
+	text-decoration:none;
+	color:#767676;
+	cursor:pointer;
+	}	
+div.other-login-btn a:hover{
+	color:#2A6B3A;	
+	}	
+div.other-login-btn a span{
+	display:block;
+	float:left;
+	background:url(../../res/images/i_g_icon.png) no-repeat 0 -25px;
+    height:24px;
+	width:26px;
+	margin-right:8px;
+		-webkit-animation-name: shake;
+	-webkit-animation-duration: 0.20s;
+	-webkit-animation-timing-function: linear;
+	-webkit-animation-direction: alternate;	
+	-webkit-animation-iteration-count: infinite;	
+	
+	-moz-animation-name: shake;
+	-moz-animation-duration: 0.20s;
+	-moz-animation-timing-function: linear;
+	-moz-animation-direction: alternate;	
+	-moz-animation-iteration-count: infinite;	
+	animation-name: shake;
+	animation-duration: 0.20s;
+	animation-timing-function: linear;
+	animation-direction: alternate;	
+	animation-iteration-count: infinite;	
+	}	
+	@-webkit-keyframes shake {
+			from {-webkit-transform:rotate(-5deg);}
+			to {-webkit-transform:rotate(5deg);}
+		}
+	@-moz-keyframes shake {
+			from {-moz-transform:rotate(-5deg);}
+			to {-moz-transform:rotate(5deg);}
+		}	
+	@keyframes shake {
+			from {transform:rotate(-5deg);}
+			to {transform:rotate(5deg);}
+		}		
+div.other-login-btn a.qq-btn span{
+	background-position:-43px -27px;
+	margin-right:3px;	
+	}	
+div.other-login-btn a.dou-btn span{
+	background-position:-87px -25px;
+	margin-right:3px;	
+	}		
+	

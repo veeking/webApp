@@ -1,0 +1,554 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../../css/common/global.css" />
+<link rel="stylesheet" href="../../css/common/public.css" />
+<link rel="stylesheet" href="../../css/pages/user_data.css" />
+<title>用户中心</title>
+ <script type="text/javascript">
+ window.onload=function(){
+    var topMove=(function(){	
+   	var fixedNav=document.getElementById('headerNav')
+	    ,moveImg=document.getElementById('bannerImg')
+		,targetHead=document.getElementById('barHead')
+		,fixedSide=document.getElementById('fixedSide')
+		,talksBox=document.getElementById('tTalks')
+		,bFoot=document.getElementById('bFoot')
+		,scrollTop
+		,fixedNavTop=getTop(fixedNav)
+		,fixedSideTop=getTop(fixedSide)
+		,talksBoxTop=getTop(talksBox);
+
+	
+	window.onscroll=function(){	 
+		 scrollTop= document.documentElement.scrollTop || document.body.scrollTop;
+		 startMove(moveImg,{top:Math.floor(scrollTop/2)});
+		 scrollFixed(fixedNav,scrollTop,targetHead,fixedNavTop);
+		 scrollFixed(fixedSide,scrollTop,fixedSideTop-40);  // 减40 是 因为导航的 固定效果 影响了 scrollTop 所以减去导航的高度40px
+		 
+		 
+		
+			} //end onscroll
+	})();
+	
+ 
+ 
+ 
+ var talks=(function(){
+     var talks_txt=document.getElementById('talksTxt'),
+	 	 talks_num=document.getElementById('talksSum'),
+		 talks_total=talks_num.getAttribute("data-maxSum"); 
+	 talks_txt.oninput=function(){                        // 除以2 可使文字长度变为1 默认是2
+		 var num=Math.ceil(getStrLen(this.value)/2);  
+		 talks_num.innerHTML=num;
+		 if(num > talks_total){
+			 talks_num.style.color="#EB0609";	 
+			  }else{
+			 talks_num.style.color="#999999";	  
+			  }
+		 }  
+		 
+   	 
+	 })(); // end talks	
+ } // end onload 	
+ </script>
+</head>
+
+<body>
+  <div class="wrapper">
+ 	<div class="header">
+            <div class="header-top">
+              <h1><a href="###" title="惠众国旅">惠众国际旅行社</a></h1>
+              <div class="h-top-right fr">
+                <div class="login-box" style="display:none;">  <!--未登录 时 显示的 登陆框-->
+              	  <div class="other-login fr">
+                     <a href="####" class="dou" title="豆瓣账号登陆">豆瓣</a>
+                     <a href="###" class="qq" title="qq账号登陆">QQ</a>
+                     <a href="###" class="sina " title="新浪微博账号登陆">新浪微博</a>
+                      <span class="fr">用社交网站账户登录</span>
+   					  <span class="blank6"></span>
+                  </div> <!--end other-login-->
+                 
+                 <div class="login fr">
+                   <a href="###">登陆</a>
+                   <span>|</span>
+                   <a href="###">注册</a>
+                   <span>或</span>
+                 </div>  <!--end login fr-->
+                 
+               </div> <!--end login-box-->
+              
+           <div class="user-box fr"> <!--end ueser-box-->
+           	   <div class="user-box-name">
+                 <div class="ava_handle">
+                 <a href="###" class="ava_img"><img src="###" /></a>
+                 <a href="###" class="ava_name">卖女孩的小伙才<span class="arrow"></span></a>
+                 </div> <!--end ava_handle-->
+                 
+                 <div class="ava_panel">
+                 <p class="arrow"></p>
+                 	<ul>
+                     <li class="top-index"><A href="###">我的主页<b class="index"></b></A></li>
+                     <li><A href="###">我的帖子<b class="bcont"></b></A></li>
+                     <li><A href="###">收藏的帖子<b class="love"></b></A></li>
+                     <li><A href="###">我的足迹<b class="follow"></b></A></li>
+                     <li><A href="###">我的问答<b class="aq"></b></A></li>
+                     <li><A href="###">我的行程<b class="date"></b></A></li>
+                     <li class="btm"><A href="###">退出<b class="exit"></b></A></li>
+                    </ul>
+               </div> <!--end ava_panel-->
+              </div> <!--end user-box-name -->  
+               <div class="user-box-msg">
+               	   <a href="###" class="user-msg">消息<em><span class="arrow"></span>1</em></a>
+               </div> <!--end user-box-msg-->	
+             
+           </div> <!--end user-box-->      
+                 
+                  <div class="form-search cl">
+                  	 <form class="fr">
+                     	<input type="text" class="g-txt" placeholder="搜索目的地/用户/攻略/锦囊"/>
+                        <button type="submit" class="g-btn"><span>搜索</span></button>
+                        <ul class="search_slide" id="dtlist" turl="http://www.hnlyou.com/travels/0/0-0-0.html?key=key00" url="http://www.hnlyou.com/destination/cid00/" v="a">
+<li class="" para="austria" english="austria" name="奥地利" style="display: list-item;">
+<span>欧洲</span>
+奥地利
+</li>
+
+
+<li class="" para="austria" english="austria" name="奥地利" style="display: list-item;">
+<span>欧洲</span>
+奥地利
+</li>
+
+<li class="" para="austria" english="austria" name="奥地利" style="display: list-item;">
+<span>欧洲</span>
+奥地利
+</li>
+
+
+<li class="" para="austria" english="austria" name="奥地利" style="display: list-item;">
+<span>欧洲</span>
+奥地利
+</li>
+
+<li class="" para="austria" english="austria" name="奥地利" style="display: list-item;">
+<span>欧洲</span>
+奥地利
+</li>
+<li class="" para="austria" english="austria" name="奥地利" style="display: list-item;">
+<span>欧洲</span>
+奥地利
+</li>
+
+<li class="" para="austria" english="austria" name="奥地利" style="display: list-item;">
+<span>欧洲</span>
+奥地利
+</li>
+
+<li class="" para="austria" english="austria" name="奥地利" style="display: list-item;">
+<span>欧洲</span>
+奥地利
+</li>
+<li class="" para="austria" english="austria" name="奥地利" style="display: list-item;">
+<span>欧洲</span>
+奥地利
+</li>
+</ul>
+                    </form>
+                   <div class="fr">
+                   <a href="###">目的地</a>
+                  	<a href="###">论坛</a>
+                    <a href="###">惠众折扣</a>
+                    <a href="###">行程助手</a>
+                     <a href="###">预订<span class="menu-icon"></span></a>
+                    </div>
+                     <span class="blank9"></span>
+                  </div> <!--end form-search-->
+              </div> <!--end h-top-right -->
+            </div>  <!--header-top-->
+            
+            <div class="header-nav cl" id="headerNav">
+                <div class="nav-content">
+                  <ul class="fr">
+                   <li><a href="###">首页</a></li>
+                   <li><a href="###">跟团游</a></li>
+                   <li><a href="###">自助游</a></li>
+                   <li><a href="###">游轮</a></li>
+                   <li><a href="###">景点门票</a></li>
+                   <li><a href="###">一日游</a></li>
+                   <li><a href="###">签证</a></li>
+                   <li><a href="###">酒店</a></li>
+                   <li><a href="###">机票</a></li>
+                  </ul>
+                </div> <!--end nav-content-->
+            </div>  <!--header-nav-->
+    </div> <!--end header-->
+    
+    <div class="main">
+    	<div class="top-bar">
+        	<div class="bar-banner">
+            	<div class="banner-inner">
+                	<div class="img">
+                     <img src="u_d_img/banner-bg/headImage_lite.png" id="bannerImg"/>
+                    </div> <!--end img-->
+                    <div class="banner-bg">封面背景</div> <!--end banner-bg-->
+                    <div class="up-btn-box">
+                    	<form>
+                        	<a class="up-btn">
+                             <span class="up-btn-txt">上传封面</span>
+                             <input type="file" />
+                            </a>
+                        </form>
+                    </div>  <!--end up-btn-->
+                </div> <!--end banner-inner -->
+                
+            </div>  <!--end banner-->
+            <div class="bar-head" id="barHead">
+               <div class="face">
+                 <div class="img">
+                 <img src="u_d_img/face-img/middle3.png" />
+                  <a href="###" class="edit">修改图像</a>
+                 </div>
+                
+               </div> <!--end face-->
+               
+               <div class="infos">
+               	 <h3 class="name"><strong>冒险老湿</strong></h3>
+                 <div class="text">
+                 	等级：
+                   <a href="###">新进弟子</a>
+                    穷币：
+                   <a href="###">2</a>  
+                 </div> <!--end text-->
+               </div> <!--end infos-->
+               
+             <div class="menu clearfix">
+             	<ul class="fl">
+                  <li class="a_curr">
+                  <a href="###" class="a_list">首页</a>
+                  </li>
+                  
+                    <li>
+                  <a href="###" class="a_list">足迹与点评</a>
+                  </li>
+                  
+                    <li>
+                  <a href="###" class="a_list">帖子</a>
+                  </li>
+                  
+                    <li>
+                  <a href="###" class="a_list">照片</a>
+                  </li>
+                  
+                    <li>
+                  <a href="###" class="a_list">问答</a>
+                  </li>
+                  
+                    <li>
+                  <a href="###" class="a_list">行程计划</a>
+                  </li>
+                  
+                  <li class="more-list">
+                  <a href="###" class="a_list">
+                   <span>更多<em>▼</em></span>
+                  </a>
+                  <div class="more-item">
+                  	<a href="###">活动专题</a>
+					<a href="###">折扣</a>
+					<a href="###">经验</a>
+                    <a href="###">勋章</a>             
+                  </div> <!--end more-item-->
+                  </li>
+              	</ul>
+                <a href="###" class="setting fr" title="设置我的资料">设置</a>
+             </div> <!--end menu-->  
+               
+            </div> <!--end bar-head-->
+        </div> <!--end top-bar-->
+        
+        
+        
+        
+        <div class="main-cont">
+            <div class="cont-item i-travel">
+               <div class="i-travel-main fl">
+                   <div class="travel-note">
+                       <div class="t-title">
+                       	  <strong class="text">我的游记</strong>
+                          <a href="###" class="t-more"><em>>></em> 更多</a>
+                          <span class="number fr">
+                          	<a href="###">0</a>
+                            篇游记
+                         	<em>|</em>
+                            <a href="###">0</a>
+                            个精华 
+                          </span> <!--end number-->
+                          <a href="###" class="alink fr">+ 写游记</a>
+                       </div> <!--end t-title-->
+                      
+                     <div class="t-cont"> <!--没有帖子时显示  end no-cont-->
+                     	 <div class="no-cont no-note">
+                         	<p>不论是惠众旅游网经典范儿的大部头游记，还是像吃货笔记、电影场景寻踪、纪念品收集这样的有趣话题，抑或是建议提醒，都可以帮到穷游er们享受旅行。</p>
+                            <a href="###">写新帖</a>
+                         </div> <!--end no-cont--><!--没有帖子时显示  end no-cont-->
+                         
+                         
+                         <div class="note-cont"> <!--有帖子时显示  end no-cont-->
+                         	 <div class="travel-list">
+                             	<a href="###" class="travel-list-link" target="_blank">
+                                
+                                	<div class="img">
+                                      <p>
+                                        <img src="u_d_img/main-travel/travel-note-img/t1.jpg" />
+                                      </p>
+                                      <Span class="imgBorder">
+                                        <span class="green"></span>
+                                        <span class="orange"></span> 
+                                      </Span>
+                                    </div>  <!--end div.img -->
+                                    
+                                   <div class="info clearfix">
+                                   	  <span class="fl">
+                                      	发表在
+                                        <span>西亚各国</span>
+                                        版
+                                      </span>
+                                      <span class="fr">2014-03-05</span> 
+                                   </div> <!--end info-->
+                                   
+                                   <div class="title">
+                                     标题这是标 标题这是标 标题这是标题标题
+                                   </div> <!--end title-->
+                                   
+                                   <div class="text">
+                                     这是内容这是内容这是内容这是内容这是内这是内容这是内容这是内容这是内容这是内这是内容这是内容这是内容这是内容这是内这是内容这是内容这是内容这是内容这是这是内容这是内容这是内容这是内容这是这是内容这是内容这是内容这是内容这是
+                                   </div> <!--end title-->
+                                  
+                                  <!-- <div class="plan">
+                                  	<p>
+                                     <Span>计划1计划1</Span>
+                                    </p>
+                                  </div> <!--end plan 计划 暂时无用--> 
+                                  
+                                  <div class="icon">
+                                    <span class="poi" title="浏览数">3</span>
+                                     <span class="common" title="评论数">0</span>
+                                      <span class="like" title="关注">0</span>
+                                  </div>   <!--end icon -->
+                                    
+                                </a> <!--end travel-list-link -->
+                             </div> <!--end travel-list --> 
+                             
+                             
+                              <div class="travel-list">
+                             	<a href="###" class="travel-list-link" target="_blank">
+                                
+                                	<div class="img">
+                                      <p>
+                                        <img src="u_d_img/main-travel/travel-note-img/t1.jpg" />
+                                      </p>
+                                      <Span class="imgBorder">
+                                        <span class="green"></span>
+                                        <span class="orange"></span> 
+                                      </Span>
+                                    </div>  <!--end div.img -->
+                                    
+                                   <div class="info clearfix">
+                                   	  <span class="fl">
+                                      	发表在
+                                        <span>西亚各国</span>
+                                        版
+                                      </span>
+                                      <span class="fr">2014-03-05</span> 
+                                   </div> <!--end info-->
+                                   
+                                   <div class="title">
+                                     标题这是标 标题这是标 标题这是标题标题
+                                   </div> <!--end title-->
+                                   
+                                   <div class="text">
+                                     这是内容这是内容这是内容这是内容这是内这是内容这是内容这是内容这是内容这是内这是内容这是内容这是内容这是内容这是内这是内容这是内容这是内容这是内容这是这是内容这是内容这是内容这是内容这是这是内容这是内容这是内容这是内容这是
+                                   </div> <!--end title-->
+                                  
+                                  <!-- <div class="plan">
+                                  	<p>
+                                     <Span>计划1计划1</Span>
+                                    </p>
+                                  </div> <!--end plan 计划 暂时无用--> 
+                                  
+                                  <div class="icon">
+                                    <span class="poi" title="浏览数">3</span>
+                                     <span class="common" title="评论数">0</span>
+                                      <span class="like" title="关注">0</span>
+                                  </div>   <!--end icon -->
+                                    
+                                </a> <!--end travel-list-link -->
+                             </div> <!--end travel-list -->	
+                             
+                             <span class="blank1"></span>
+                         </div><!--end note-cont --><!--有帖子时显示  end no-cont-->
+                  
+                     </div> <!--end t-cont-->   
+                       
+                   </div> <!--end travel-note-->
+                   
+                   <div class="travel-photo">
+                   	 <div class="t-title">
+                       	  <strong class="text">我的照片</strong>
+                          <a href="###" class="t-more"><em>>></em> 更多</a>
+                          <span class="number fr">
+                          	<a href="###">0</a>
+                            个微游记
+                         	<em>|</em>
+                            <a href="###">4</a>
+                            张照片 
+                          </span> <!--end number-->
+                          <a href="###" class="alink fr">+ 传照片</a>
+                       </div> <!--end t-title-->
+                       
+                       <div class="t-cont">
+                       
+                       <div class="no-cont no-photo"><!--无照片时-->
+                       	  	<p>暂无照片暂无照片暂无照片</p>
+                            <a href="###">传照片</a>
+                       </div> <!--无照片时-->
+                       
+                       <div class="photo-box"> <!--有照片时-->   
+                       	   <ul>
+                             <li><a href="###"><img src="u_d_img/main-travel/travel-photo-img/u_photo/u_p1.jpg" /></a><span class="icon_like" title="喜欢">0</span></li>
+                               <li><a href="###"><img src="u_d_img/main-travel/travel-photo-img/u_photo/u_p4.jpg"  /></a><span class="icon_like" title="喜欢">0</span></li>
+                                 <li><a href="###"><img src="u_d_img/main-travel/travel-photo-img/u_photo/u_p2.jpg"  /></a><span class="icon_like" title="喜欢">0</span></li>
+                                   <li><a href="###"><img src="u_d_img/main-travel/travel-photo-img/u_photo/u_p3.jpg"  /></a><span class="icon_like" title="喜欢">0</span></li>
+                           </ul>
+                           
+                       </div> <!--end photo-box --> <!--有照片时-->   
+                       </div> <!--end t-cont-->
+                   </div> <!--end travel-photo -->
+                   
+                   <div class="travel-talks" id="tTalks">
+                   	  <div class="t-title">
+                       <strong class="text">留言板</strong>
+                      </div> <!--end t-title-->
+                      
+                      <div class="talks-box">
+                         <div class="talks-edit">
+                           <p class="edit-face">
+                           	 <a href="###"><img src="u_d_img/face-img/middle3.png" /></a>
+                           </p>
+                            <div class="edit-cont">
+                          	<form>
+                              <p class="arrow"></p>
+                              <p class="arrow2"></p>
+                              <div class="text-border">
+                                <textarea placeholder="我来过,我想说......" id="talksTxt"></textarea>
+                              </div>
+                             
+                          
+                             <div class="btm clearfix">
+                                 <p class="fr">
+                                   <input class="talks-btn" value="留言" type="submit"/>
+                                 </p>
+                               
+                                <p class="words"><span class="sum" id="talksSum" data-maxSum="500">0</span> / 500 字</p>
+                             </div> <!--end btm-->
+                             
+                            </form> 
+                          </div> <!--end edit-cont--> 
+                         </div> <!--end talks-edit -->
+                         
+                         <ul class="talks-list">
+                         	<li class="talk-list-item">
+                         		<p class="face"><A href="###" class="usercard"><img src="u_d_img/face-img/middle3.png" /></A></p>
+                                <p class="name"><a href="###">冒险老师</a></p>
+                                <p class="cont">访问跨年福利科窝的科窝的科窝的科窝的科窝的科窝的科窝的科窝的科窝的科窝的科窝的科窝的科窝的科窝的科窝的科窝的科窝的科窝的仓位发的无法囊废了可恶发布的内容</p>
+                                <div class="bottom">
+                                  <p class="btns">
+                                    <span class="handle">
+                                     <a href="###" class="delete fr">删除</a>
+                                    </span>
+                                  </p>
+                                  
+                                   <p class="date">2014-03-05 11:08</p>
+                                </div> <!--end bottom-->
+                         	</li>
+                            <li class="talk-list-item">
+                         		<p class="face"><A href="###" class="usercard"><img src="u_d_img/face-img/middle3.png" /></A></p>
+                                <p class="name"><a href="###">冒险老师</a></p>
+                                <p class="cont">访问跨年福利科窝的科窝的科窝的科窝的科窝的科窝的科窝的科窝的科窝的科窝的科窝的科窝的科窝的科窝的科窝的科窝的科窝的科窝的仓位发的无法囊废了可恶发布的内容</p>
+                                <div class="bottom">
+                                  <p class="btns">
+                                    <span class="handle">
+                                     <a href="###" class="delete fr">删除</a>
+                                    </span>
+                                  </p>
+                                  
+                                   <p class="date">2014-03-05 11:08</p>
+                                </div> <!--end bottom-->
+                         	</li>
+                         </ul> <!--end talks-list -->
+                         
+                         
+                         
+                      </div> <!--end talks-box-->
+                   </div> <!--end travel-talks-->
+               </div>  <!--end i-travel-main -->
+               <div class="i-travel-side fr" id="fixedSide">
+                  <div class="entry">
+                  	 <a href="###" title="写游记" class="entry_travel">写游记</a> 
+                     <a href="###" title="传照片" class="entry_photo">传照片</a> 
+                     <a href="###" title="做计划" class="entry_plan">做计划</a> 
+                     <a href="###" title="提问题" class="entry_ask">提问题</a> 
+                  </div> <!--end entry-->
+              	 
+                 <div class="attent">
+                 	 <div class="title">
+                       <h3 class="text">我的关注</h3>
+                       <em class="em">0</em>
+                       <a href="###" class="more fr"><em>>></em> 更多</a>
+                     </div>
+                 </div> <!--end attent--> 
+                 
+                   <div class="attent">
+                 	 <div class="title">
+                       <h3 class="text">我的关注</h3>
+                       <em class="em">0</em>
+                       <a href="###" class="more fr"><em>>></em> 更多</a>
+                     </div>
+                     
+                     <div class="no-cont">
+                     	多多与人们交流，结交新朋友吧
+                     </div> <!--没有 关注时-->
+                 </div> <!--end attent--> 
+                 
+                 <div class="side-adver">
+                  <A href="###"></A>
+                 </div> <!--end side-adver-->
+               </div> <!--end i-travel-side --> 
+            </div> <!--end cont-item-->
+            
+            <span class="blank1"></span>
+        </div> <!--end main-cont-->
+    </div> <!--end main-->
+    
+      <div class="footer cl">
+      <div class="footer-inner">
+      	   <div class="foot-logo"><a href="###">惠众国旅™</a></div> <!--end f-logo -->
+           <div class="footer-info">
+              <p>
+                2004-2014© 惠众国旅™ bbs.hnlyou.com All rights reserved. 琼ICP备 120110220号 琼公安备112010001000
+              </p>
+              <p>
+              惠众国旅为旅行者提供原创实用的出境游旅行指南和旅游攻略、旅行社区和问答交流平台，并提供签证、保险、机票、酒店预订、租车等服务。
+              </p>
+           </div>
+           <div class="back-top"><a href="#TOP">▲</a></div>
+      </div> <!--end footer-inner -->
+    </div>  <!--end foot-->
+    
+    </div> <!--wrap-->
+    <script src="../../script/perMove.js"></script>
+    <script src="../../script/common.js"></script>
+
+</body>
+</html>

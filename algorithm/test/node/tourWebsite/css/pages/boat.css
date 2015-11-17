@@ -1,0 +1,318 @@
+@charset "utf-8";
+/* CSS Document */
+
+.main-left{
+	width:670px;
+	overflow:hidden;	
+	margin-bottom:87px;
+	}
+.main-left .boat-top{
+	color:#2a6b3a;
+	font-family:"宋体";
+	}	
+			.boat-top h2{
+				display:inline;
+				float:left;
+				font-size:15px;	
+				font-weight:bold;
+				}
+			.boat-top a.more{
+				color:#2a6b3a;
+				float:right;
+				font-size:12px;	
+				}	
+				
+		  .hot-boat-item{
+			 padding:10px 9px;
+			 border:1px solid #92b49a; 
+			 overflow:hidden;
+			  }	
+          .hot-boat-item ul{
+			 margin-left:-11px; 
+			  }	
+		   .hot-boat-item ul li{
+			 float:left;
+			 margin-left:11px; 
+			 overflow:hidden;
+			 width:154px;
+			 font-family:"宋体";
+			 font-size:12px;
+			  }	
+			 .hot-boat-item ul li a{
+				display:block;	
+				color:#000000;
+				}    
+			.hot-boat-item ul li a.itemImg img{
+				width:154px;
+				height:100px;	
+				}
+			a.itemTitle,a.fTitle{
+				white-space:normal;
+				line-height:15px;
+				margin-top:5px;
+				color:#000;
+				letter-spacing:2.5px;	
+				margin-bottom:13px;
+				}
+			a.itemTitle b,a.fTitle b{
+				color:#2a6b3a;
+				font-weight:normal;	
+				}		
+			p.s-info{
+				color:#767676;
+				line-height:16px;
+				}
+			 p.s-info b{
+				color:#e70808;
+				font-weight:normal;	
+				}			  	
+				
+				
+/*线路推荐模块*/
+.hot-recomd{
+	margin-top:15px;	
+	}		
+.recomd-box{
+	padding:10px 10px;
+	padding-right:9px;
+	border:1px solid #92b49a; 
+    overflow:hidden;
+	font-family:"宋体";
+	}		
+.recomd-box .map-info{
+	line-height:1;	
+	}		
+			.map-info a,.map-info span{
+				color:#767676;	
+				}
+			.map-info a:hover{
+				color:#E70809;	
+				}	
+			.map-info em{
+				color:#92b49b;
+				line-height:18px;
+				font-size:8px;
+				margin-right:4px;	
+				}
+		
+
+.recomd-focus{
+	margin-left:-11px;
+	margin-top:10px;	
+	}	
+.recomd-focus .f-item{
+	margin-left:11px;
+	float:left;
+	width:319px;	
+	}		
+			   .f-item a.fImg{
+				  width:319px;
+				  height:200px;
+				  display:block;
+				  background-color:#7f7f7f;	
+				  margin-bottom:3px; 
+				   }
+				.f-item a.fImg img{
+					width:100%;
+					height:100%;	
+					}   	
+			   .f-item a.fTitle{
+				  line-height:18px; 
+				   }	 
+		   .f-item .f-item-bottom{
+			  margin-top:7px; 
+			   }	
+			   	   .f-item-bottom p.s-date,.f-item-bottom p.s-price{
+					  	  line-height:23px; 
+						  letter-spacing:0.5px;
+					   }
+			  	   .f-item-bottom p.s-date{
+					  	float:left; 
+					   } 
+				   .f-item-bottom p.s-price{
+					  	float:right; 
+					   } 
+					 .f-item-bottom button{
+					  	float:right; 
+						height:23px;
+						padding:0 15px;
+						line-height:23px;
+						background:#2a6b3a;
+						color:#fff;
+						border:none;
+						cursor:pointer;
+						margin-left:5px;
+					   } 
+					  .f-item-bottom button:active{
+						  background-color:#45A85C; 
+						  }    	    	     
+	
+	
+/* recomd-focus 列表页*/	
+	.recomd-list{
+		margin-top:20px;
+		padding-left:7px;	
+		}
+	.recomd-list ul li{
+		overflow:hidden;	
+		}
+	.recomd-list ul li em{
+		display:block;
+		background-color:#e70808;
+		width:7px;
+		height:7px;
+		float:left;	
+		margin-top:7px;
+		margin-right:9px;
+		}		
+	.recomd-list ul li a.list-title{
+		float:left;
+		display:block;
+		max-width:500px;
+		overflow:hidden;
+		vertical-align:bottom;	
+		color:#767676;
+		}
+	.recomd-list ul li a.list-title:hover{
+		color:#e70808;	
+		}		
+	.recomd-list ul li span.list-price{
+		float:right;
+		color:#2a6b3a;	
+		}
+	
+	
+	
+/*hot-other*/
+ .hot-other{
+	margin-top:10px; 
+	 }
+ .other-top{
+	border-bottom:1px solid #c3c3c3; 
+	 }	 
+ .other-top h2{
+	color:#0e2026; 
+	 }	 	
+ .hot-other .other-cont{
+	border:1px solid #ececec; 
+	padding:16px; 
+	 }	 
+			.other-cont ul{
+				margin-left:-32px;	
+				}
+			.other-cont ul li{
+				overflow:hidden;
+				float:left;
+				margin-left:32px;
+				width:101px;	
+				}	
+				
+				
+				
+/*右侧栏*/		
+ .main-right{
+	width:316px;
+	overflow:hidden; 
+	 }
+	 
+ .side-slide{
+	position:relative;
+	width:316px;
+	height:289px;
+	overflow:hidden; 
+	 }	 
+  .side-slide ul.slide-inner{
+	 position:absolute;
+	 left:0;
+	 top:0;
+	 width:1580px; 
+	  }	 
+  .side-slide ul.slide-inner li{
+	  position:relative;
+	  float:left; 
+	  }	
+  .side-slide ul.slide-inner li a{
+	 display:block;
+	 text-align:center;
+	 width:316px;
+	 height:289px;
+	 background-color:#7f7f7f; 
+	  }	
+  .side-slide ul.slide-inner li a img{
+	 width:100%;
+	 height:100%; 
+	  }	    
+
+.slide-index{
+	position:absolute;
+	right:13px;
+	bottom:5px;
+	z-index:5;	
+	}	
+.slide-index a{
+	display:block;
+	float:left;
+	margin-left:3px;
+	color:#fff;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:22px;
+	font-weight:bold;
+	text-decoration:none;
+	line-height:1;
+	cursor:pointer;
+	}
+.slide-index a.s_curr{
+	color:#e70808;	
+	}	
+	
+	
+/*侧边广告*/		
+.side-adver{
+	margin-top:10px;	
+	}    
+.side-adver a{
+	width:316px;
+	height:289px;
+	display:block;
+	background-color:#cccccc;
+	}	
+.side-adver a img{
+	width:100%;
+	height:100%;
+	border:none;	
+	}
+	
+/*预订须知*/
+.side-notice{
+	margin-top:17px;	
+	letter-spacing:1.5px;
+	}	
+.side-notice b{
+	font-family:"微软雅黑";
+	font-size:18px;
+	color:#979797;
+	}	
+ul.notice-list{
+	margin-top:12px;
+	border-bottom:1px solid #e5e5e5;
+	padding-bottom:3px;
+	}	
+ul.notice-list li{
+	overflow:hidden;
+	}
+ul.notice-list li a{
+	color:#767676;	
+	text-decoration:none;
+	}	
+ul.notice-list li a i{
+	color:#e70808;
+	font-size:16px;
+	font-family:"宋体";
+	font-style:normal;
+	margin-right:6px;	
+	}	
+ul.notice-list li a:hover{
+	color:#e70808;	
+	}			
+	
+		

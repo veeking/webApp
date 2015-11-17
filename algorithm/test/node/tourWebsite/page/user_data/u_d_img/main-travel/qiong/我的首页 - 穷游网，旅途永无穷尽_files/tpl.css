@@ -1,0 +1,82 @@
+/*message*/
+#mod_message { position:fixed; z-index:99999; left:0; top:0; float:left; padding:20px; background:#fff; border:1px solid #c0c0c0; box-shadow:0 1px 5px rgba(0,0,0,0.2);}
+#mod_message_cont { font-size:14px; line-height:24px;}
+#mod_message .true { padding-left:35px; background:url(../../images/common/tpl/icon_true24.png) no-repeat left center;}
+#mod_message .warn { padding-left:35px; background:url(../../images/common/tpl/icon_warn24.png) no-repeat left center;}
+
+/*popup*/
+.ui_popup_bg { position:absolute; z-index:1199; top:0; left:0; width:100%; height:100%; background:url(../../images/common/popup_bg.png);}
+.ui_popup { position:relative; width:500px; margin:50px auto 0; border:1px solid #c0c0c0; box-shadow:0 1px 6px rgba(0,0,0,0.3);}
+.ui_popup_main { background:#fff;}
+.ui_popup_close { position:absolute; z-index:1; top:8px; right:8px; width:30px; height:30px; background:url(../../images/common/tpl/popup_close.png) no-repeat 0 -30px; cursor:pointer;}
+.ui_popup_close:hover { background-position:0 0;}
+
+
+/*文本框高度自适应*/
+#js_autoheight_clone { display:block; position:absolute; left:0; bottom:0; height:18px; border-width:0px; padding:0px; overflow:hidden; visibility:hidden;}
+
+
+/*form*/
+.ui2_input { height:24px; overflow:hidden; padding:3px 7px; border:1px solid #c0c0c0; font-size:14px; line-height:24px;}
+.ui2_textarea { height:24px; min-height:24px; overflow:hidden; padding:3px 7px; border:1px solid #c0c0c0; font-size:14px; line-height:24px;}
+.ui2_input:focus, .ui2_textarea:focus { border-color:#5fa678; box-shadow:0 2px 2px 0 rgba(0,0,0,0.05) inset;}
+.ui2_focus { border-color:#5fa678; box-shadow:0 2px 2px 0 rgba(0,0,0,0.05) inset;}
+.ui2_error { border-color:#cb0900; box-shadow:0 2px 2px 0 rgba(0,0,0,0.05) inset;}
+
+
+/*error-layer*/
+.ui2_error_layer { position:absolute; left:100px; top:-1px; float:left; height:22px; line-height:22px; padding:0 8px; border:1px solid #cb0013; background:#ffcccd; color:#636363;}
+.ui2_error_layer_arrow { position:absolute; top:-6px; left:11px; width:0; height:0; overflow:hidden; border:6px solid transparent; border-bottom-color:#cb0013; border-top-width:0;}
+.ui2_error_layer_arrow2 { position:absolute; top:-5px; left:12px; width:0; height:0; overflow:hidden; border:5px solid transparent; border-bottom-color:#ffcccd; border-top-width:0;}
+.ui2_error_layer_arrowb { position:absolute; bottom:-6px; left:11px; width:0; height:0; overflow:hidden; border:6px solid transparent; border-top-color:#cb0013; border-bottom-width:0;}
+.ui2_error_layer_arrowb2 { position:absolute; bottom:-5px; left:12px; width:0; height:0; overflow:hidden; border:5px solid transparent; border-top-color:#ffcccd; border-bottom-width:0;}
+.ui2_error_layer_arrowl { position:absolute; top:5px; left:-6px; width:0; height:0; overflow:hidden; border:6px solid transparent; border-right-color:#cb0013; border-left-width:0;}
+.ui2_error_layer_arrowl2 { position:absolute; top:6px; left:-5px; width:0; height:0; overflow:hidden; border:5px solid transparent; border-right-color:#ffcccd; border-left-width:0;}
+.ui2_error_layer_text {}
+
+
+/*ui-pages*/
+.ui_pages { text-align:right;}
+.ui_pages_item { display:inline-block; font-size:14px; line-height:24px; color:#636363; padding:0 6px;}
+.ui_pages_item:hover { background:#e0f1e1; border-radius:3px; text-decoration:none; color:#323232;}
+.ui_pages_current, .ui_pages_current:hover { background:#5ea67c; border-radius:3px; font-weight:700; color:#fff;}
+.ui_pages_prev, .ui_pages_next { font-size:12px;}
+.ui_pages_prev { margin-right:16px;}
+.ui_pages_next { margin-left:16px;}
+.ui_pages_null { color:#c0c0c0;}
+.ui_pages_null:hover { color:#c0c0c0; background:none; cursor:default;}
+
+
+/*mod-talk*/
+.mod_talk { width:680px;}
+.mod_talk_title { margin-bottom:20px; font-size:18px; line-height:20px; color:#636363;}
+.mod_talk_edit { width:588px; padding-left:92px; margin-bottom:20px;}
+.mod_talk_edit_face { float:left; margin-left:-92px;}
+.mod_talk_edit_face img { border-radius:50%;}
+.mod_talk_edit_cnt { position:relative; background:#f5f5f5; border:1px solid #d7d7d7; padding:9px; box-shadow:0 0 3px rgba(0,0,0,0.12);}
+.mod_talk_edit_cnt .arrow { position:absolute; top:34px; left:-9px; width:0; height:0; overflow:hidden; border:9px solid transparent; border-right-color:#d7d7d7; border-left-width:0;}
+.mod_talk_edit_cnt .arrow2 { position:absolute; top:35px; left:-8px; width:0; height:0; overflow:hidden; border:8px solid transparent; border-right-color:#f5f5f5; border-left-width:0;}
+.mod_talk_edit_cnt textarea { width:552px; height:72px; min-height:72px;}
+.mod_talk_edit_cnt .btm { padding-top:10px; position:relative;}
+.mod_talk_edit_cnt .words { color:#959595; line-height:14px;}
+.mod_talk_edit_cnt .sum_error { font-weight:700; color:#cb0900;}
+.mod_talk_list { border-top:1px solid #ececec;}
+.mod_talk_list_item { width:622px; padding:20px 0 20px 58px; border-bottom:1px solid #ececec;}
+.mod_talk_list_item .face { float:left; margin-left:-58px;}
+.mod_talk_list_item .face img { border-radius:50%;}
+.mod_talk_list_item .name { font-size:14px; line-height:16px; font-weight:700;}
+.mod_talk_list_item .cnt { padding-top:1px; font-size:14px; word-break:break-all; word-wrap:break-word;}
+.mod_talk_list_item .bottom { padding-top:9px; line-height:14px;}
+.mod_talk_list_item .btns { float:right;}
+.mod_talk_list_item .btns .gap { padding:0 13px; color:#959595;}
+.mod_talk_list_item .btns .reply { padding-left:19px; background:url(../../images/common/tpl/talk_reply.png) no-repeat 0 center;}
+.mod_talk_list_item .date { color:#959595;}
+.mod_talk_list_reply { position:relative; width:548px; margin-top:12px; padding:15px 15px 15px 57px; background:#f5f5f5; border:1px solid #d7d7d7; box-shadow:0 0 3px rgba(0,0,0,0.12);}
+.mod_talk_list_reply .arrow { position:absolute; top:-8px; right:15px; width:0; height:0; overflow:hidden; border:8px solid transparent; border-bottom-color:#d7d7d7; border-top-width:0;}
+.mod_talk_list_reply .arrow2 { position:absolute; top:-7px; right:16px; width:0; height:0; overflow:hidden; border:7px solid transparent; border-bottom-color:#f5f5f5; border-top-width:0;}
+.mod_talk_list_reply .self { float:left; margin-left:-42px;}
+.mod_talk_list_reply .self img { border-radius:50%;}
+.mod_talk_list_reply textarea { width:532px; height:24px; min-height:24px;}
+.mod_talk_list_reply .btm { padding-top:10px; position:relative;}
+.mod_talk_list_reply .words { color:#959595; line-height:14px;}
+.mod_talk_list_reply .sum_error { font-weight:700; color:#cb0900;}
