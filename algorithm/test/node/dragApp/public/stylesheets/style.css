@@ -1,8 +1,73 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+*{
+    margin:0;
+    padding: 0;
 }
-
+body,html{
+    width:100%;
+    height:100%;
+}
+body {
+  background: #fff;
+}
 a {
   color: #00B7FF;
+}
+div#view{
+    width:98%;
+    height:83%;
+    margin:0 auto;
+    outline: 2px solid #E84C3D;
+}
+div#viewShow{
+    width：100%;
+    height:100%;
+    position:relative;
+}
+div#viewShow div.newEle{
+    position: absolute;
+}
+button{
+    border: none;
+    cursor: pointer;
+    font-family: '微软雅黑';
+}
+button#viewButton{
+    font:18pt Comic Sans MS;
+    width:100%;
+    height:19%;
+    box-shadow: 0 10px 0px #C1392B;
+    background: #E84C3D;
+    color: #fff;
+    vertical-align: middle;
+    transition:transform 0.2s linear;
+}
+
+button#viewButton:active{
+    transform:translateY(-10px);
+    background:#C1392B;
+}
+div#scaleBox{
+    display: inline-block;
+    position:absolute;
+    z-index:1;
+}
+.promptInfo{
+    width: 90%;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 5%;
+    padding-right: 5%;
+    text-align: center;
+    background:#808B8D;
+    color: #fff;
+    font-size:18pt;
+    overflow: hidden;
+}
+.promptInfoClose{
+    transition:all 0.4s linear;
+    -webkit-transition:all 0.4s linear;
+    padding-top: 0;
+    padding-bottom: 0;
+    height:0;
+    font-size:0;
 }

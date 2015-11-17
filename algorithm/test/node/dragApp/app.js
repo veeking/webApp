@@ -9,7 +9,7 @@ var path = require('path');
 var app = express();
 
 // all environments
-app.set('port', process.env.PORT || 80);
+app.set('port', process.env.PORT || 8080);
 app.set('view engine', 'html');
 app.use(express.favicon());
 app.use(express.logger('dev'));
@@ -17,9 +17,9 @@ app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(app.router);
-app.use(express.static(path.join(__dirname, '/views')));
+app.use(express.static(path.join(__dirname, '/')));
 
-app.get('/dragApp',function(req,res){
+app.get('/',function(req,res){  //nginx里将proxy_http写成x.x.x.x/dragApp就可以了
     res.sendfile(__dirname + '/views/drag.html');
 })
 // development only
