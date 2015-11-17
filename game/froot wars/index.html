@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>froot wars</title>
     <script src="lib/jquery.js"></script>
+    <script src="lib/Box2dWeb-2.1.a.3.js"></script>
+    <script src="common/box2d.js"></script>
     <script src="common/requestAni.js"></script>
     <script src="common/game.js"></script>
     <link rel="stylesheet" href="css/style.css"/>
@@ -48,6 +50,17 @@
               </p>
           </div>
       </div>
+      <div id="endingScreen" class="gamelayer">
+          <div>
+              <p id="endingMessage">关卡结束信息</p>
+              <p id="playCurrentLevel" onclick="game.restartLevel();"><img src="img/icons/prev.png" alt="重新开始关卡"/>重新开始当前关卡</p>
+              <p id="playNextLevl" onclick="game.startNextLevel();"><img src="img/icons/next.png" alt="开始下一个关卡"/>开始下一个关卡</p>
+              <p id="returnScreen" onclick="game.showLevelScreen();"><img src="img/icons/return.png" alt=""/>返回关卡选择</p>
+          </div>
+      </div> <!--end endingScreen-->
   </div>  <!--end gamecontainer-->
+
+<canvas id="debugCanvas" width="1000" height="480" style="border: 1px solid #000;"></canvas>
+
 </body>
 </html>

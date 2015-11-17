@@ -135,8 +135,17 @@ var game = {
         for(var body = box2d.world.GetBodyList();body;body = body.GetNext()){
             var entity = body.GetUserData();
             if(entity){
-                entities.draw(entity,body.GetPosition(),body.GetAngle());
-            }
+                var entityX = body.GetPosition().x*box2d.scale;
+                if(entityX < 0 || entityX > game.currentLevel.foregroundImage.width || entity.health && entity.health < 0){ // 如果超出界限的话和生命值小于0的话 移除
+                     box2d.world.DestroyBody(body);
+                    if(entity.type == "villain"){
+                       game.score += entity.calories; // 得分计算为 敌人的卡路里值
+                       $('#score').html("Score : " + game.score);
+                    }
+                }else{
+                    entities.draw(entity,body.GetPosition(),body.GetAngle());
+                }   // end entityX < 0
+            } // // end if entity
         }
 
     },
@@ -153,7 +162,6 @@ var game = {
                 }
             }
         }
-        console.log(game.heroes)
     },
     handlePanning:function(){
         if(game.mode == "intro"){  // 关卡刚刚载入
@@ -164,7 +172,11 @@ var game = {
 
         if(game.mode == "wait-for-firing"){  // 视野移回弹弓，准备发射
             if(mouse.dragging){  // 如果是"拖动事件"的话，画面中心平移回拖动点
-               game.panTo(mouse.x + game.offsetLeft);
+                if(game.mouseOnCurrentHero()){
+                   game.mode = "firing";
+                }else{
+                    game.panTo(mouse.x + game.offsetLeft);
+                } // end mouseOn
             }else{   //否则，画面中心平移到弹弓处
                game.panTo(game.slingshotX);
             }
@@ -197,12 +209,42 @@ var game = {
             }
         } // end load-next-hero
         if(game.mode == "firing"){  // 已单击英雄，鼠标没释放和还没拖拽
-           game.panTo(game.slingshotX);
+           if(mouse.down){  // 如果按下鼠标
+             game.panTo(game.slingshotX);
+               // 将英雄位置设为 鼠标处
+               console.log("is down")
+             game.currentHero.SetPosition({x:(mouse.x + game.offsetLeft)/box2d.scale,y:mouse.y/box2d.scale});
+           }else{  // 如果松开后
+              game.mode = "fired";
+              var impulseScaleFactor = 0.75;  // 英雄推力倍数
+              // 弹弓顶部和英雄顶部的距离的x和y向量 * 推力倍数
+              var impulse = new b2Vec2((game.slingshotX + 35 - mouse.x - game.offsetLeft) * impulseScaleFactor,(game.slingshotY + 25 - mouse.y) * impulseScaleFactor);  // 加上推力
+              game.currentHero.ApplyImpulse(impulse,game.currentHero.GetWorldCenter()); // 应用推力
+           }
         } // end firing
+
         if(game.mode == "fired"){  // 已释放按键并发射了英雄. 画面随之平移
-              //待完成
-              // 视野平移回英雄
+              //跟随当前英雄移动画面
+            var heroX = game.currentHero.GetPosition().x * box2d.scale;
+            // 视野平移回英雄
+            game.panTo(heroX);
+            // 直到该英雄停止移动或移除边界
+            if(!game.currentHero.IsAwake() || heroX < 0 || heroX >game.currentLevel.foregroundImage.width){
+                 // 然后删除旧的英雄
+                box2d.world.DestroyBody(game.currentHero);
+                game.currentHero = undefined;
+                //加载下一个英雄
+                game.mode = "load-next-hero";
+            }
         } // end fired
+
+       if(game.mode == "level-success" || game.mode == "level-failure"){
+           if(game.panTo(0)){
+               game.ended = true;
+               game.showEndingScreen();
+           }
+       }
+
     },
     panTo : function(newCenter){ //画面中心移动到newCenter
 
@@ -231,6 +273,32 @@ var game = {
         } // end 边缘检测
 
         return false;
+    },
+    mouseOnCurrentHero : function(){  //检测鼠标是否在当前英雄上
+       if(!game.currentHero){
+           return false;
+       };
+       var position = game.currentHero.GetPosition();
+        //计算 当前英雄中心与鼠标之间的距离
+       var distanceSquared = Math.pow(position.x * box2d.scale - mouse.x - game.offsetLeft,2) + Math.pow(position.y*box2d.scale - mouse.y,2);
+       // 计算 英雄的半径
+       var radiusSquare = Math.pow(game.currentHero.GetUserData().radius,2);
+       return (distanceSquared <= radiusSquare);  //距离如果小于半径 则 鼠标悬停在英雄上
+    },
+    showEndingScreen : function(){
+        if(game.mode == "level-success"){  // 成功过关
+           if(game.currentLevel.number < levels.data.length - 1){ //不是最后一关时
+              $("#endingMessage").html("成功过关 ！！");
+              $("#playNextLevel").show();
+           }else{
+              $("#endingMessage").html("全部的关卡已经完成!!恭喜");
+              $("#playNextLevel").hide();
+           } // end number
+        }else if(game.mode =="level-failure"){
+              $("#endingMessage").html("失败了，请重新开始游戏");
+              $("#playNextLevel").hide();
+        } // end level-success
+        $("#endingScreen").show();
     }
 };
 
@@ -260,7 +328,7 @@ var levels = { //  关卡对象
             background:'clouds-background',
             entities:[
                 {type : "ground",name : "dirt",x:500,y:440,width:1000,height:20,isStatic:true},  // 弹弓和地面
-                {type : "ground",name : "wood",x:210,y:390,width:40,height:80,isStatic:true},
+                {type : "ground",name : "wood",x:180,y:390,width:40,height:80,isStatic:true},
 
                 {type : "block",name : "wood",x:820,y:380,angle:90,width:100,height:25},
                 {type : "block",name : "wood",x:720,y:380,angle:90,width:100,height:25},
@@ -272,12 +340,12 @@ var levels = { //  关卡对象
                 {type : "block",name : "wood",x:720,y:193,width:100,height:25},
 
                 {type : "villain",name : "burger",x:715,y:155,calories:590},
-                {type : "villain",name : "burger",x:670,y:405,calories:420},
-                {type : "villain",name : "burger",x:765,y:405,calories:150},
+                {type : "villain",name : "fries",x:670,y:405,calories:420},
+                {type : "villain",name : "sodacan",x:765,y:405,calories:150},
 
-                {type : "hero",name : "strawberry",x:25,y:415,calories:420},
-                {type : "hero",name : "orange",x:75,y:405,calories:410},
-                {type : "hero",name : "apple",x:135,y:405,calories:410},
+                {type : "hero",name : "strawberry",x:25,y:415},
+                {type : "hero",name : "orange",x:70,y:405},
+                {type : "hero",name : "apple",x:125,y:405},
             ]
         },
     ],
@@ -319,7 +387,7 @@ var levels = { //  关卡对象
          loader.onload = game.start;  //因为资源加载是异步操作，所以需要 定义onload 方法为game.start的回调方法
             //  某个时刻(资源加载完成的时候)调用 game.start
             // 能不能用promise改装???
-          // promise.then(function(){game.start()},function(){alert('失败了!!!')});
+          // 1 promise.then(function(){game.start()},function(){alert('失败了!!!')});
     }
 };
 
@@ -330,8 +398,8 @@ var mouse = {    // 处理各种鼠标事件的对象
     init:function(){
         $('#gamecanvas').mousemove(mouse.mouseMoveHandler);
         $('#gamecanvas').mousedown(mouse.mouseDownHandler);
-        $('#gamecanvas').mouseup(mouse.mouseUpeHandler);
-        $('#gamecanvas').mouseout(mouse.mouseUpeHandler);
+        $('#gamecanvas').mouseup(mouse.mouseUpHandler);
+        $('#gamecanvas').mouseout(mouse.mouseUpHandler);
     },
     mouseMoveHandler:function(e){
         var offset = $('#gamecanvas').offset();

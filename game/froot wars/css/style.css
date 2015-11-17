@@ -75,4 +75,31 @@
     top: 5px;
     right: 20px;
 }
+/*结束画面*/
+#endingScreen{
+    text-align: center;
 
+}
+#endingScreen div{
+    height: 430px;
+    padding-top: 50px;
+    padding-left:100px;
+    border:1px;
+    background:rgba(1,1,1,0.5);
+    text-align: left;
+}
+#endingScreen p{
+    font: 20px "Comic Sans MS";
+    text-shadow: 0 0 2px #000;
+    color: white;
+}
+#endingScreen p img{
+    top:10px;
+    position: relative;
+    cursor: pointer;
+}
+#endingScreen #endingMessage{
+    font: 32px Comic Sans MS;
+    text-shadow: 0 0 2px #000;
+    color: white;
+}
