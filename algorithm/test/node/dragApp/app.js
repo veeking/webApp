@@ -1,6 +1,6 @@
 
 /**
- * Module dependencies.
+ * drag app dependencies.
  */
 
 var express = require('express');
@@ -19,7 +19,7 @@ app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, '/views')));
 
-app.get('/',function(req,res){
+app.get('/dragApp',function(req,res){
     res.sendfile(__dirname + '/views/drag.html');
 })
 // development only

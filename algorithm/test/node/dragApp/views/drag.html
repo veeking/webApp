@@ -3,7 +3,7 @@
 <head lang="en">
     <meta charset="UTF-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <title></title>
+    <title>realTime dragApp测试</title>
     <style>
         *{
             margin:0;
@@ -14,13 +14,13 @@
             height:100%;
         }
         body{
-           background: #4d4d4d;
+           background: #fff;
         }
         div#view{
             width:98%;
             height:83%;
             margin:0 auto;
-            outline: 2px solid #00B7FF;
+            outline: 2px solid #E84C3D;
         }
         div#viewShow{
            width：100%;
@@ -36,50 +36,65 @@
             font-family: '微软雅黑';
         }
         button#viewButton{
+              font:18pt Comic Sans MS;
               width:100%;
-              height:20%;
-              background: #00B7FF;
+              height:19%;
+              box-shadow: 0 10px 0px #C1392B;
+              background: #E84C3D;
               color: #fff;
-              font-size: 16pt;
               vertical-align: middle;
-              transition:transform 0.3s linear;
+              transition:transform 0.2s linear;
           }
 
         button#viewButton:active{
-            transform:translateY(10px);
-            background:#285e8e;
+            transform:translateY(-10px);
+            background:#C1392B;
         }
         div#scaleBox{
             display: inline-block;
             position:absolute;
             z-index:1;
         }
+        .promptInfo{
+            width: 90%;
+            padding-top: 30px;
+            padding-bottom: 30px;
+            padding-left: 5%;
+            padding-right: 5%;
+            text-align: center;
+            background:#808B8D;
+            color: #fff;
+            font-size:18pt;
+            overflow: hidden;
+        }
+        .promptInfoClose{
+            transition:all 0.4s linear;
+            -webkit-transition:all 0.4s linear;
+            padding-top: 0;
+            padding-bottom: 0;
+            height:0;
+            font-size:0;
+        }
     </style>
 </head>
 <body>
     <div id="view">
         <div id="viewShow">
+            <div class="promptInfo" id="viewInfo">
+              创建模块前需打开多个本页面才能查看同步效果哦
+            </div>
         </div>
-        <button id="viewButton">Create New</button>
+        <button id="viewButton">创建拖拽缩放模块</button>
     </div>
 
 <script src="/socket.io/socket.io.js"></script>
 <script>
-    //  问题1 ：  1、改变this后 服务端的currentEle没有更新改变 而还是上一个的结果
-   //  问题2 ：  2、拖动时 大窗口客户端在小窗口里会溢出
-   // socketIo 和 动画
-  //  问题3：    3、手机端 缩放严重卡顿，拖拽好好的 为什么缩放就卡顿?
-  //  问题4： 不同的终端大小不同 计算结果出现了偏差
   function DragApp(opt){  // 无需外部调用任何方法 ， 传参数后即可内部完成所有功能
      if(typeof opt != Object && opt == null){
         return false;
      }
 
-      var socket = io.connect('http://120.24.161.222:80/');
-//      socket.on('init',function(e){  // 其它客户端需要移动才会触发 why?
-//          currentEle.style.left = e.x + 'px';
-//          currentEle.style.top = e.y + 'px';
-//      });
+      var socket = io.connect('http://127.0.0.1'); // 注意修改成服务器地址
       socket.on('indexChange',function(e){
           nowIndex = e.index;
           eleLayoutIndex = e.zIndex;  // 改变全局 zIndex
@@ -121,7 +136,7 @@
              deleteScale();
       });
       socket.on('error',function(){
-          alert('socket服务器回家找妈去了!!');
+          alert('socket服务器开小差!');
       });
       // socket监听区域
 
@@ -155,7 +170,7 @@
           end : (isPc?"mouseup":"touchend")
       };
       createBtn.addEventListener(eventType.down,function(){
-          var colorTotal = ['red','green','blue'];
+          var colorTotal = ['#373948','#F2405B','#F1C40F','#E77E23','#2FCC71','#3598DC','#9C59B8'];
           var uniAttr = {   // 以下的属性都是需要多客户端统一的
               coord : getCoord(targetSize), // 所以 发由服务器进行统一返回
               color : colorTotal[Math.floor(Math.random() * colorTotal.length)],
@@ -286,7 +301,7 @@
                   newScale.style.left = ele.offsetLeft - ((targetWidth - ele.offsetWidth) / 2) - 5 + 'px';
                   newScale.style.top = ele.offsetTop - ((targetHeight - ele.offsetHeight) / 2) - 5 + 'px';
                   newScale.style.zIndex = eleLayoutIndex - 1; // 低于元素层
-                  newScale.style.border = '5px dashed #000';
+                  newScale.style.border = '5px dashed #34495E';
                   newScale.setAttribute('id', 'scaleBox');
                   showView.appendChild(newScale);
                   hasCreate = true;
@@ -321,7 +336,7 @@
               referX = ele.offsetWidth;
               referY = ele.offsetHeight;
           }
-          if(x < targetSpacing){ //  碰撞检测
+          if(x < targetSpacing){ //  边缘碰撞检测
               x = targetSpacing + 10;
           }else if(x > showView.offsetWidth - referX){
               x = showView.offsetWidth - referX - 10;
@@ -367,6 +382,11 @@
          showBox : document.getElementById('viewShow'),
          showBtn : document.getElementById('viewButton')
      });
+
+   var prompt = document.getElementById('viewInfo');
+   setTimeout(function(){
+       prompt.className = 'promptInfoClose';
+   },2000); // 2s 后关闭提示
 </script>
 </body>
 </html> 
