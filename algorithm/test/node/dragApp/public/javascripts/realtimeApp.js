@@ -6,8 +6,8 @@ function DragApp(opt){  // 无需外部调用任何方法 ， 传参数后即可
     if(typeof opt != Object && opt == null){
         return false;
     }
-
-    var socket = io.connect('http://127.0.0.1:8080'); // 注意修改成服务器地址
+    var url = window.location.protocol+'//'+window.location.host;
+    var socket = io.connect(url); // 注意修改成服务器地址
     socket.on('indexChange',function(e){
         nowIndex = e.index;
         eleLayoutIndex = e.zIndex;  // 改变全局 zIndex

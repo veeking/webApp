@@ -47,7 +47,7 @@ io.sockets.on('connection',function(socket){
    });
 
    socket.on('createScale',function(){
-       console.log(currIndex)
+//       console.log(currIndex)
        io.sockets.emit('scaleCreate',{index:currIndex});
    });
    socket.on('changeIndex',function(e){
